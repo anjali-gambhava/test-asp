@@ -1,0 +1,1535 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.Master.cs" Inherits="exam.Main" %>
+
+<%--<%@ Register TagName="header" TagPrefix="ucheader" Src="~/Module/header.ascx" %>
+<%@ Register TagName="footer" TagPrefix="ucfooter" Src="~/Module/footer.ascx" %>--%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:title" content="<%= ConfigurationManager.AppSettings["tabtitle"].ToString() %>" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="http://codechameleon.in/TSD_Website_HTML/images/preview-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="****WEBSITE-URL****" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="date=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
+    <%--<link rel="icon" href="NewLayout/images/favicon.png" />--%>
+	<link rel="icon" type="image/png" sizes="192x192"  href="Images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="Images/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="Images/favicon-16x16.png">
+    <title><%= ConfigurationManager.AppSettings["tabtitle"].ToString() %></title>
+  <%--  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">--%>
+
+    <%--<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />--%>
+    <%--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />--%>
+    <%--<link href="css/style.css" rel="stylesheet" type="text/css" />--%>
+    <%--<script src="/js/multiselect.min.js"></script>--%>
+    <link rel="stylesheet" href="NewLayout/css/styles.css" />
+    <%--<script src="NewLayout/js/allScript.js" type="text/javascript"></script>--%>
+    <%--<script type="text/javascript" src="<%=ResolveUrl("~/js/jquery.min.js") %>"></script>--%>
+    <%--<script src="NewLayout/js/allScript.js" type="text/javascript"></script>--%>
+    <%--<script src="<%=ResolveUrl("~/js/jquery.validate.js") %>" type="text/javascript"></script>--%>
+    <%--<script src="<%=ResolveUrl("~/js/bootstrap.min.js") %>" type="text/javascript"></script>--%>
+    <%--<script src="js/common.js" type="text/javascript"></script>--%>
+    <%--<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>--%>
+    <%--<script src="js/bootstrap.min.js"></script>--%>
+    <script>
+        var playerType;
+
+        <%
+        if (Session["PlayerType"] == null || Session["PlayerType"].ToString() == "")
+        {
+            Session["PlayerType"] = "JWPlayer";
+        }
+        %>                
+        playerType = '<%=Session["PlayerType"]%>';
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-91618274-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+     
+    <%--<div class="col-lg-12 pull-right text_center" style="padding:30px;border: 1px solid #DADEE7;background: #00a0e3;margin-bottom: 10px;color:#FFF" >
+                        
+                        <input type="radio" id="JWPalyer" name="Playertype" <%if (Session["PlayerType"]!=null && Session["PlayerType"].ToString() == "JWPlayer")
+                            { %>  checked="checked" <%} %> value="JWPlayer" /> JW Player
+                        <input type="radio" id="RTMPPalyer" name="Playertype" value="RTMPPlayer" <%if (Session["PlayerType"].ToString() == "RTMPPlayer")
+                            { %>  checked="checked" <%} %> /> VMukti Player
+
+                       
+                </div>--%>
+    <%-- <script type="text/javascript">
+     $(document).ready(function () {
+         //Disable cut copy paste 
+         $('body').bind('cut copy paste', function (e) {
+             e.preventDefault();
+         });
+
+         //Disable mouse right click 
+         $("body").on("contextmenu", function (e) {
+             return false;
+         });
+     });
+     document.onkeydown = function (e) {
+         //  alert(e.keyCode)
+         if ((e.ctrlKey &&
+            (e.keyCode === 67 || e.keyCode === 69 ||
+             e.keyCode === 86 ||
+             e.keyCode === 85 || e.keyCode === 73 || e.keyCode === 75 || e.keyCode === 90 ||
+             e.keyCode === 117)) || e.keyCode === 123) {
+             return false;
+         } else {
+             return true;
+         }
+     };
+     $(document).keypress("u", function (e) {
+         if (e.ctrlKey) {
+             return false;
+         }
+         else {
+             return true;
+         }
+     });
+    </script>--%>
+    <style>
+        body {
+            font-family: Calibri !important;
+            font-weight: bold !important;
+            -webkit-background-size: cover !important;
+            -moz-background-size: cover !important;
+            -o-background-size: cover !important;
+            background-size: cover !important;
+        }
+        /*h1{
+            font-size: 2.2rem!important;
+        }*/
+          .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+        .swal2-confirm, .swal2-cancel {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-right: 0.7em;
+            border-radius: 3px;
+        }
+
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="jsNavbarToggle is-close flex-col bg-white">
+    <form id="form2" runat="server">
+        <!-- Header -->
+       <header class="lg:py-1sm w-full border-default border-b"  runat="server" id="headerid">
+            <div class="px-xs mx-auto pos-relative w-full">
+              <div class="flex-row align-center">
+                    
+                    <a href="<%=ConfigurationManager.AppSettings["StateElectionUrl"].ToString()%>"  target="_blank" title="<%= ConfigurationManager.AppSettings["ElectionLogoHelptext"].ToString() %>" style="width: 65px; height: 65px;" class="<%= ConfigurationManager.AppSettings["StateElectionLogoVisible"].ToString() %> flex-none icon icon-logo ratio-logo pos-relative d-inline-block mr-md">
+                        <span class="<%= ConfigurationManager.AppSettings["StateElectionLogoVisible"].ToString() %> pos-absolute pin">
+                            <img src="<%= ConfigurationManager.AppSettings["StateElectionLogoPath"].ToString() %>" alt="Election Commission of India">
+                        </span>
+                    </a>
+                    <!-- <div class="flex-auto px-sm">
+            <button class="flex-row align-center cursor-pointer bg-secondary f-color-white f-size-2sm f-weight-semibold hover:shadow-md transition-all">
+               <span class="px-2xs flex-row align-center"><span class="mr-xs"><i data-feather="bell"></i></span> Alerts</span>
+               <span class="bg-primary p-sm">3</span>
+            </button>
+         </div> -->
+
+                   <h1 class="m-auto f-color-secondary f-size-4sm" style="font-weight: bold;"><%= ConfigurationManager.AppSettings["dashbordtitle"].ToString() %> </h1>
+                    <div class="flex-row align-stretch f-right">
+                        <a href="<%=ConfigurationManager.AppSettings["CEOUrl"].ToString()%>" title="<%= ConfigurationManager.AppSettings["CEOhelptext"].ToString() %>" style="width: 60px; height: 60px;" class="<%= ConfigurationManager.AppSettings["CEOVisible"].ToString() %> flex-none icon icon-logo ratio-logo pos-relative d-inline-block mr-md">
+                        <span class="<%= ConfigurationManager.AppSettings["CEOVisible"].ToString() %> pos-absolute pin">
+                            <img src="<%= ConfigurationManager.AppSettings["CEOimagePath"].ToString() %>" alt="Election Commission of India">
+                        </span>
+                    </a>
+                        <%-- <a href="<%= ConfigurationManager.AppSettings["TechnicalAgencyUrl"].ToString() %>" target="_blank" title="<%= ConfigurationManager.AppSettings["TechnicalAgencyLogohelptext"].ToString() %>" style="width: 60px; height: 60px;" class="<%= ConfigurationManager.AppSettings["TechnicalAgencyLogoVisible"].ToString() %> flex-none icon icon-logo ratio-logo pos-relative d-inline-block mr-md">
+                            <span class="<%= ConfigurationManager.AppSettings["TechnicalAgencyLogoVisible"].ToString() %> pos-absolute pin">
+                                <img src="<%= ConfigurationManager.AppSettings["TechnicalAgencyLogoPath"].ToString() %>" alt="Punjab InfoTech">
+                            </span>
+                        </a> --%>
+                        <a href="<%= ConfigurationManager.AppSettings["VmuktiUrl"].ToString() %>" target="_blank"  title="<%= ConfigurationManager.AppSettings["VmuktiLogohelptext"].ToString() %>" style="width: 60px; height: 60px;" class="flex-none icon icon-logo ratio-logo pos-relative d-inline-block mr-xs">
+                            <span class="<%= ConfigurationManager.AppSettings["VmuktiLogoVisible"].ToString() %>  pos-absolute pin">
+                                <img src="<%= ConfigurationManager.AppSettings["VmuktiLogoPath"].ToString() %>" alt="Election">
+                            </span>
+                        </a>
+                        <%--<a href="#" class="rounded-full no-underline bg-secondary f-color-white flex-row align-center cursor-pointer f-size-sm f-weight-semibold hover:shadow-md transition-all mr-sm pos-relative">
+                            <span class="p-xsthin flex-row align-center">
+                                <i data-feather="bell"></i>
+                            </span>
+                            <div class="pos-absolute pin-t pin-r -mt-thin -mr-thin">
+                                <span class="icon bg-primary f-color-white rounded-full">
+                                    <span class="p-thin f-size-xxs"><small>3</small></span>
+                                </span>
+                            </div>
+                        </a>--%>
+                        <%if (Session["userType"] != null)
+                            { %>
+                        <%--<asp:Label runat="server" Text="Test"></asp:Label>--%>
+                        <button id="btnUser" class="button flex-row align-center">
+                            <div class="icon icon-sm">
+                                <span class="rounded-full bg-primary-light bg-cover bg-center" style="background-image: url('images/user-image.jpg');"></span>
+                            </div>
+                            <span class="icon">
+                                <i data-feather="chevron-down"></i>
+                            </span>
+                            <div id="divUserMenu" class="pos-absolute mt-2xl -ml-2xl bg-white border-2 d-hidden z-10">
+                                <ul id="nav-ul" class="list-reset flex-col">
+                                    <li id="nav-li" class="hover:bg-semi-light border-light py-xs px-md">
+                                        <a id="nav-a" href="#" onclick="Logout()" class="no-underline f-color-secondary">
+                                            <span class="icon mr-xs flex-none f-color-secondary">
+                                                <span class=""><i data-feather="log-out"></i></span>
+                                            </span>Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </button>
+                        <%} %>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <%if (Session["userType"] != null)
+            { %>
+        <!-- Main -->
+        <main class="flex-auto flex-col" style="min-height: 89vh;">
+            <div class="flex-row flex-auto">
+                <!-- Navbar Side -->
+                <div class="bg-white border-default border-r pos-relative">
+                    <div id="divMenuToggle" title="Menu" style="display: none; z-index: 1000;" class="cursor-pointer pos-absolute pin-t pin-r -mt-2xs">
+                        <span class="icon bg-primary f-color-white rounded-full">
+                            <span class="icon mr-xs flex-none f-color-white">
+                                <span class=""><i data-feather="chevron-left"></i></span>
+                            </span>
+                        </span>
+                    </div>
+                    <nav id="navMenu" class="side-navbar bg-white border-default border-r xl:d-inline-flex" runat="server">
+                        <ul class="list-reset flex-col w-full">
+                              <li style="border-bottom:2px solid #d9d5d2; padding:0px 40px;text-align:center">
+				<div class="profile-userpic">
+                     <span class="icon mr-xs flex-none f-color-primary">
+                                        <span style="background: #dc7c3c;border-radius: 50%; color:#fff"><i data-feather="user"></i></span>
+                                    </span>
+				</div>
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+                        <label><%=Session["username"].ToString()%></label>
+					</div>
+					<%--<div class="profile-usertitle-job" style="font-size: 14px;">
+					  <label><%=Session["userType"].ToString()%></label>
+					</div>--%>
+				</div>
+</li> 
+                      <%--  <ul class="list-reset flex-col w-full">--%>
+                            <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "assembly_level" || Session["userType"].ToString().ToLower() == "ceo"
+                                                 || Session["userType"].ToString().ToLower() == "district_level" || Session["userType"].ToString().ToLower() == "district_managers-vmukti" || Session["userType"].ToString().ToLower() == "pil" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                { %>
+                            <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Dashboard" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="Home.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="grid"></i></span>
+                                    </span>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden Statistics flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "PollingBooth" || Session["MenuName"] == "PinkBooth" || Session["MenuName"] == "AROOffice" || Session["MenuName"] == "Alerts" || Session["MenuName"] == "CameraConnectedOnceReport" || Session["MenuName"] == "CameraConnectedOnceReport2" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Statistics')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="activity"></i></span>
+                                    </span>
+                                    <span>Statistics</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "PollingBooth" || Session["MenuName"] == "PinkBooth" || Session["MenuName"] == "AROOffice" || Session["MenuName"] == "Alerts" || Session["MenuName"] == "CameraConnectedOnceReport" || Session["MenuName"] == "CameraConnectedOnceReport2" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="d-hidden submenu border-l-thik border-b border-light <%=Session["MenuName"] == "PollingBooth" || Session["MenuName"] == "PinkBooth" || Session["MenuName"] == "AROOffice" || Session["MenuName"] == "Alerts" || Session["MenuName"] == "CameraConnectedOnceReport" || Session["MenuName"] == "CameraConnectedOnceReport2" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "PollingBooth" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="PollingBooth.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Polling Booth</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "PinkBooth" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="PinkBooth.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>WOMEN(PINK) Booth</span>
+                                        </a>
+                                    </li>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "AROOffice" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="AROOfficeBooth.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>ARO (Assembly Camera) View</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Alerts" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="Alerts.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Alerts</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraConnectedOnceReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraConnectedOnceReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>First Trial Run</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraConnectedOnceReport2" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraConnectedOnceReport2.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Second Trial Run</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraStatus" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="camerastatus.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="camera"></i></span>
+                                    </span>
+                                    <span>Camera Status</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraStatusIndoor" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="DashboardTNIndoor.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="camera"></i></span>
+                                    </span>
+                                    <span>Indoor Camera Status</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraStatusOutdoor" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="DashboardTNOutdoor.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="camera"></i></span>
+                                    </span>
+                                    <span>Outdoor Camera Status</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraStatusPink" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="DashboardTNPink.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="camera"></i></span>
+                                    </span>
+                                    <span>WOMEN(PINK) Camera Status</span>
+                                </a>
+                            </li>
+                            <% } %>
+                            <%-- <li class="d-hidden Upload flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "BoothUpload" || Session["MenuName"] == "DistrictUpload" || Session["MenuName"] == "UnmapList" || Session["MenuName"] == "UnmapGrid" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Upload')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="list"></i></span>
+                                    </span>
+                                    <span>Upload</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "BoothUpload" || Session["MenuName"] == "DistrictUpload" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>--%>
+                            <%--<li class="d-hidden border-l-thik border-b border-light <%=Session["MenuName"] == "BoothUpload" || Session["MenuName"] == "DistrictUpload" || Session["MenuName"] == "UnmapList" || Session["MenuName"] == "UnmapGrid" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "BoothUpload" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="boothupload.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Booth Upload</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "DistrictUpload" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="UploadDistrict.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>District Upload</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "UnmapList" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="Unmapcamera.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Unmap List</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "UnmapGrid" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="Unmapcameragrid.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Unmap Grid</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>--%>
+                            <li class="View flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "LiveTracking" || Session["MenuName"] == "SingleView" || Session["MenuName"] == "ListView" || Session["MenuName"] == "GridView" || Session["MenuName"] == "PTZView" || Session["MenuName"] == "GridAutoView" || Session["MenuName"] == "GridPSView" || Session["MenuName"] == "GridPinkView" || Session["MenuName"] == "AIView" || Session["MenuName"] == "UnmappedGridView" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('View')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="video"></i></span>
+                                    </span>
+                                    <span>View</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "LiveTracking" || Session["MenuName"] == "ListView" || Session["MenuName"] == "GridView" || Session["MenuName"] == "PTZView" || Session["MenuName"] == "GridAutoView" || Session["MenuName"] == "GridPSView" || Session["MenuName"] == "GridPinkView" || Session["MenuName"] == "AIView" || Session["MenuName"] == "UnmappedGridView" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="submenu border-l-thik border-b border-light <%=Session["MenuName"] == "LiveTracking" || Session["MenuName"] == "ListView" || Session["MenuName"] == "GridView" || Session["MenuName"] == "ChannelView" || Session["MenuName"] == "IndoorView"  || Session["MenuName"] == "OutdoorView" ||Session["MenuName"] == "MapViewSelect" || Session["MenuName"] == "PTZView" || Session["MenuName"] == "GridAutoView" || Session["MenuName"] == "GridPSView" || Session["MenuName"] == "GridPinkView" || Session["MenuName"] == "AIView" || Session["MenuName"] == "UnmappedGridView" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ListView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="listview1.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>List View</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "GridView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="gridview.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Grid View</span>
+                                        </a>
+                                    </li>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "eci" || Session["userType"].ToString().ToLower() == "pil"
+                                                             || Session["userType"].ToString().ToLower() == "ceo" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "IndoorView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="IndoorView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Indoor View</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "eci" || Session["userType"].ToString().ToLower() == "pil"
+                                                        || Session["userType"].ToString().ToLower() == "ceo" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OutdoorView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="OutDoorView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>OutDoor View</span>
+                                        </a>
+                                    </li>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "AIView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="AIView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>AI View</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <li class="d-hidden  border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ChannelView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="ChannelView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>ARO View</span>
+                                        </a>
+                                    </li>
+                                    <%--<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "GridAutoView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="GridAutoView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Auto View</span>
+                                        </a>
+                                    </li>--%>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "GridPSView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="GridPSView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>PS View</span>
+                                        </a>
+                                    </li>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "GridPinkView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="GridPinkView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>WOMEN(PINK) View</span>
+                                        </a>
+                                    </li>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "pil"
+                                                        || Session["userType"].ToString().ToLower() == "ceo" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "UnmappedGridView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="UnmappedGridView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Unmapped Grid View</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%--<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "PTZView" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="ptzcam.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>PTZ View</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "LiveTracking" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="MapView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>GPS View</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light d-hidden <%=Session["MenuName"] == "MapViewSelect" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="MapViewSelect.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Map View</span>
+                                        </a>
+                                    </li>--%>
+                                </ul>
+                            </li>
+                            <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "helpdesk_team"
+                     || Session["userType"].ToString().ToLower() == "helpdesk_manager" || Session["userType"].ToString().ToLower() == "admin")
+                                { %>
+                            <li class="d-hidden Input flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OfflineCameraNotification" || Session["MenuName"] == "HelpDeskEntry" || Session["MenuName"] == "InventoryUpdation" || Session["MenuName"] == "IncidenceMaster" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Input')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="camera"></i></span>
+                                    </span>
+                                    <span>Inputs</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "OfflineCameraNotification" || Session["MenuName"] == "HelpDeskEntry" || Session["MenuName"] == "InventoryUpdation" || Session["MenuName"] == "IncidenceMaster"  ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="submenu border-l-thik border-b border-light <%=Session["MenuName"] == "OfflineCameraNotification" || Session["MenuName"] == "HelpDeskEntry" || Session["MenuName"] == "InventoryUpdation" || Session["MenuName"] == "IncidenceMaster"  ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "helpdesk_team"
+                                                                             || Session["userType"].ToString().ToLower() == "helpdesk_manager")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OfflineCameraNotification" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="OfflineCameraNotification.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Camera Help Desk Entry</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "helpdesk_team" || Session["userType"].ToString().ToLower() == "helpdesk_manager")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HelpDeskEntry" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="DeviceNotifications.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Vehicle Help Desk Entry</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "assembly_level"
+                                                                             || Session["userType"].ToString().ToLower() == "district_level" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "InventoryUpdation" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="InventoryUpdation.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Repair/Replacement</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "IncidenceMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="IncidenceMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Incident Master</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                </ul>
+                            </li>
+                            <%} %>
+                            <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                { %>
+                            <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "BoothUpload" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="boothMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="upload"></i></span>
+                                    </span>
+                                    <span>BoothUpload</span>
+                                </a>
+                            </li>
+                            <%} %>
+                            <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "pil" || Session["userType"].ToString().ToLower() == "vmukti_internal" || Session["userType"].ToString().ToLower() == "ceo")
+                                { %>
+                            <li class="Reports flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedVehicleOffline" || Session["MenuName"] == "ConsolidatedVehicleStatus" || Session["MenuName"] == "HelpDeskReports" || Session["MenuName"] == "InventoryUpdationReport" || Session["MenuName"] == "VehicleInstallationReport" || Session["MenuName"] == "ConsolidatedCameraOffline" || Session["MenuName"] == "ConsolidatedCameraStatus" || Session["MenuName"] == "IncedentReport" || Session["MenuName"] == "BoothWiseCamBLOReport" || Session["MenuName"] == "BoothWiseCamOperatorReport" || Session["MenuName"] == "PollingStationReport" || Session["MenuName"] == "OnceCount"|| Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "NetWorkStatusReport"  ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Reports')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>Reports</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "ConsolidatedVehicleOffline" || Session["MenuName"] == "ConsolidatedVehicleStatus" || Session["MenuName"] == "HelpDeskReports" || Session["MenuName"] == "InventoryUpdationReport" || Session["MenuName"] == "VehicleInstallationReport" || Session["MenuName"] == "IncedentReport" || Session["MenuName"] == "BoothWiseCamBLOReport" || Session["MenuName"] == "BoothWiseCamOperatorReport" || Session["MenuName"] == "PollingStationReport" || Session["MenuName"] == "OnceCount" || Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "NetWorkStatusReport" ? "chevron-up" : "chevron-down"  %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="submenu border-l-thik border-b border-light <%=Session["MenuName"] == "ConsolidatedVehicleOffline" || Session["MenuName"] == "ConsolidatedVehicleStatus" || Session["MenuName"] == "HelpDeskReports" || Session["MenuName"] == "InventoryUpdationReport" || Session["MenuName"] == "VehicleInstallationReport" || Session["MenuName"] == "ConsolidatedCameraOffline" || Session["MenuName"] == "ConsolidatedCameraStatus" || Session["MenuName"] == "IncedentReport" || Session["MenuName"] == "BoothWiseCamBLOReport" || Session["MenuName"] == "BoothWiseCamOperatorReport" || Session["MenuName"] == "PollingStationReport" || Session["MenuName"] == "OnceCount" || Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "NetWorkStatusReport" ? ""  : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedCameraOffline" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraOfflineReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Consolidated Camera Offline</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedCameraStatus" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraStatusReport_1.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Consolidated Camera Status</span>
+                                        </a>
+                                    </li>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HrWizeReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="HrWizeReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Hour Wize Report</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OnceCount" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="OnceCount.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Connected Once-Today</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedVehicleOffline" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleOffline_2.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Consolidated Vehicle Offline</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedVehicleStatus" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleStatus_2.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Consolidated Vehicle Status</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "PollingStationReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="PollingStationReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Pooling Station Details</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "BoothWiseCamOperatorReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="BoothWiseCamOperatorReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Booth wise camera Operator Information</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "BoothWiseCamBLOReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="BoothWiseCamBLOReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Booth wise camera BLO Information</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "InventoryUpdationReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="InventoryUpdationReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Inventory Updation (Repair / Replacement)</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HelpDeskReports" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="ConsolidatedCameraOffline_2.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Help Desk Reports</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "VehicleInstallationReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleInstallationReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Vehicle Installation Reports</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "IncedentReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="IncedentReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Incedent Report</span>
+                                        </a>
+                                    </li>
+                                     <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                { %>
+									<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "NetWorkStatusReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="NetWorkStatusReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Network Status Report</span>
+                                        </a>
+                                    </li>
+                                     <%} %>
+                                    <%-- <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "pil"|| Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                          { %>
+                                     <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "TrailRunReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="TrailRunReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Trail Run Report</span>
+                                        </a>
+                                    </li>
+                                     <%} %>--%>
+                                </ul>
+                            </li>
+                            <%} %>
+                            <li class="d-hidden Master flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "TrailRunReport1"  ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Master')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="settings"></i></span>
+                                    </span>
+                                    <span>Trail Run</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "TrailRunReport1"  ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="d-hidden submenu border-l-thik border-b border-light <%=Session["MenuName"] == "TrailRunReport" || Session["MenuName"] == "TrailRunReport1"  ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "pil" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "TrailRunReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="TrailRunReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Trail Run Report</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "TrailRunReport1" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraStutsRpt.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Camera Status Report</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                </ul>
+                            </li>
+                             <%if (Session["userType"].ToString().ToLower() == "master_admin")
+                                        { %>
+                            <li class="Masters flex-row border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "VehicleMaster" || Session["MenuName"] == "ShiftMaster" || Session["MenuName"] == "MaterialMaster" || Session["MenuName"] == "ExemptionReason" || Session["MenuName"] == "StaffMaster" || Session["MenuName"] == "VehicleInstallationMaster" || Session["MenuName"] == "Users" || Session["MenuName"] == "CameraExemptionReason" || Session["MenuName"] == "IncidenceMaster" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Masters')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="settings"></i></span>
+                                    </span>
+                                    <span>Masters</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "VehicleMaster" || Session["MenuName"] == "ShiftMaster" || Session["MenuName"] == "MaterialMaster" || Session["MenuName"] == "ExemptionReason" || Session["MenuName"] == "StaffMaster" || Session["MenuName"] == "VehicleInstallationMaster" || Session["MenuName"] == "Users" || Session["MenuName"] == "CameraExemptionReason" || Session["MenuName"] == "IncidenceMaster" || Session["MenuName"] == "SwapCamera" || Session["MenuName"] == "UnmappedCameraList" || Session["MenuName"] == "MultiMapCameraList" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                              <%} %>
+                            <li class="d-hidden submenu border-l-thik border-b border-light <%=Session["MenuName"] == "VehicleMaster" || Session["MenuName"] == "ShiftMaster" || Session["MenuName"] == "MaterialMaster" || Session["MenuName"] == "ExemptionReason" || Session["MenuName"] == "StaffMaster" || Session["MenuName"] == "VehicleInstallationMaster" || Session["MenuName"] == "Users" || Session["MenuName"] == "CameraExemptionReason" || Session["MenuName"] == "IncidenceMaster" || Session["MenuName"] == "SwapCamera" || Session["MenuName"] == "UnmappedCameraList" || Session["MenuName"] == "MultiMapCameraList" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "VehicleMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Vehicle Master</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ShiftMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="ShiftMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Shift Master</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "assembly_level"
+                              || Session["userType"].ToString().ToLower() == "district_level" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "MaterialMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="MaterialMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Material Master</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "helpdesk_team"
+                              || Session["userType"].ToString().ToLower() == "helpdesk_manager" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <%--<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ExemptionReason" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="ExemptionReason.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Exemption Reason</span>
+                                        </a>
+                                    </li>--%>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "CameraExemptionReason" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="CameraExemptionReason.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Camera Exemption Reason</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "assembly_level"
+                                || Session["userType"].ToString().ToLower() == "district_level" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "StaffMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="Vehicle_StaffMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Staff Master</span>
+                                        </a>
+                                    </li>
+                                    <%} %>
+                                    <%--<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "VehicleInstallationMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleInstallationMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Vehicle Installation</span>
+                                        </a>
+                                    </li>--%>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Users" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="UsersMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="users"></i></span>
+                                            </span>
+                                            <span>Users</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "SwapCamera" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="SwapCamera.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Swap Camera</span>
+                                        </a>
+                                    </li>
+									
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "UnmappedCameraList" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="UnmappedCameraList.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Unmapped Camera List</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "MultiMapCameraList" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="MultiMappedCameraList.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Multimapped Camera List</span>
+                                        </a>
+                                    </li>
+                                    <%}%>
+                                    <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "assembly_level"
+                                || Session["userType"].ToString().ToLower() == "district_level" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <%--<li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "IncidenceMaster" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="IncidenceMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="list"></i></span>
+                                            </span>
+                                            <span>Incidence Master</span>
+                                        </a>
+                                    </li>--%>
+                                    <%}%>
+                                </ul>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "SampleInstallationReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="SampleInstallationReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>Sample Installation Report</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "FSVDoesDonts" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="FSVDoesDonts.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>FSV Do's and Don'ts</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Training" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="Training.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>Help</span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "FSVDoesDonts" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="FSVDosDonts.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>Dos & Donts</span>
+                                </a>
+                            </li>
+                            <%--<li class="d-hidden border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "GridAuto" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="gridauto.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="video"></i></span>
+                                    </span>
+                                    <span>Auto</span>
+                                </a>
+                            </li>--%>
+                            <%--                            <li class="border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "LiveTracking" ? "border-primary bg-semi-light" : "border-light" %>"">
+                                <a href="MapView.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="activity"></i></span>
+                                    </span>
+                                    <span>Live Tracking</span>
+                                </a>
+                            </li>--%>
+                            <%--<li class="border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HelpDeskEntry" ? "border-primary bg-semi-light" : "border-light" %>"">
+                                <a href="HelpDeskEntry.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="list"></i></span>
+                                    </span>
+                                    <span>Help Desk Entry</span>
+                                </a>
+                            </li>--%>
+                            <%--<li class="border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Download" ? "border-primary bg-semi-light" : "border-light" %>"">
+                                <a href="download.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="download"></i></span>
+                                    </span>
+                                    <span>Download</span>
+                                </a>
+                            </li>--%>
+                            <%--<li class="d-hidden Reports flex-row border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "MinuteWise" || Session["MenuName"] == "HourWise" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Reports')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="file-text"></i></span>
+                                    </span>
+                                    <span>Reports</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "MinuteWise" || Session["MenuName"] == "HourWise" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="d-hidden border-l-thik border-b border-light <%=Session["MenuName"] == "MinuteWise" || Session["MenuName"] == "HourWise" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "MinuteWise" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="uptimebooth.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="file-text"></i></span>
+                                            </span>
+                                            <span>Minute Wise</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HourWise" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="uptimeHr.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="file-text"></i></span>
+                                            </span>
+                                            <span>Hour Wise</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>--%>
+                            <li class="d-hidden border-l-thik border-b border-light hover:border-primary hover:bg-semi-light">
+                                <a href="#" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="settings"></i></span>
+                                    </span>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <%--<li class="Statistics flex-row border-l-thik border-b border-light hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "DailyStatistics" || Session["MenuName"] == "RealTimeStatistics" || Session["MenuName"] == "VehicleStatistics" ? "border-primary bg-semi-light" : "border-light" %>" onclick="ToggleSubMenu('Statistics')">
+                                <a href="#" class="p-xs align-center f-size-1xs f-color-secondary no-underline w-full">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="pie-chart"></i></span>
+                                    </span>
+                                    <span>Statistics</span>
+                                    <span class="icon f-right">
+                                        <i data-feather="<%=Session["MenuName"] == "DailyStatistics" || Session["MenuName"] == "RealTimeStatistics" ? "chevron-up" : "chevron-down" %>"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="border-l-thik border-b border-light <%=Session["MenuName"] == "DailyStatistics" || Session["MenuName"] == "RealTimeStatistics" ? "" : "d-hidden" %>">
+                                <ul class="list-reset flex-col w-full">
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "DailyStatistics" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="#" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="bar-chart"></i></span>
+                                            </span>
+                                            <span>Daily Statistics</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "RealTimeStatistics" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="RealTimeStatistics.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="bar-chart"></i></span>
+                                            </span>
+                                            <span>RealTime Statistics</span>
+                                        </a>
+                                    </li>
+                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "VehicleStatistics" ? "border-primary bg-semi-light" : "border-light" %>">
+                                        <a href="VehicleStartStopReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                            <span class="icon mr-xs flex-none f-color-primary">
+                                                <span class=""><i data-feather="bar-chart"></i></span>
+                                            </span>
+                                            <span>Vehicle Statistics</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>--%>
+                            <li class="m-sm" style="text-align: center; display:none" >
+                                   <div>
+                                    <img src="<%=ConfigurationManager.AppSettings["Voter_helpline_image_path"].ToString()%>" class="<%=ConfigurationManager.AppSettings["Voter_helpline_image_Visisble"].ToString()%>" height="100px" width="100px" style="text-align: center;" />
+                                </div>
+                                <div class="mt-sm">
+                                    <img src="<%=ConfigurationManager.AppSettings["AndroidAppPath"].ToString()%>" class="<%=ConfigurationManager.AppSettings["AndroidAppVisible"].ToString()%>" height="60px" width="60px" style="text-align: center;" />
+                                    <img src="<%=ConfigurationManager.AppSettings["IOSAppPath"].ToString()%>" class="<%=ConfigurationManager.AppSettings["IOSAppVisible"].ToString()%>" height="60px" width="60px" style="text-align: center;" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class=" m-sm d-hidden">
+                                    <a href="<%=ConfigurationManager.AppSettings["FacebookUrl"].ToString()%>" target="_blank" class="<%=ConfigurationManager.AppSettings["FacebookVisible"].ToString()%>">
+                                        <img src="<%=ConfigurationManager.AppSettings["FacebookImagePath"].ToString()%>" height="30px" width="30px" /></a>
+                                    <a href="<%=ConfigurationManager.AppSettings["TwitterUrl"].ToString()%>" target="_blank" class="<%=ConfigurationManager.AppSettings["TwitterVisible"].ToString()%>">
+                                        <img src="<%=ConfigurationManager.AppSettings["TwitterImagePath"].ToString()%>" height="30px" width="30px" /></a>
+                                    <a href="<%=ConfigurationManager.AppSettings["YoutubeUrl"].ToString()%>" target="_blank" class="<%=ConfigurationManager.AppSettings["YoutubeVisible"].ToString()%>">
+                                        <img src="<%=ConfigurationManager.AppSettings["YoutubeImagePath"].ToString()%>" height="30px" width="30px" /></a>
+                                    <a href="<%=ConfigurationManager.AppSettings["InstagramUrl"].ToString()%>" target="_blank" class="<%=ConfigurationManager.AppSettings["InstagramVisible"].ToString()%>">
+                                        <img src="<%=ConfigurationManager.AppSettings["InstagramImagePath"].ToString()%>" height="30px" width="30px" /></a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+               <%-- <script src="/js/multiselect.min.js"></script>--%>
+                <%--<script src="NewLayout/js/allScript.js" type="text/javascript"></script>--%>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+                <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+                <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+                <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css" />
+                <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+                <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+               <script src="<%=ResolveUrl("~/js/jquery.validate.js") %>" type="text/javascript"></script>
+                <script src="js/common.js" type="text/javascript"></script>
+                <div class="flex-auto flex-col">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+         <script src="NewLayout/js/allScript.js" type="text/javascript"></script> 
+        </main>
+
+        <script type="text/javascript">
+            <%
+            if (Session["MenuName"] == "ChannelView")
+            {
+                %>
+            $("#divMenuToggle").show();
+            $('#navMenu').hide();
+            $("#divMenuToggle").addClass('-mr-2sm');
+            $("#divMenuToggle").removeClass('-mr-thin');
+            $('#divMenuToggle').find('polyline').attr('points', '9 18 15 12 9 6');
+            <%
+            }
+            %>
+            $("#divMenuToggle").on('click', function () {
+                $('#navMenu').toggle('slide', function () {
+                    if ($('#navMenu').is(":visible")) {
+                        $("#divMenuToggle").removeClass('-mr-2sm');
+                        $("#divMenuToggle").addClass('-mr-thin');
+                        $('#divMenuToggle').find('polyline').attr('points', '15 18 9 12 15 6');
+                    }
+                    else {
+                        $("#divMenuToggle").addClass('-mr-2sm');
+                        $("#divMenuToggle").removeClass('-mr-thin');
+                        $('#divMenuToggle').find('polyline').attr('points', '9 18 15 12 9 6');
+                    }
+                });
+
+                if ($('#navMenu').is(":visible")) {
+                    $('#navMenu').slideLeft(function () {
+
+                    });
+                }
+            });
+            $("#btnUser").click(function () {
+                $("#divUserMenu").toggleClass("d-hidden");
+                return false;
+            });
+            $(window).on("click", function (e) {
+                if (e.target.id !== "btnUser") {
+                    $("#divUserMenu").addClass("d-hidden");
+                }
+            });
+            function Logout() {
+                window.location.href = 'Logout.aspx';
+            }
+            function ToggleSubMenu(cls) {
+                var hascls = $('.' + cls).next('li').hasClass('d-hidden');
+                $('li.submenu').addClass("d-hidden");
+                $("li.submenu").find('polyline').attr('points', '6 9 12 15 18 9');
+                //$('.' + cls).next('li').toggleClass("d-hidden");
+                if (hascls) {
+                    $('.' + cls).next('li').removeClass("d-hidden");
+                    $('.' + cls).find('polyline').last().attr('points', '18 15 12 9 6 15');
+                }
+                else {
+                    $('.' + cls).next('li').addClass("d-hidden");
+                    $('.' + cls).find('polyline').last().attr('points', '6 9 12 15 18 9');
+                }
+            }
+        </script>
+        <%if (Session["userType"].ToString().ToLower() == "helpdesk_team" || Session["userType"].ToString().ToLower() == "helpdesk_manager")
+            { %>
+        <div id="divDataSample" class="divDataSample" style="display: none">
+
+            <div class="col-12 md:col-4 col4" align="center" id="#divid">
+                <div class="card">
+                    <span style="font-size: 12px">(Vehical Offline)</span>
+                    <h1 class="heading">#deviceId</h1>
+                    <table class="w-full">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">#distAc</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold" width="100">#shift</td>
+                                <td>#timeshift</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">Driver</td>
+                                <td>#driver</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">FSV</td>
+                                <td>#fsv</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">Stop Duration</td>
+                                <td>#duration</td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 2px gray solid" colspan="2">
+                                    <select id='#resOptid' multiple class="multi">
+                                        #options
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="btn btn-primary btnSave" data-duration="#duration" data-vehicle="#deviceId" data-id="#id_#vehicalId" data-digname="#divid">Save</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="divDataSample1" class="divDataSample1" style="display: none">
+            <div class="col-12 md:col-4 col4" align="center" id="#divid">
+                <div class="card1">
+                    <span style="font-size: 12px">(Camera Offline)</span>
+                    <h1 class="heading">#deviceId</h1>
+                    <table class="w-full">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">#distAc</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold" width="100">#shift</td>
+                                <td>#timeshift</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">Driver</td>
+                                <td>#driver</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">FSV</td>
+                                <td>#fsv</td>
+                            </tr>
+                            <tr>
+                                <td class="data-bold">Stop Duration</td>
+                                <td>#duration</td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 2px gray solid">
+                                    <select id='#resOptid' multiple class="multi">
+                                        #options
+                                    </select>
+                                </td>
+                                <td align="right"><a href="#" class="btn btn-primary btnSaveCamera" data-duration="#duration" data-vehicle="#deviceId" data-id="#id" data-digname="#divid">Save</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                function loadVehicalNotifications() {
+                    $.ajax({
+                        type: "POST",
+                        url: "DeviceNotifications.aspx/GetStopVehicleList",
+                        //data: JSON.stringify({ "selectedReasons": selectedrsn, "id": id }),
+                        contentType: "application/json",
+                        dataType: "json",
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                        },
+                        success: function (result) {
+                            $.ajax({
+                                type: "POST",
+                                url: "DeviceNotifications.aspx/GetReasonsList",
+                                //data: JSON.stringify({ "selectedReasons": selectedrsn, "id": id }),
+                                contentType: "application/json",
+                                dataType: "json",
+                                success: function (reasonList) {
+                                    var data = result.d;
+                                    var time = 0
+
+                                    var datares = reasonList.d;
+                                    datares = $.parseJSON(datares);
+                                    if (data != "") {
+                                        data = $.parseJSON(data);
+                                        var sdata = new Array();
+
+
+                                        for (let i = 0; i < data.length; i++) {
+                                            sdata[i] = $("#divDataSample").html()
+                                            var diagid = "div" + data[i].Id
+                                            if ($('#' + diagid).length <= 0) {
+                                                htldog = "";
+                                                sdata[i] = $("#divDataSample").html()
+                                                sdata[i] = sdata[i].replaceAll("#id", data[i].Id).replaceAll("#vehicalId", data[i].vehicalId).replaceAll("#divid", "div" + data[i].Id)
+                                                sdata[i] = sdata[i].replaceAll("#resOptid", "resOpt" + data[i].Id + "_" + data[i].vehicalId)
+                                                sdata[i] = sdata[i].replaceAll("#deviceId", data[i].Vehicle_No).replaceAll("#distAc", data[i].district + " / " + data[i].acname).replaceAll("#shift", data[i].ShiftName)
+                                                sdata[i] = sdata[i].replaceAll("#timeshift", data[i].ShiftStartTime.split(".")[0] + " - " + data[i].ShiftEndTime.split(".")[0]).replaceAll("#driver", data[i].DriverName + " (" + data[i].DriverContactNo + ")")
+                                                sdata[i] = sdata[i].replaceAll("#fsv", data[i].FSVName + " (" + data[i].FSVContactNo + ")").replaceAll("#duration", data[i].StartTime + " - " + data[i].StopTime)
+                                                for (let j = 0; j < datares.length; j++) {
+                                                    htldog = htldog + "<option value='" + datares[j].name + "'>" + datares[j].name + "</option>";
+                                                }
+                                                sdata[i] = sdata[i].replaceAll("#options", htldog)
+                                                // var item = $(sdata[i]).hide().delay(time).fadeIn(100);
+
+                                                var popupWindow = new Array();
+                                                var w = 460;
+                                                var h = 400;
+                                                var scroll = 'no';
+                                                LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+                                                TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+                                                settings = 'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',status=0,titlebar=0,toolbar=0,location=0,menubar=0,scrollbars=0,resizable=0'
+                                                //alert("device_" + data[i].Id + "_" + data[i].vehicalId)
+                                                popupWindow[i] = window.open('', "device_" + data[i].Id + "_" + data[i].vehicalId, settings, true);
+
+                                                if (popupWindow[i].location.href === 'about:blank') {
+                                                    popupWindow[i].location.href = "deviceNotificationPopup.aspx";
+                                                }
+                                                popupWindow[i].onload = function () {
+                                                    this.document.getElementById("divdata").innerHTML = "";
+                                                    //alert(sdata)
+                                                    this.document.getElementById("divdata").innerHTML = sdata[i];
+                                                    this.document.multiselect("#resOpt" + data[i].Id + "_" + data[i].vehicalId);
+
+                                                };
+
+
+
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                            });
+
+                            //$(document)
+                            //    .delay(30000)
+                            //    .queue(function (next) {
+                            //        loadVehicalNotifications();
+                            //        next();
+                            //    })
+                        }
+                    });
+                }
+
+                function loadCameraNotifications() {
+                    debugger
+                    $.ajax({
+                        type: "POST",
+                        url: "OfflineCameraNotification.aspx/GetStopCameraList",
+                        contentType: "application/json",
+                        data: '{ "UserID": <%= Session["userid"] == null?0:System.Convert.ToInt32(Session["userid"]) %> }',
+                        dataType: "json",
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        },
+                        success: function (result) {
+                            $.ajax({
+                                type: "POST",
+                                url: "OfflineCameraNotification.aspx/GetReasonsList",
+                                //data: JSON.stringify({ "selectedReasons": selectedrsn, "id": id }),
+                                contentType: "application/json",
+                                dataType: "json",
+                                success: function (reasonList) {
+                                    var data = result.d;
+                                    var time = 0
+
+                                    var datares = reasonList.d;
+                                    datares = $.parseJSON(datares);
+                                    if (data != "") {
+                                        data = $.parseJSON(data);
+                                        var sdata = new Array();
+                                        var popupWindow1 = new Array();
+                                        for (let i = 0; i < data.length; i++) {
+                                            sdata[i] = $("#divDataSample1").html()
+                                            var diagid = "div" + data[i].id
+                                            if ($('#' + diagid).length <= 0) {
+                                                htldog = "";
+                                                sdata[i] = $("#divDataSample1").html()
+                                                sdata[i] = sdata[i].replaceAll("#id", data[i].id).replaceAll("#divid", "div" + data[i].id)
+                                                sdata[i] = sdata[i].replaceAll("#resOptid", "resOpt" + data[i].id)
+                                                sdata[i] = sdata[i].replaceAll("#deviceId", data[i].streamname).replaceAll("#distAc", data[i].district + " / " + data[i].acname).replaceAll("#shift", data[i].ShiftName)
+                                                sdata[i] = sdata[i].replaceAll("#timeshift", data[i].ShiftStartTime.split(".")[0] + " - " + data[i].ShiftEndTime.split(".")[0]).replaceAll("#driver", data[i].DriverName + " (" + data[i].DriverContactNo + ")")
+                                                sdata[i] = sdata[i].replaceAll("#fsv", data[i].FSVStaffName + " (" + data[i].FSVStaffContactNo + ")").replaceAll("#duration", data[i].StartTime + " - " + data[i].StopTime)
+                                                for (let j = 0; j < datares.length; j++) {
+                                                    htldog = htldog + "<option value='" + datares[j].name + "'>" + datares[j].name + "</option>";
+                                                }
+                                                sdata[i] = sdata[i].replaceAll("#options", htldog)
+                                                // var item = $(sdata[i]).hide().delay(time).fadeIn(100);
+
+                                                var w = 460;
+                                                var h = 300;
+                                                var scroll = 'no';
+                                                //LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+                                                //TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+                                                LeftPosition = (screen.width) ? Math.floor(Math.random() * ((screen.width - w) / 2)) : 0;
+                                                TopPosition = (screen.height) ? Math.floor(Math.random() * ((screen.width - h) / 2)) : 0;
+
+                                                settings = 'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',status=0,titlebar=0,toolbar=0,location=0,menubar=0,scrollbars=0,resizable=0'
+                                                popupWindow1[i] = window.open('', "Camera_" + data[i].id, settings, true);
+
+                                                if (popupWindow1[i].location.href === 'about:blank') {
+                                                    popupWindow1[i].location.href = "deviceNotificationPopup.aspx";
+                                                }
+                                                //popupWindow1[i].onload = function () {
+                                                //    this.document.getElementById("divdata").innerHTML = "";
+                                                //    alert(sdata)
+                                                //    this.document.getElementById("divdata").innerHTML = sdata[i];
+                                                //    this.document.multiselect("#resOpt" + data[i].id);
+
+                                                //};
+                                                var winCall = function () {
+                                                    if (popupWindow1[i].document.getElementById("divdata") != undefined || popupWindow1[i].document.getElementById("divdata") != null) {
+                                                        popupWindow1[i].document.getElementById("divdata").innerHTML = "";
+                                                        popupWindow1[i].document.getElementById("divdata").innerHTML = sdata[i];
+                                                        popupWindow1[i].document.multiselect("#resOpt" + data[i].id);
+                                                        //clearInterval(winCall);
+                                                    }
+                                                };
+                                                setTimeout(winCall, 10000);
+                                                //$(popupWindow1[i]).load(function () {
+                                                //    alert(sdata)
+                                                //    this.document.getElementById("divdata").innerHTML = "";
+                                                //    this.document.getElementById("divdata").innerHTML = sdata[i];
+                                                //    this.document.multiselect("#resOpt" + data[i].id);
+                                                //});
+                                            }
+                                        }
+                                    }
+                                }
+
+                            });
+
+                            $(document)
+                                .delay(120000)
+                                .queue(function (next) {
+                                    loadCameraNotifications();
+                                    next();
+                                })
+                        }
+                    });
+                }
+
+                //setTimeout(function () {
+                //    loadVehicalNotifications()
+                //}, 30000);
+                loadCameraNotifications();
+                setTimeout(function () {
+                    loadCameraNotifications()
+                }, 120000);
+            });
+        </script>
+        <%}
+            }
+            else
+            {%>
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <style>
+            body {
+                background: url(<%=ConfigurationManager.AppSettings["LoginBackgroundImage"].ToString()%>) no-repeat !important;
+                background-attachment: scroll;
+                background-size: auto;
+                background-size: cover !important;
+                background-attachment: fixed;
+            }
+
+            header {
+                background: #fff !important;
+            }
+        </style>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="bodywrap col-md-12">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <%} %>
+        <div id="loaderdiv" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; text-align: center; opacity: 0.7; background-color: #ebe8e8; z-index: 999; display: none;">
+            <div class="table-responsive loader" align="center" style="position: absolute; z-index: 1000; top: 50%; left: 50%; width: 8em; height: 8em;">
+                <asp:Image ID="ImgProgress1" runat="server" ImageUrl="images/loading.gif" ToolTip="loading..." /><br />
+                Please wait...
+            </div>
+        </div>
+        <script>
+            Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(function () {
+                $("#loaderdiv .loader").css({ "left": ($(window).width() / 2) });
+                $("#loaderdiv .loader").css({ "top": ($(window).height() / 2) - 70 });
+                $("#loaderdiv").show();
+            });
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                $("#loaderdiv").hide();
+            });
+        </script>
+    </form>
+</body>
+</html>

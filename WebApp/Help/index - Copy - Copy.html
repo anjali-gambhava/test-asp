@@ -1,0 +1,495 @@
+<html><head>
+<title>Flash Webcast - System Test </title>
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript" src="flash_detect.js"></script>
+<link rel="stylesheet" type="text/css" href="Styles.css">
+</head>
+
+<body style="background-color:#E8E8E8;margin:0px;overflow:auto" align="center">
+
+
+<div align="center" style="margin:0px;">
+	<div class="MainContent">
+
+		
+		<div class="colorbar shading Normal" style="font-size:16px;" align="left">Webcast - Test System</div>
+
+
+		
+		<div align="left" style="width:100%;padding:10px;">
+		
+		<div class="Normal" align="left" style="width:970px">This page will help you determine if your computer and Internet connection will allow you to enjoy the
+		webcast without interruption. The test page is divided into three sections.<br> <br> The first section "<a href="index.php#SystemRequirements" class="Normal">Here are the system requirements for this webcast</a>" gives a general description 
+		of the hardware and software your computer is required to have installed. <br><br>The second section
+		"<a href="index.php#SystemTest" class="Normal">Here are your system results</a>" involves running a few automated tests of your system. If you see a green "pass" then you're all set. If a red "fail" appears then your computer
+		is missing a required element. You will then see suggestions on how to fix the problem.<br><br> The third and final section is "<a href="index.php#RecommendedPlayer" class="Normal">Test your computer by selecting the test webcast below</a>".
+		If you  see the video  and slides change you're good to go.
+
+		<br><br>
+		</div>
+		
+		<div align="left" class="title"><u><a name="SystemRequirements">Here are the system requirements for this webcast :</a></u></div>
+		<table style="display:block;float:none" align="left" border="0" width="700">
+			<tbody><tr><td class="Normal" nowrap="" valign="top">Operating System :</td><td valign="top" class="Normal">Windows: Windows XP, Windows Vista, Windows 7<br>Macintosh: OS X</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Processor :</td><td valign="top" class="Normal">Windows - Intel Pentium 4 2.33GHz, Athlon 64 2800+ or faster processor (or equivalent)<br> Macintosh - Intel Core Duo 1.33GHz or faster processor</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Memory :</td><td valign="top" class="Normal">512 MB or greater</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Sound :</td><td valign="top" class="Normal">16 bit sound card or better with speakers or headphones</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Video :</td><td valign="top" class="Normal">16 bit video card or better<br>Monitor that supports 1024 x 768 resolution or better</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Browsers :</td><td valign="top" class="Normal">Windows: Internet Explorer 6.0 or greater<br>Macintosh: Safari 1.1 or greater. Firefox 3.0 or greater.</td></tr>
+			<tr><td class="Normal" nowrap="" valign="top">Media Player :</td><td valign="top" class="Normal">Flash Player 9.0 or greater. <a class="Normal" target="_blank" href="http://www.adobe.com/support/flashplayer/downloads.html">Update to the latest Flash Player.</a></td></tr>
+
+		</tbody></table>
+		</div>
+		<div align="left" style="width:100%;padding:10px;">
+		<div align="left" class="title"><u><a name="SystemTest">Here are your system test results :</a></u></div>
+		<table style="display:block;float:none" align="left" border="0" width="700">
+			<tbody><tr><td class="Normal" nowrap="">Javascript :</td><td id="JavascriptStatus"><img src="commonfiles/Images/Pass.gif"></td><td nowrap="" width="100%" class="Pass" id="Javascript">Javascript is enabled.</td></tr>
+			<tr><td class="Normal" nowrap="">Operating System : </td><td id="OperatingSystemStatus"><img src="commonfiles/Images/Pass.gif"></td><td nowrap="" id="OperatingSystem" class="Pass">Windows is supported</td></tr>
+			<tr><td class="Normal" nowrap="">Browser : </td><td id="BrowserStatus"><img src="commonfiles/Images/Pass.gif"></td><td nowrap="" id="Browser" class="Pass">Chrome 21</td></tr>
+			<tr><td class="Normal" nowrap="">Flash :</td><td id="FlashStatus"><img src="commonfiles/Images/Pass.gif"></td><td nowrap="" id="Flash" class="Pass">The flash installation meets the minimum requirements. Version 11.3</td></tr>	
+			<tr><td class="Normal" nowrap="">Video Resolution : </td><td id="VideoResolutionStatus"><img src="commonfiles/Images/Pass.gif"></td><td nowrap="" id="VideoResolution" class="Pass">The screen has the required resolution. 1366 X 768</td></tr>
+			<tr><td class="Normal" nowrap="">Determined Bandwidth :</td><td id="BandwidthStatus"><img src="commonfiles/Images/Fail.gif"></td><td nowrap="" id="Bandwidth" class="Fail">344 kb/s. You do not have the required bandwidth to view this webcast. 600 kb/s is recommended. <a class="Normal" href="javascript:BandwidthTest()"><img align="absmiddle" border="0" src="commonfiles/Images/TestAgain.gif">Test again.</a></td></tr>	
+			<tr><td colspan="3" align="center" class="Fail" id="TestResult"><br>The system has failed to pass one or more tests. Though you may still be able to watch the webcast it is recommended you fix the errors.</td></tr>
+		</tbody></table>
+
+		<div style="width:700px; height:145px;overflow:hidden;">
+		<br>
+		<div align="left" class="title"><u><a name="SystemTest"> Is your firewall blocking the Flash stream :</a></u></div>
+		<div style="width:550px;height:150px">
+		
+		<div id="PortTesterHolder"><embed type="application/x-shockwave-flash" src="commonfiles/PortTester/PortTest.swf" width="550" height="150" style="undefined" id="PortTester" name="PortTester" quality="high" allowfullscreen="true" allowscriptaccess="always"></div>
+
+		</div>
+
+		</div>
+		<div id="PortTesterResult"></div>
+
+
+		<table style="display:block;float:none" cellspacing="0" cellpadding="0" align="left" border="0" width="700">
+			<tbody><tr>
+				<td colspan="3">
+			
+					<br>
+					<div id="RecommendedPlayer" style="width: 100%; visibility: visible; ">
+					<div align="left" class="title"><u><a name="RecommendedPlayer">Test your computer by selecting the test webcast below :</a></u></div>
+
+					<table align="left" border="0" width="300">
+						<tbody><tr><td class="Normal" style="width:100%"><a class="Normal" href="javascript:LaunchPlayer(2)"><img align="absmiddle" border="0" height="16" width="16" src="commonfiles/Images/Play.gif" style="margin-right:5px">High quality video</a></td><td class="Normal" nowrap="" id="Player2"><img height="16" width="16" align="absmiddle" src="commonfiles/Images/Blank.gif"></td></tr>
+
+					</tbody></table>
+					</div>
+					
+				
+				</td>
+			</tr>
+		</tbody></table>
+
+	
+	
+			
+
+		</div>
+		<br>
+		<div class="colorbar shading"></div>
+	</div>
+</div>
+
+
+
+
+<script>
+
+//Test Settings***************************************
+var iMinimumBandwidth=600; //Minimum bandwidth required in kbits/s
+var iMinimumResolutionWidth=1024; //Minimum width screen resolution
+var iMinimumResolutionHeight=768; //Minimum height screen resolution
+var bRecommendPlayer=false;//recommend a player
+//Supported operating systems,browsers and versions
+var oOSBrowserRequirements=
+	[
+	{"OS":"Mac", "browsers":[{name:"Safari",minimum:1.1},{name:"Firefox",minimum:3.0}] },
+	{"OS":"Windows", "browsers":[{name:"Safari",minimum:1.1},{name:"Chrome",minimum:10.0},{name:"Explorer",minimum:6.0},{name:"Firefox",minimum:3.0}] },
+	{"OS":"Linux", "browsers":[]}
+	];
+							
+var iFlashMajorMinimum=9;//minimum Flash Major version 
+var iFlashMinorMinimum=0;//minimum flash minor version
+//End Test Settings***************************************
+
+var oPassedTest={"Bandwidth":false,"VideoResolution":false,"Flash":false,"OS":false,"Browser":false};
+
+//Show Player selection right away if there is to be no recommendation
+if (!bRecommendPlayer)
+	document.getElementById("RecommendedPlayer").style.visibility="visible";
+	
+//Testing
+JavascriptTest();
+PortTester();
+ResolutionTest();
+FlashTest();
+CheckBrowser();
+BandwidthTest();
+
+//----------------------------------------------------------------
+function RecommendedPlayer(iSpeed)
+{
+if (!bRecommendPlayer)
+	return;
+	
+var bAudioOnly=false;
+
+//Select Player
+var sPlayerID=null;
+if (!bAudioOnly)
+	{
+	document.getElementById("Player0").innerHTML="";
+	document.getElementById("Player1").innerHTML="";
+	document.getElementById("Player2").innerHTML="";
+	
+	if (iSpeed<500)
+		sPlayerID="Player0";
+	else if (iSpeed<700)
+		sPlayerID="Player1";
+	else
+		sPlayerID="Player2";
+	}
+else
+	{
+	//Force selection of Audio Only
+	document.getElementById("Player0").innerHTML="";
+	sPlayerID="Player0";
+	}
+var oPlayer=document.getElementById(sPlayerID);
+oPlayer.innerHTML="<div class='Pass'><img align='absmiddle' height='16' width='16'src='commonfiles/Images/LeftArrow.gif'> Recommended </div>";
+}
+
+
+//----------------------------------------------------------------
+function JavascriptTest()
+{
+DisplayStatus("Javascript","Pass","Javascript is enabled.")
+
+}
+//----------------------------------------------------------------
+function BandwidthTest()
+{
+var oImage=document.getElementById("BandwidthStatus");
+oImage.innerHTML="<img src='commonfiles/Images/Unknown.gif'>";
+var oElement=document.getElementById("Bandwidth");
+oElement.className="Normal";
+document.getElementById("TestResult").innerHTML="";
+document.getElementById("Bandwidth").innerHTML="<img border='0' align='absmiddle' src='commonfiles/Bandwidth/Loading.gif'> Testing, Please Wait..."
+oStartTime=new Date();
+
+oImage=new Image()
+oImage.onload=BandwidthTestComplete;
+oImage.src="commonfiles/Bandwidth/Test.png?Time="+oStartTime.getTime();	
+	
+}
+
+//----------------------------------------------------------------
+function BandwidthTestComplete()
+{
+var iImageSize=229.376*8; //Image size in Kbits
+var oEndTime=new Date();
+var iTime=(oEndTime.getTime()-oStartTime.getTime())/1000;
+var iSpeed =parseInt(iImageSize/iTime);
+var sRetest="<a class='Normal' href='javascript:BandwidthTest()'><img align='absmiddle' border=0 src='commonfiles/Images/TestAgain.gif'>Test again.</a>";
+
+if (iSpeed<iMinimumBandwidth)
+	{
+	//Fail
+	oPassedTest.Bandwidth=false;
+	DisplayStatus("Bandwidth","Fail",iSpeed+" kb/s. You do not have the required bandwidth to view this webcast. "+iMinimumBandwidth+" kb/s is recommended. "+sRetest);
+
+	}
+else
+	{
+	//Pass
+	oPassedTest.Bandwidth=true;
+	DisplayStatus("Bandwidth","Pass",iSpeed+" kb/s. You have the required bandwidth to view this webcast. "+sRetest);
+
+	}
+RecommendedPlayer(iSpeed);
+document.getElementById("RecommendedPlayer").style.visibility="visible";
+
+if ( !(oPassedTest.Bandwidth &&oPassedTest.VideoResolution && oPassedTest.Flash && oPassedTest.OS && oPassedTest.Browser))
+	document.getElementById("TestResult").innerHTML="<br/>The system has failed to pass one or more tests. Though you may still be able to watch the webcast it is recommended you fix the errors.";
+
+	
+	
+return iSpeed;
+}
+
+
+//----------------------------------------------------------------
+function ResolutionTest()
+{
+if (screen.width<iMinimumResolutionWidth || screen.height<iMinimumResolutionHeight)
+	DisplayStatus("VideoResolution","Fail","The screen does not have the minimum resolution of "+iMinimumResolutionWidth+" X "+iMinimumResolutionHeight);
+else
+	{
+	oPassedTest.VideoResolution=true;
+	DisplayStatus("VideoResolution","Pass","The screen has the required resolution. "+screen.width+" X "+screen.height);
+	}
+}
+
+//---------------------------------------------------------
+function FlashTest()
+{
+var sUpdate="<a class='Normal' target='_blank' href='http://www.adobe.com/support/flashplayer/downloads.html'>Update to the latest Flash Player.</a>";
+if ( parseInt(FlashDetect.major+"."+FlashDetect.minor)<parseInt(iFlashMajorMinimum+"."+iFlashMinorMinimum))
+	DisplayStatus("Flash","Fail","Flash "+FlashDetect.major+"."+FlashDetect.minor+" is installed. Flash Version "+iFlashMajorMinimum+"."+iFlashMinorMinimum+" is the minimum required. "+sUpdate);
+else
+	{
+	oPassedTest.Flash=true;
+	DisplayStatus("Flash","Pass","The flash installation meets the minimum requirements. Version "+FlashDetect.major+"."+FlashDetect.minor);
+	}
+}
+
+//---------------------------------------------------------
+function PortTester()
+{
+oTester = new SWFObject("../commonfiles/PortTester/PortTest.swf",'PortTester','550','150','9');
+oTester.addParam('allowfullscreen','true');
+oTester.addParam('allowscriptaccess','always');
+oTester.write("PortTesterHolder");
+}
+
+//---------------------------------------------------------
+function PortTesterReady()
+{
+var oTester=document.getElementById("PortTester");
+var oTestItems = new Array();
+oTestItems =
+[
+{protocol:"rtmpt",port:"80",label:"RMTPT (Tunneling) Port 80",status:""},
+{protocol:"rtmpt",port:"1935",label:"RMTPT (Tunneling) Port 1935",status:""},
+{protocol:"rtmpt",port:"default",label:"RMTPT (Tunneling) Default",status:""},
+{protocol:"rtmp",port:"80",label:"RMTP Port 80",status:""},
+{protocol:"rtmp",port:"1935",label:"RMTP Port 1935",status:""},
+{protocol:"rtmp",port:"default",label:"RMTP Default",status:""}
+];
+
+oTester.SetApplicationName("r.repeat.resolvecollab.netdna-cdn.com","13222/cuepointspullnetdna");
+oTester.RunTest(oTestItems);
+}
+
+//----------------------------------------------------------------
+function PortTestComplete(oResult)
+{
+
+var iFailCount=0;
+for (var iLoop=0;iLoop<oResult.length;iLoop++)
+	{
+	if (oResult[iLoop].status=="Rejected" || oResult[iLoop].status=="Failed")
+		iFailCount++;
+	}
+var oDiv=document.getElementById("PortTesterResult");
+if (iFailCount==oResult.length)
+	{
+	oDiv.className="Fail";
+	oDiv.innerHTML="Port Test Complete - All ports are blocked, you will experience problems viewing the webcast";
+	
+	}
+else
+	{
+	
+	oDiv.className="Pass";
+	oDiv.innerHTML="Port Test Complete - At least one connection succeeded. ";
+	}
+}
+
+//----------------------------------------------------------------
+function CheckBrowser()
+{
+var BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString(this.dataOS) || "an unknown OS";
+	},
+	searchString: function (data) {
+		for (var i=0;i<data.length;i++)	{
+			var dataString = data[i].string;
+			var dataProp = data[i].prop;
+			this.versionSearchString = data[i].versionSearch || data[i].identity;
+			if (dataString) {
+				if (dataString.indexOf(data[i].subString) != -1)
+					return data[i].identity;
+			}
+			else if (dataProp)
+				return data[i].identity;
+		}
+	},
+	searchVersion: function (dataString) {
+		var index = dataString.indexOf(this.versionSearchString);
+		if (index == -1) return;
+		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+	},
+	dataBrowser: [
+		{ 	string: navigator.userAgent,
+			subString: "OmniWeb",
+			versionSearch: "OmniWeb/",
+			identity: "OmniWeb"
+		},
+		{
+			string: navigator.vendor,
+			versionSearch: "Version",
+			subString: "Apple",
+			identity: "Safari"
+		},
+		{
+			prop: window.opera,
+			identity: "Opera"
+		},
+		{
+			string: navigator.vendor,
+			subString: "iCab",
+			identity: "iCab"
+		},
+		{
+			string: navigator.vendor,
+			subString: "KDE",
+			identity: "Konqueror"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Firefox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Camino",
+			identity: "Camino"
+		},
+		{		// for newer Netscapes (6+)
+			string: navigator.userAgent,
+			subString: "Chrome",
+			identity: "Chrome"
+		},
+		{		// for newer Netscapes (6+)
+			string: navigator.userAgent,
+			subString: "Netscape",
+			identity: "Netscape"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "MSIE",
+			identity: "Explorer",
+			versionSearch: "MSIE"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Gecko",
+			identity: "Mozilla",
+			versionSearch: "rv"
+		},
+		{ 		// for older Netscapes (4-)
+			string: navigator.userAgent,
+			subString: "Mozilla",
+			identity: "Netscape",
+			versionSearch: "Mozilla"
+		}
+	],
+	dataOS : [
+		{
+			string: navigator.platform,
+			subString: "Win",
+			identity: "Windows"
+		},
+		{
+			string: navigator.platform,
+			subString: "Mac",
+			identity: "Mac"
+		},
+		{
+			string: navigator.platform,
+			subString: "Linux",
+			identity: "Linux"
+		}
+	]
+
+};
+BrowserDetect.init();
+var oBrowser,oSystem;
+var bOSFound=false;
+var bBrowserFound=false;
+var bBrowserVersionFound=false;
+for (var oItem in oOSBrowserRequirements)
+	{
+	oSystem=oOSBrowserRequirements[oItem];
+	if (BrowserDetect.OS==oSystem.OS)
+		{
+		bOSFound=true;
+		DisplayStatus("OperatingSystem","Pass",BrowserDetect.OS+" is supported");
+		oPassedTest.OS=true;
+		for (var oItemBrowser in oSystem.browsers)
+			{
+			oBrowser=oSystem.browsers[oItemBrowser];
+			if (oBrowser.name==BrowserDetect.browser)
+				{
+				bBrowserFound=true;
+				if (parseFloat(BrowserDetect.version)>=oBrowser.minimum)
+					{
+					DisplayStatus("Browser","Pass",BrowserDetect.browser+" "+BrowserDetect.version);
+					oPassedTest.Browser=true;
+					bBrowserVersionFound=true;
+					}
+				break;
+				}
+			}
+		break;
+		}
+	}
+
+if (!bOSFound)
+	DisplayStatus("OperatingSystem","Fail",BrowserDetect.OS+" is not supported");
+if (bBrowserFound && !bBrowserVersionFound)
+	DisplayStatus("Browser","Fail",BrowserDetect.browser+" "+BrowserDetect.version+", the browser version is not supported");
+else if (!bBrowserFound && !bBrowserVersionFound)
+	DisplayStatus("Browser","Fail",BrowserDetect.browser+" "+BrowserDetect.version+", the browser is not supported");
+
+}
+
+
+//----------------------------------------------------------------
+function DisplayStatus(sID,sPassFail,sMessage)
+{
+var oImage=document.getElementById(sID+"Status");
+oImage.innerHTML="<img src='commonfiles/Images/"+sPassFail+".gif'>";
+var oElement=document.getElementById(sID);
+oElement.className=sPassFail;
+oElement.innerHTML=sMessage;
+}
+
+//----------------------------------------------------------------
+function LaunchPlayer(iID)
+{
+//Must you different dimensions as the window.open function does not include chrome
+//whereas the resizeTo does.
+var iWidth=100;
+var iHeight=100;
+var iLeft = (screen.availWidth-iWidth)/2;
+var iTop = (screen.availHeight-iHeight)/2;
+
+
+
+
+winWebcast=window.open("Player.php?ID="+iID,"WebcastPlayer","width="+iWidth+",height="+iHeight+",top="+iTop+",left="+iLeft+",scrollbars=0,menubar=0,resizable=0,status=1");
+
+if (winWebcast!=null)
+	winWebcast.focus();
+else
+	alert("The Player was blocked from opening, disable your pop-up blocking software and try again.");
+
+
+
+}
+
+</script>
+
+
+</body></html>

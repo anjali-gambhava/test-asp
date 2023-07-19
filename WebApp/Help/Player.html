@@ -1,0 +1,30 @@
+<html>
+<head>
+</head>
+<body style="min-width: 330px; text-align: center; margin: 0px; padding: 5px;">
+    <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+    <div id="mediaplayer">
+    </div>
+    <script type="text/javascript" src="player/jwplayer.js"></script>
+    <script type="text/javascript">
+
+        jwplayer("mediaplayer").setup({
+
+            flashplayer: "player/player.swf",
+            autostart: 'true',
+            streamer: "rtmp://up1.vmukti.com:80/vod",
+            file: "sample.mp4",
+            width: "320",
+            height: "240",
+            logo: {
+                file: "images/vmukti-New-H-2021-final.png",
+                link: "http://www.vmukti.com/",
+                linktarget: "_blank",
+                position: "bottom-right"
+            }
+        });
+	
+    </script>
+    <!-- END OF THE PLAYER EMBEDDING -->
+</body>
+</html>
