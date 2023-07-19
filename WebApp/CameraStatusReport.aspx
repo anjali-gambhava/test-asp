@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="CameraStatusReport_1.aspx.cs" Inherits="exam.CameraStatusReport_1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="CameraStatusReport.aspx.cs" Inherits="exam.CameraStatusReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
                 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />

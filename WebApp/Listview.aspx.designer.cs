@@ -11,7 +11,7 @@ namespace exam
 {
 
 
-    public partial class CameraOffline_2
+    public partial class Listview
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace exam
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// ImgProgress1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgProgress1;
-
-        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
@@ -42,40 +33,13 @@ namespace exam
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// FromDt control.
+        /// Timer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FromDt;
-
-        /// <summary>
-        /// ToDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ToDt;
-
-        /// <summary>
-        /// ddlFromTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFromTime;
-
-        /// <summary>
-        /// ddlToTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlToTime;
+        protected global::System.Web.UI.Timer Timer1;
 
         /// <summary>
         /// ddlDistrict control.
@@ -96,22 +60,22 @@ namespace exam
         protected global::System.Web.UI.WebControls.DropDownList ddlAssembly;
 
         /// <summary>
-        /// ddlcamara control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcamara;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
-        /// ShiftDropDown control.
+        /// strm_txtBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ShiftDropDown;
+        protected global::System.Web.UI.WebControls.TextBox strm_txtBox;
 
         /// <summary>
         /// btnsearch control.
@@ -123,30 +87,39 @@ namespace exam
         protected global::System.Web.UI.WebControls.Button btnsearch;
 
         /// <summary>
-        /// btnExportPDF control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportPDF;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// scrollDiv control.
+        /// prev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl scrollDiv;
+        protected global::System.Web.UI.WebControls.LinkButton prev;
 
         /// <summary>
-        /// EmpGridView control.
+        /// rptPages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView EmpGridView;
+        protected global::System.Web.UI.WebControls.Repeater rptPages;
+
+        /// <summary>
+        /// next control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton next;
     }
 }

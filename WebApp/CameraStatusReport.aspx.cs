@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace exam
 {
-    public partial class CameraStatusReport_1 : System.Web.UI.Page
+    public partial class CameraStatusReport : System.Web.UI.Page
     {
         db_data _data = new db_data(); 
         public int stateid

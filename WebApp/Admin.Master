@@ -320,7 +320,7 @@
                  <%} %>
                 <%else{ %>
               <li class="nav-item">
-                <a href="listview1.aspx" class="nav-link" id="listviewmenu">
+                <a href="listview.aspx" class="nav-link" id="listviewmenu">
                   <i class="fa fa-list nav-icon"></i>
                   <p>List View</p>
                 </a>
@@ -373,7 +373,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="CameraStatusReport_1.aspx" class="nav-link" id="statusReport">
+                <a href="CameraStatusReport.aspx" class="nav-link" id="statusReport">
                   <i class="far fa-file nav-icon"></i>
                   <p>Consolidated Camera Status</p>
                 </a>

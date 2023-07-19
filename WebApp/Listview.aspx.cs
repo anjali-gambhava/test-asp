@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace exam
 {
-    public partial class Listview1 : System.Web.UI.Page
+    public partial class Listview : System.Web.UI.Page
     {
         LoadTopSelections objloadtop = new LoadTopSelections();
         db_data _boothlist = new db_data();

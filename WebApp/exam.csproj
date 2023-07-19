@@ -142,10 +142,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="addcam.aspx" />
     <Content Include="AIView.aspx" />
-    <Content Include="AIView1.aspx" />
-    <Content Include="ArchiveViewNew.aspx" />
     <Content Include="assemblydashboard.aspx" />
     <Content Include="assembly.aspx" />
     <Content Include="assets\font-awesome\css\font-awesome.css" />
@@ -170,9 +167,9 @@
     <Content Include="ArchiveView.aspx" />
     <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\itextsharp.xmlworker.dll" />
-    <Content Include="CameraStatusReport_1.aspx" />
-    <Content Include="CameraOfflineReport.aspx" />
     <Content Include="CameraStatus.aspx" />
+    <Content Include="CameraStatusReport.aspx" />
+    <Content Include="CameraOfflineReport.aspx" />
     <Content Include="cam_alert.aspx" />
     <Content Include="css\Timer.css" />
     <Content Include="dist\css\adminlte.css" />
@@ -235,7 +232,7 @@
     <Content Include="images\Player-Logo1.png" />
     <Content Include="js\flv.min.js" />
     <Content Include="js\table2excel.js" />
-    <Content Include="Listview1.aspx" />
+    <Content Include="Listview.aspx" />
     <Content Include="MapView.aspx" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
@@ -2106,23 +2103,14 @@
     <Content Include="plugins\uplot\uPlot.iife.min.js" />
     <Content Include="plugins\uplot\uPlot.min.css" />
     <Content Include="BoothMaster.aspx" />
-    <Content Include="boothupload.aspx" />
     <Content Include="CameraConnectedOnceReport.aspx" />
-    <Content Include="CameraConnectedOnceReport2.aspx" />
-    <Content Include="CameraOffline_2.aspx" />
     <Content Include="camerasetting.aspx" />
     <Content Include="css\bootstrap-datetimepicker.min.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\multiselect.css" />
     <Content Include="css\ptzctrl.css" />
-    <Content Include="Dashboard.aspx" />
-    <Content Include="deviceNotificationPopup.aspx" />
     <Content Include="downloadrecordings.aspx" />
     <Content Include="exam.Publish.xml" />
-    <Content Include="ExemptionReason.aspx" />
-    <Content Include="gridauto.aspx" />
-    <Content Include="GridPSView.aspx" />
-    <Content Include="GridPinkView.aspx" />
     <Content Include="HrWizeReport.aspx" />
     <Content Include="images\calender.png" />
     <Content Include="images\delete-24.png" />
@@ -2157,7 +2145,6 @@
     <Content Include="js\nodeplayer\NodePlayer-full.min.js" />
     <Content Include="js\nodeplayer\NodePlayer-only264.min.js" />
     <Content Include="js\nodeplayer\NodePlayer.min.js" />
-    <Content Include="GridAutoView.aspx" />
     <Content Include="LoginHistoryReport.aspx" />
     <Content Include="MultiMappedCameraList.aspx" />
     <Content Include="ptzcam.aspx" />
@@ -2215,7 +2202,6 @@
     <Content Include="NewLayout\src\_scripts\_searchbarToggle.js" />
     <Content Include="NewLayout\src\_scripts\_submenutoggle.js" />
     <Content Include="NewLayout\src\_scripts\_tableStackedRows.js" />
-    <Content Include="count.aspx" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\colorbox.css" />
@@ -2300,15 +2286,12 @@
     <Content Include="js\rtmp.js" />
     <Content Include="js\screenfull.js" />
     <Content Include="Logout.aspx" />
-    <Content Include="MapView1.aspx" />
     <Content Include="Module\camerasetting.ascx" />
     <Content Include="Module\footer.ascx" />
     <Content Include="Module\header.ascx" />
     <Content Include="Module\headerAdmin.ascx" />
     <Content Include="Module\player.ascx" />
     <Content Include="Module\player6.ascx" />
-    <Content Include="MultiGrid.aspx" />
-    <Content Include="MultiGridView.aspx" />
     <Content Include="Unmapcamera.aspx" />
     <Content Include="users.aspx" />
     <Content Include="WatchVideo.aspx" />
@@ -2322,23 +2305,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="webcasting\iimrohtak.html" />
-    <Content Include="webcasting\iimrohtak\iimrohtak.html" />
-    <Content Include="webcasting\iimrohtak\images\IIM-Rohtak-Convo-2022-HeaderDesign-FINAL.png" />
-    <Content Include="webcasting\iimrohtak\images\IIM-Rohtak-Convo-2022-HomePage-BannerDesign-FINAL.png" />
-    <Content Include="webcasting\iimrohtak\livestream.html" />
-    <Content Include="webcasting\images\IIM-Rohtak-Convo-2022-HeaderDesign-FINAL.png" />
-    <Content Include="webcasting\images\IIM-Rohtak-Convo-2022-HomePage-BannerDesign-FINAL.png" />
-    <Content Include="webcasting\livestream.html" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addcam.aspx.cs">
-      <DependentUpon>addcam.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="addcam.aspx.designer.cs">
-      <DependentUpon>addcam.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2352,20 +2320,6 @@
     </Compile>
     <Compile Include="AIView.aspx.designer.cs">
       <DependentUpon>AIView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AIView1.aspx.cs">
-      <DependentUpon>AIView1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AIView1.aspx.designer.cs">
-      <DependentUpon>AIView1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ArchiveViewNew.aspx.cs">
-      <DependentUpon>ArchiveViewNew.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ArchiveViewNew.aspx.designer.cs">
-      <DependentUpon>ArchiveViewNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="assemblydashboard.aspx.cs">
       <DependentUpon>assemblydashboard.aspx</DependentUpon>
@@ -2400,12 +2354,19 @@
     <Compile Include="ArchiveView.aspx.designer.cs">
       <DependentUpon>ArchiveView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CameraStatusReport_1.aspx.cs">
-      <DependentUpon>CameraStatusReport_1.aspx</DependentUpon>
+    <Compile Include="CameraStatus.aspx.cs">
+      <DependentUpon>CameraStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CameraStatusReport_1.aspx.designer.cs">
-      <DependentUpon>CameraStatusReport_1.aspx</DependentUpon>
+    <Compile Include="CameraStatus.aspx.designer.cs">
+      <DependentUpon>CameraStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CameraStatusReport.aspx.cs">
+      <DependentUpon>CameraStatusReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CameraStatusReport.aspx.designer.cs">
+      <DependentUpon>CameraStatusReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CameraOfflineReport.aspx.cs">
       <DependentUpon>CameraOfflineReport.aspx</DependentUpon>
@@ -2413,13 +2374,6 @@
     </Compile>
     <Compile Include="CameraOfflineReport.aspx.designer.cs">
       <DependentUpon>CameraOfflineReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CameraStatus.aspx.cs">
-      <DependentUpon>CameraStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CameraStatus.aspx.designer.cs">
-      <DependentUpon>CameraStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="cam_alert.aspx.cs">
       <DependentUpon>cam_alert.aspx</DependentUpon>
@@ -2442,12 +2396,12 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Listview1.aspx.cs">
-      <DependentUpon>Listview1.aspx</DependentUpon>
+    <Compile Include="Listview.aspx.cs">
+      <DependentUpon>Listview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Listview1.aspx.designer.cs">
-      <DependentUpon>Listview1.aspx</DependentUpon>
+    <Compile Include="Listview.aspx.designer.cs">
+      <DependentUpon>Listview.aspx</DependentUpon>
     </Compile>
     <Compile Include="MapView.aspx.cs">
       <DependentUpon>MapView.aspx</DependentUpon>
@@ -2463,33 +2417,12 @@
     <Compile Include="BoothMaster.aspx.designer.cs">
       <DependentUpon>BoothMaster.aspx</DependentUpon>
     </Compile>
-    <Compile Include="boothupload.aspx.cs">
-      <DependentUpon>boothupload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="boothupload.aspx.designer.cs">
-      <DependentUpon>boothupload.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CameraConnectedOnceReport.aspx.cs">
       <DependentUpon>CameraConnectedOnceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CameraConnectedOnceReport.aspx.designer.cs">
       <DependentUpon>CameraConnectedOnceReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CameraConnectedOnceReport2.aspx.cs">
-      <DependentUpon>CameraConnectedOnceReport2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CameraConnectedOnceReport2.aspx.designer.cs">
-      <DependentUpon>CameraConnectedOnceReport2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CameraOffline_2.aspx.cs">
-      <DependentUpon>CameraOffline_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CameraOffline_2.aspx.designer.cs">
-      <DependentUpon>CameraOffline_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="camerasetting.aspx.cs">
       <DependentUpon>camerasetting.aspx</DependentUpon>
@@ -2504,20 +2437,6 @@
     <Compile Include="DAL\DistrictDAL.cs" />
     <Compile Include="DAL\ResponseReturnMessages.cs" />
     <Compile Include="DAL\ServerSettingDAL.cs" />
-    <Compile Include="Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="deviceNotificationPopup.aspx.cs">
-      <DependentUpon>deviceNotificationPopup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="deviceNotificationPopup.aspx.designer.cs">
-      <DependentUpon>deviceNotificationPopup.aspx</DependentUpon>
-    </Compile>
     <Compile Include="downloadhandler.ashx.cs">
       <DependentUpon>downloadhandler.ashx</DependentUpon>
     </Compile>
@@ -2528,47 +2447,12 @@
     <Compile Include="downloadrecordings.aspx.designer.cs">
       <DependentUpon>downloadrecordings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExemptionReason.aspx.cs">
-      <DependentUpon>ExemptionReason.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ExemptionReason.aspx.designer.cs">
-      <DependentUpon>ExemptionReason.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="gridauto.aspx.cs">
-      <DependentUpon>gridauto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="gridauto.aspx.designer.cs">
-      <DependentUpon>gridauto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GridPSView.aspx.cs">
-      <DependentUpon>GridPSView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GridPSView.aspx.designer.cs">
-      <DependentUpon>GridPSView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GridPinkView.aspx.cs">
-      <DependentUpon>GridPinkView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GridPinkView.aspx.designer.cs">
-      <DependentUpon>GridPinkView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="HrWizeReport.aspx.cs">
       <DependentUpon>HrWizeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HrWizeReport.aspx.designer.cs">
       <DependentUpon>HrWizeReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GridAutoView.aspx.cs">
-      <DependentUpon>GridAutoView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GridAutoView.aspx.designer.cs">
-      <DependentUpon>GridAutoView.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginHistoryReport.aspx.cs">
       <DependentUpon>LoginHistoryReport.aspx</DependentUpon>
@@ -2647,13 +2531,6 @@
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="count.aspx.cs">
-      <DependentUpon>count.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="count.aspx.designer.cs">
-      <DependentUpon>count.aspx</DependentUpon>
-    </Compile>
     <None Include="BoothExcelFomat.xlsx" />
     <Content Include="CameraExcelFomat.xlsx" />
     <Compile Include="DAL\db_data.cs" />
@@ -2708,13 +2585,6 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MapView1.aspx.cs">
-      <DependentUpon>MapView1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MapView1.aspx.designer.cs">
-      <DependentUpon>MapView1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Module\camerasetting.ascx.cs">
       <DependentUpon>camerasetting.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2757,20 +2627,6 @@
     <Compile Include="Module\player6.ascx.designer.cs">
       <DependentUpon>player6.ascx</DependentUpon>
     </Compile>
-    <Compile Include="MultiGrid.aspx.cs">
-      <DependentUpon>MultiGrid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MultiGrid.aspx.designer.cs">
-      <DependentUpon>MultiGrid.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MultiGridView.aspx.cs">
-      <DependentUpon>MultiGridView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MultiGridView.aspx.designer.cs">
-      <DependentUpon>MultiGridView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\Emails.cs" />
     <Compile Include="services\Encryption.cs" />
@@ -2803,11 +2659,6 @@
     <Compile Include="Watchvideodownload.aspx.designer.cs">
       <DependentUpon>Watchvideodownload.aspx</DependentUpon>
     </Compile>
-    <Content Include="Documents\Flying Squad Vehicle Dos-Donts.docx" />
-    <Content Include="Documents\FSV_InstallationReport_PIL.pdf" />
-    <Content Include="Documents\FSV_InstallationReport_Vmukti.pdf" />
-    <Content Include="Documents\Installation_Manual.pdf" />
-    <Content Include="Documents\Flying_Squad_Vehicle_Dos_Donts.pdf" />
     <Content Include="downloadhandler.ashx" />
     <Content Include="dist\css\adminlte.css.map" />
     <Content Include="dist\css\adminlte.min.css.map" />
