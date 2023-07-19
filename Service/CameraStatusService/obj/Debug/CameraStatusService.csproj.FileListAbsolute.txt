@@ -1,0 +1,124 @@
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+C:\Users\ShivShakti\Documents\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.Cache
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CopyComplete
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+C:\Users\HP\Downloads\CameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\RahulS\UKCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\RahulS\UKCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\RahulS\UKCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\RahulS\UKCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\RahulS\UKCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\RahulS\UKCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CopyComplete
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\RahulS\TripuraCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\RahulS\PunjabflcCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\RahulS\PunjabByeElectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CopyComplete
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.manifest
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.application
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe.manifest
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.application
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\Services Source Code\HimachaPradeshCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.manifest
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.application
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe.manifest
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.application
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\NovElection2022\CamerastatusService\TelanganaCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.manifest
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.application
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe.manifest
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.application
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\May2023Service\KarnatakaelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.config
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe.manifest
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.application
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.exe
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\CameraStatusService.pdb
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.dll
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\bin\Debug\Newtonsoft.Json.xml
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.AssemblyReference.cache
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.ProjectInstaller.resources
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.GenerateResource.cache
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.csproj.CoreCompileInputs.cache
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe.manifest
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.application
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.exe
+E:\May2023Service\HpelectionCameraStatusService\CameraStatusService\obj\Debug\CameraStatusService.pdb
