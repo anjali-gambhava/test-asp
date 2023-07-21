@@ -416,6 +416,37 @@ padding:0px;
             </div>
                     </section>
                </div>
+          
+
+             <div class="row">
+               <section class="col-lg-12 connectedSortable p-r0">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-line mr-1"></i>
+               Beep Count Chart 
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div><!-- /.card-header -->
+              <div class="card-body" style="padding:0px">
+                <div class="tab-content p-0">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart_2"
+                       style="position: relative; height: 300px;">
+                     <%-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>--%>
+                      <canvas id="BeepcountChart" ></canvas>
+                   </div> 
+                </div>
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </section>
+                 </div>
+
+
+
            <% } %>
             <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "ceo"
                    || Session["userType"].ToString().ToLower() == "vmukti_internal" )
@@ -479,7 +510,7 @@ padding:0px;
     </section>
     <!-- /.content -->
 
-  </div>sss
+  </div>
                            
     <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" type="text/javascript"></script>
@@ -584,6 +615,7 @@ padding:0px;
         $j(document).ready(function () {
             getData();
             getImgData();
+            getBeepData();
         });
         //$(function () { 
         //    getData(); 
@@ -684,8 +716,7 @@ padding:0px;
                     alert("Error: " + thrownError);
                 }
             });
-        }
-
+        } 
         function populateimgChart(data) {
             var ctx = document.getElementById('ImgChart').getContext('2d');
             var chart = new Chart(ctx, {
@@ -693,21 +724,77 @@ padding:0px;
                 data: {
                     labels: data.map(d => d.x),
                     datasets: [{
-                        label: 'Rajasthan',
+                        label: 'Ahmedabad',
                         data: data.map(d => d.y),
                         backgroundColor: 'rgba(60, 179, 113)',
                         borderColor: 'rgba(60, 179, 113)',
                         borderWidth: 0.5
                         //,fill: 'origin'
-                    },
-                        {
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                stacked: true,
+                                beginAtZero: true
+                            }
+                        }],
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'hour',
+                                displayFormats: {
+                                    hour: 'HH:mm'
+                                }
+                            },
+                            ticks: {
+                                source: 'data',
+                                callback: function (value, index, values) {
+                                    // Convert the value to a Date object
+                                    var date = new Date(value);
+                                    // Format the hour value as desired (e.g., '12:00')
+                                    var hour = date.getHours().toString().padStart(2, '0');
+                                    var minutes = date.getMinutes().toString().padStart(2, '0');
+                                    return hour + ':' + minutes;
+                                }
+                            }
+                        }]
 
-                            label: 'Ahmedabad',
-                            data: data.map(d => d.y1),
-                            backgroundColor: 'rgba(28,52,128)',
-                            borderColor: 'rgba(28,52,128)',
-                            borderWidth: 1
-                            //, fill: 'origin' 
+                    }
+                }
+
+            });
+        }
+
+        function getBeepData() {
+            $.ajax({
+                type: "POST",
+                url: "Home.aspx/GetBeepChartData",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    populatebeepChart(response.d);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Error: " + thrownError);
+                }
+            });
+        }
+        function populatebeepChart(data) {
+            var ctx = document.getElementById('BeepcountChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.x),
+                    datasets: [{
+                        label: 'Ahmedabad',
+                        data: data.map(d => d.y),
+                        backgroundColor: 'rgba(60, 179, 113)',
+                        borderColor: 'rgba(60, 179, 113)',
+                        borderWidth: 0.5
+                        //,fill: 'origin'
                     }]
                 },
                 options: {
@@ -746,6 +833,30 @@ padding:0px;
         }
 
     </script>
+
+     <script type="text/javascript">
+         // Function to set the canvas width based on the screen resolution
+         function setCanvasSize() {
+             var canvas = document.getElementById('BeepcountChart');
+             var resolutionWidth = window.innerWidth; // Get the screen width
+
+             // Set the desired width based on the resolution (you can adjust this based on your needs)
+             var desiredWidth = resolutionWidth * 0.9; // For example, setting it to 80% of the screen width
+
+             // Set the fixed height for the canvas
+             var desiredHeight = 325; // Set the height to 325 pixels
+
+             // Apply the desired width and height to the canvas element
+             canvas.width = desiredWidth;
+             canvas.height = desiredHeight;
+
+             // Your chart rendering code goes here...
+         }
+
+         // Call the function on page load and whenever the window is resized
+         window.onload = setCanvasSize;
+         window.onresize = setCanvasSize;
+     </script>
     <script type="text/javascript">
         function LoadDiv(url) {
             var img = new Image();
@@ -784,9 +895,7 @@ padding:0px;
                 imgDiv.style.display = "none";
                 imgFull.style.display = "none";
             }
-        }
-
-
+        } 
     </script>
      <script type="text/javascript"> 
          $('#dashboardmenu').addClass('active');

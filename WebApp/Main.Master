@@ -422,7 +422,7 @@
                                 <ul class="list-reset flex-col w-full">
 
                                     <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ListView" ? "border-primary bg-semi-light" : "border-light" %>">
-                                        <a href="listview1.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                        <a href="listview.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
                                             <span class="icon mr-xs flex-none f-color-primary">
                                                 <span class=""><i data-feather="list"></i></span>
                                             </span>
@@ -642,7 +642,7 @@
                                     </li>
 
                                     <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedCameraStatus" ? "border-primary bg-semi-light" : "border-light" %>">
-                                        <a href="CameraStatusReport_1.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                        <a href="CameraStatusReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
                                             <span class="icon mr-xs flex-none f-color-primary">
                                                 <span class=""><i data-feather="list"></i></span>
                                             </span>

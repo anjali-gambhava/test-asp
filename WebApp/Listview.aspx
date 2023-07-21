@@ -27,7 +27,42 @@
         .cardarchive{
              overflow:auto;
          }
+        
     </style>
+
+
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+  <%-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            #videoElementPopup {
+                position: relative;
+                overflow: auto;
+            }
+
+            .vjs-tech {
+                position: absolute;
+                transition: transform .2s;
+                /* Animation */
+            }
+
+            .zoom-in-button::before,
+            .zoom-out-button::before {
+                line-height: 2;
+                margin: 0 0.2em;
+            }
+
+            .zoom-in-button::before {
+                content: "\f00e";
+            }
+
+            .zoom-out-button::before {
+                content: "\f010";
+            }
+            .modal-content {
+            display: inline-table!important;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -35,11 +70,12 @@
     
     <asp:UpdatePanel ID="UpdatePanel2" UpdateMode="Conditional" runat="server">
                         <ContentTemplate> 
-                         
+  <%--<script src="https://vjs.zencdn.net/7.10.2/video.min.js" type="text/javascript"></script>--%>
+  <%--<script src="https://unpkg.com/videojs-contrib-hls@5.14.1/dist/videojs-contrib-hls.js" type="text/javascript"></script>--%>
+  <link href="https://vjs.zencdn.net/7.15.4/video-js.min.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.15.4/video.min.js" type="text/javascript"></script>
      <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    
-
+    <!-- Content Header (Page header) --> 
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -76,19 +112,7 @@
                     <div class="form-group">
                   <asp:Button ID="btnsearch" runat="server" Text="Search" CssClass="btn btn-block btn-primary"
                                                 OnClick="btnsearch_Click" />
-                          </div> 
-                    
-                <%--<div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>--%>
+                          </div>  
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="max-height: 500px; overflow:auto">
@@ -148,7 +172,7 @@
                                                         <a href="javascript:void(0)" id="lnkplay" runat="server"></a>
                                                         <div align="center" style="vertical-align: top; display: inline">
                                                             <a href="#" data-backdrop="static" title="View" data-title=" <%#Eval("acname") %>" data-content=" <%#Eval("location") %>"
-                                                                style="color: #1499d6" onclick="watchvideopopup('<%# Eval("streamname") %>','<%# Eval("servername") %>','<%#exam.Common.Encode(Eval("statusFlag").ToString())%>','<%#exam.Common.Encode(Eval("bkpstreamid") == DBNull.Value ? "0" : Eval("bkpstreamid").ToString())%>');return false">
+                                                                style="color: #1499d6" onclick="OpenPopupAdd(); loadplayer('<%# Eval("streamname") %>','<%# Eval("servername") %>','<%#exam.Common.Encode(Eval("statusFlag").ToString())%>','<%#exam.Common.Encode(Eval("bkpstreamid") == DBNull.Value ? "0" : Eval("bkpstreamid").ToString())%>');return false">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                                                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
                                                                 </svg>
@@ -206,25 +230,16 @@
           </div>
         </div> 
       </div><!-- /.container-fluid -->
-        <%--<div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-
-                <div class="card" style="background: #FFFFFF">
-                    <div style="height: 20px; padding-right: 10px">
-                        <span aria-hidden="true" class="close">&times;</span>
-                    </div>
-                    <br />
-                    <div class="embed-responsive embed-responsive-16by9 mr-thin" style="border-radius: 0px; margin: 0">
-                       
-                    </div>
-                </div>
-            </div>
-
-        </div>--%>
+        
     </section> 
-         <div class="modal  wow fadeInUp animated" id="myModal">
+       
+
+
+    <!-- /.content -->
+  </div>
+                             </ContentTemplate> 
+                    </asp:UpdatePanel>
+      <div class="modal  wow fadeInUp animated" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content bg-secondary">
             <div class="modal-header" style="padding:0px 10px"> 
@@ -232,90 +247,118 @@
                                     &times;
                                 </button>
             </div>
-            <div class="modal-body">
-            <iframe id="iframevideo" frameborder="0" scrolling="no" width="100%" style="height:250px"></iframe>
-            </div>
-           <%-- <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-light">Save changes</button>
-            </div>--%>
+            <div class="modal-body cardarchive" id="videoContainer">
+          <%--  <video id="videoElement" muted autoplay preload="auto" controls style="width:100%; padding:0px 0px 0px">--%>
+                <video id="videoElementPopup" class="video-js vjs-default-skin" muted autoplay preload="auto" controls> 
+</video>
+            </div> 
           </div>
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
       </div>
-          
-
-
-    <!-- /.content -->
-  </div>
-                             </ContentTemplate> 
-                    </asp:UpdatePanel>
-  <!-- /.content-wrapper -->
-        <%--<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script> 
-       <script src="<%=ResolveUrl("~/js/jwp8/jwplayer.js") %>" type="text/javascript"></script>  
-    <script type="text/javascript">
-        jwplayer.key = 'UeOwyRhgpc5Og22j+4YM7uzrcbTwxTV9r+XadsoRGr8=';
-    </script>--%>
+  <!-- /.content-wrapper --> 
+    <  <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script> 
     <script type="text/javascript" >   
-             var $j = jQuery.noConflict();
-             function OpenPopupAdd() {
-                 $j("#myModal").show();
-             }
-             function ClosePopupAdd() {
-                 $j("#myModal").hide();
-        } 
+        var $j = jQuery.noConflict();
+        var videojsPlayer = null;
+        function OpenPopupAdd() {
+            $j("#myModal").show();
+        }
+        function ClosePopupAdd() {
+            $j("#myModal").hide();
+            if (videojsPlayer) {
+                videojsPlayer.dispose(); // Dispose the player to free up resources
+                videojsPlayer = null;// Set to null to indicate that the player has been disposed
+            }
+        }
         function loadplayer(streamname, servername, flag, bkupstreamid) {
-            debugger
-            var hlsurl = "https://" + servername + '/live-record/' + streamname + ".m3u8";
-            var playerInstance = jwplayer(streamname);
-                 playerInstance.setup({
-                     file: hlsurl,
-                     stretching: 'exactfit',
-                     autostart: true,
-                     mute: false,
-                     preload: 'none',
-                     hlshtml: true,
-                     allowscriptaccess: 'always',
-                     autostart: true,
-                     width: 640,
-                     height: 360,
-                     logo: {
-                         file: "images/vmukti-New-H-2021-final.png",
-                         link: "http://www.vmukti.com/",
-                         linktarget: "_blank",
-                         position: "bottom-right"
-                     }
-                 });
-            playerInstance.on("error", function (event) {
-                pl_flag = 1;
-                $(".playerimage").show();
-                //$(".jw-error-msg").html("Please wait... Loading camera feed ... ")
-                $(".jw-error-msg").hide();
-                //  playerInstance.setControls(false);
-                clearTimeout();
-                setTimeout(function () { playerInstance.stop(); playerInstance.play(true); }, 3000);
+            var videoContainer = document.getElementById('videoContainer');
+            var existingVideoElement = document.getElementById('videoElementPopup');
 
-            });
-            playerInstance.on("idle", function (event) {
-                playerInstance.play(true);
-                pl_flag = 1;
-            });
-            playerInstance.on("play", function (event) {
-                $(".playerimage").hide();
-                // playerInstance.setControls(false);
-                if (pl_flag == 0) {
+            // Dispose of the existing player instance if it exists
+            if (videojsPlayer) {
+                videojsPlayer.dispose();
+                videojsPlayer = null;
+            }
 
-                    pl_flag = 1;
+            // Remove the previous video element from the DOM
+            if (existingVideoElement) {
+                videoContainer.removeChild(existingVideoElement);
+            }
+
+            // Create a new video element
+            var videoElementPopup = document.createElement('video');
+            videoElementPopup.id = 'videoElementPopup';
+            videoElementPopup.className = 'video-js vjs-default-skin';
+            videoElementPopup.muted = true;
+            videoElementPopup.autoplay = true;
+            videoElementPopup.preload = 'auto';
+            videoElementPopup.controls = true;
+            videoContainer.appendChild(videoElementPopup);
+
+            // Set up the Video.js player
+            var hlsurl = 'https://' + servername + '/live-record/' + streamname + '.m3u8';
+
+            videojsPlayer = videojs('videoElementPopup', {
+                techOrder: ['html5', 'flvjs'], // Use flv.js for playing HLS streams
+                sources: [{ src: hlsurl, type: 'application/x-mpegURL' }],
+                hlshtml: true,
+                allowscriptaccess: 'always',
+                width: 640,
+                height: 360,
+                logo: {
+                    file: 'images/vmukti-New-H-2021-final.png',
+                    link: 'http://www.vmukti.com/',
+                    linktarget: '_blank',
+                    position: 'bottom-right'
                 }
-                clearTimeout();
-                playerInstance.play(true);
-            }); 
-             }
+            });
 
+            var zoomInButton = videojs.dom.createEl('button', {
+                //className: 'vjs-control vjs-button zoom-in-button',
+                //innerHTML: '<span class="vjs-icon-placeholder"></span>',
+                className: '',
+                innerHTML: '+',
+                title: 'Zoom In'
+            });
+
+            var zoomOutButton = videojs.dom.createEl('button', {
+                className: '',
+                innerHTML: '-',
+                title: 'Zoom Out'
+            });
+
+            zoomInButton.onclick = zoomIn;
+            zoomOutButton.onclick = zoomOut;
+
+            videojsPlayer.controlBar.el().insertBefore(zoomInButton, videojsPlayer.controlBar.fullscreenToggle.el());
+            videojsPlayer.controlBar.el().insertBefore(zoomOutButton, videojsPlayer.controlBar.fullscreenToggle.el());
+
+            
+            // Play the video after setting up the zoom buttons
+            videojsPlayer.play();
+
+            var zoomLevel = 1;
+
+            function zoomIn(event) {
+                event.preventDefault();
+                zoomLevel += 0.1;
+                var videoElementPopup = document.querySelector('#videoElementPopup video');
+                videoElementPopup.style.transform = `scale(${zoomLevel})`;
+            }
+
+            function zoomOut(event) {
+                event.preventDefault();
+                zoomLevel -= 0.1;
+                if (zoomLevel < 1) zoomLevel = 1; // Prevent zooming out more than the original size
+                var videoElementPopup = document.querySelector('#videoElementPopup video');
+                videoElementPopup.style.transform = `scale(${zoomLevel})`;
+            }
+        }
     </script>
        <script type="text/javascript"> 
            $('#viewmenu').addClass('active');
            $('#listviewmenu').addClass('active');
-       </script>
+       </script> 
 </asp:Content>

@@ -194,15 +194,39 @@ namespace exam
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    object x = reader["Time"];
-                    object y = reader["Rajasthan"];
-                    object y1 = reader["Ahmedabad"];
-                    data.Add(new { x, y, y1});
+                    object x = reader["Time"]; 
+                    object y = reader["Ahmedabad"];
+                    data.Add(new { x, y});
                 }
                 reader.Close();
             }
             return data;
         }
+
+        [System.Web.Services.WebMethod]
+        public static List<object> GetBeepChartData()
+        {
+            int Userid = Convert.ToInt32(System.Web.HttpContext.Current.Session["userid"]);
+            List<object> data = new List<object>();
+            string conString = ConfigurationManager.ConnectionStrings["connectionstr"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(conString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SaveBeepfromCamera", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@flag", "GetBeepCount");
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    object x = reader["Time"];
+                    object y = reader["Ahmedabad"];
+                    data.Add(new { x, y });
+                }
+                reader.Close();
+            }
+            return data;
+        }
+
 
         private void GetDashboardList()
         {
