@@ -1,123 +1,59 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true"
     CodeBehind="UnmappedGridView.aspx.cs" Inherits="exam.UnmappedGridView" %>
 
 <%@ Register TagPrefix="ucplayer" TagName="player" Src="~/Module/player.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <%--<script src="<%=ResolveUrl("~/js/flv.min.js") %>" type="text/javascript"></script> --%>
     <style>
-        @font-face {
-          font-family: 'Kruti Dev 010';
-          src: url(fonts/K010.TTF);
+        .form-group {
+    margin-bottom: 0px;
+    padding:2px 5px;
         }
-        .card {
-          /*box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
-          transition: 0.3s;*/
-          border: 0.1rem solid gray;
-          width: 95%;
-          border-radius: 0px;
-        }
-        .card:hover {
-          background-color: cornsilk;
-          box-shadow: 0 8px 16px 0 rgba(0,0,0,1.0);
-        }
-        .heading{
-            font-size: 1.5rem;
-            font-weight: 900;
-            color:#0d6efd;
-            letter-spacing:.025em;
-            margin-bottom: 0.6rem;
-            margin-top: 0.6rem;
-            line-height :1.2;
-        }
-
-        .sub-heading{
-            /*font-size: 1.45rem;*/
-            font-size: 60%;
-            color:#6c757d;
-            line-height :1.2;
-            margin-bottom: 0.3rem;
-        }
-        .data{
-            /*font-size: 1.25rem;*/
-            font-size: 60%;
-            line-height :1.2;
-            margin-bottom: 0.5rem;
-        }
-        .container {
-          padding: 2px 16px;
-        }
-    </style>
-    <script src="<%=ResolveUrl("~/js/screenfull.js") %>" type="text/javascript"></script>
-    <script src="<%=ResolveUrl("~/js/jwp8/jwplayer.js") %>" type="text/javascript"></script>
-   <%-- <script src="<%=ResolveUrl("~/js/jwplayer.8.24.0.js") %>" type="text/javascript"></script>--%>
-    <script src="<%=ResolveUrl("~/js/rtmp.js") %>" type="text/javascript"></script>
-    <script type="text/javascript">
-        jwplayer.key = 'UeOwyRhgpc5Og22j+4YM7uzrcbTwxTV9r+XadsoRGr8=';
-    </script>
-    <script type="text/javascript">
-        var lastfocusedElementId = "";
-        function pageLoad() {
-            $('[data-toggle="popover"]').popover();
-
-            $(document).click(function (e) {
-                $('[data-toggle="popover"]').each(function () {
-                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                        $(this).popover('hide');
-                        lastfocusedElementId = "";
-                    }
-                });
-            });
-        }
-    </script>
-    <script type="application/javascript">
-
-function resizeIFrameToFitContent( iFrame ) {
-   
-    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
-    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+       .form-control
+       {
+           color: #fff;
+    background-color: #000;
+       }
+       .card-header
+       {
+           padding:5px;
+       }
+       .btn-default {
+    background-color: #3d3e3e;
+    border-color: #746e6e;
+    color: #f1eaea;
+    padding:1px 10px;
 }
-
-window.addEventListener('DOMContentLoaded', function(e) {
-
-    var iFrame = document.getElementById('iframe1');
-    resizeIFrameToFitContent( iFrame );
-
-    // or, to resize all iframes:
-    //var iframes = document.querySelectorAll("iframe");
-    //for( var i = 0; i < iframes.length; i++) {
-    //    resizeIFrameToFitContent( iframes[i] );
-    //}
-} );
-
-</script>
-
+       .navbar{
+           padding:0px;
+       }
+       .text-justify
+       {
+           color:lightgreen;
+       }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-    <div class="row">
-        <div id="fldiv" class="bg-white"><%-- class="embed-responsive embed-responsive-16by9"--%>
-            <%--<iframe id="iframe1" src="MultiGridView.aspx" class="embed-responsive-item" width="100%"
-                height="100%"  scrolling="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>--%>
-            <section class="flex-auto flex-col bg-white">
-            <div>
-                <div class="col-12 lg:col-12 pb-xs flex-col">
-                    <div class="bg-white shadow flex-stretch">
-                        <div class="bg-white shadow flex-stretch border-b border-default p-xs">
-                            <%-- p-sm--%>
-                            <asp:UpdatePanel ID="UpdatePanel2" UpdateMode="Conditional" runat="server">
-                                <ContentTemplate>
-                                    <div class="bg-white shadow flex-stretch border-b border-default p-xs">
-                                        <%-- p-sm--%>
-                                        <table class="f-size-xxs">
-                                            <tr>
-                                                <td class="pr-xs">
-                                                    <asp:TextBox ID="txtCameraID" runat="server" placeholder="Enter Camera Id" CssClass="border p-xs" />
-                                                    <%--<input type="text" id="txtCameraID" runat="server" placeholder="Enter Camera Id" class="border p-xs txtCameraID" />--%>
-                                                </td>
-                                                <td class="pr-xs">
-                                                    <div class="select">
-                                                        <%-- <label> <asp:Literal ID="Literal2" runat="server" Text="<%$appSettings:assemblyname%>" /></label>--%>
-                                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="datalist border pr-md pl-xs py-xs">
+        <asp:UpdatePanel ID="UpdatePanel2" UpdateMode="Conditional" runat="server">
+                        <ContentTemplate>
+    <div class="content-wrapper" style="background-color:#454d55">
+        <section class="content">
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-12" style="padding:2px">
+            <div class="card" style="background-color:#454d55">
+                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                        <ContentTemplate>
+                <div class="card-header row"> 
+                                         <div class="form-group">
+                                                    <asp:TextBox ID="txtCameraID" runat="server" placeholder="Enter Camera Id" CssClass="form-control" />
+                                                </div>
+                                               <div class="form-group">
+                                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
                                                             <asp:ListItem Text="Select Status" Value="" Width="100px" />
                                                             <asp:ListItem Text="Online" Value="RUNNING" Selected="True" />
                                                             <asp:ListItem Text="Offline" Value="STOPPED" />
@@ -125,22 +61,18 @@ window.addEventListener('DOMContentLoaded', function(e) {
                                                         </asp:DropDownList>
                                                     </div>
                                                     
-                                            <td class="pr-xs d-hidden">
-                                                <div class="select">
+                                           <div class="form-group" style="display:none">
                                                     <label class="black">
                                                         Grid</label>
                                                     <asp:DropDownList ID="ddlgrid" runat="server" CssClass="datalist border pr-md pl-xs py-xs" AutoPostBack="true"
                                                         OnSelectedIndexChanged="ddlgrid_SelectedIndexChanged">
                                                         <asp:ListItem Value="3x2">3x2</asp:ListItem>
-                                                        <%--<asp:ListItem Value="4x2">4x2</asp:ListItem>--%>
                                                         <asp:ListItem Value="4x3" Selected="True">4x3</asp:ListItem>
-                                                        <%--<asp:ListItem Value="4x8">4x8</asp:ListItem>--%>
                                                         <%--<asp:ListItem Value="6x4">6x4</asp:ListItem>--%>
                                                     </asp:DropDownList>
                                                 </div>
-                                            </td>
-                                            <td class="pr-xs d-hidden">
-                                                <div class="select">
+                                            
+                                            <div class="form-group" style="display:none">
                                                     <label class="black">
                                                         Timer</label>
                                                     <asp:DropDownList ID="ddlTimer" runat="server" CssClass="datalist border pr-md pl-xs py-xs" AutoPostBack="true"
@@ -151,13 +83,15 @@ window.addEventListener('DOMContentLoaded', function(e) {
                                                         <asp:ListItem Value="90000">90 Seconds</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
-                                            </td>
-                                                    <td class="pr-xs">
-                                                        <asp:Button ID="btnsearch" runat="server" Text="Search" CssClass="cursor-pointer bg-primary f-color-white f-size-2xs f-weight-semibold hover:shadow-md transition-all px-2xs py-thin"
+                                          
+                                                  <div class="form-group">
+                                                        <asp:Button ID="btnsearch" runat="server" Text="Search" CssClass="btn btn-block btn-primary"
                                                             OnClick="btnsearch_Click" />
-                                                    </td>
-                                            </tr>
-                                        </table>
+                                                   </div>
+                      <div class="form-group"><div class="text-justify ">
+                                Total Online: <asp:Label Text="" ID="lblTotalOnlineCount" runat="server" />
+                            </div>
+                            </div>
                                     </div>
                                 </ContentTemplate>
                                 <Triggers>
@@ -165,60 +99,31 @@ window.addEventListener('DOMContentLoaded', function(e) {
                                     <asp:AsyncPostBackTrigger ControlID="ddlTimer" EventName="SelectedIndexChanged" />
                                 </Triggers>
                             </asp:UpdatePanel>
-                            <%
-                                exam.Common cm = new exam.Common();
-                                if (!cm.isMobile())
-                                {
-                            %>
-                            <div class="f-right d-hidden">
-                                <label>
-                                    Not able to View?
-                                </label>
-                                <a href="<%=ResolveUrl("~/Help/index.html") %>" target="_blank">Click Here for System
-                            Test</a>
-                            </div>
-                            <%} %>
-                        </div>
-                    </div>
-                </div>
+                           
                 <asp:Timer ID="Timer1" runat="server" Interval="90000" OnTick="Timer1_Tick" Enabled="false">
+
     </asp:Timer>
-                <div id="divdata" class="bg-white">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
-                        <ContentTemplate>
-                            <div class="text-right pr-sm">
-                                Total Online: <asp:Label Text="" ID="lblTotalOnlineCount" runat="server" />
-                            </div>
-                            <div class="panel" style="margin: 10px 30px 10px 10px">
-                                <div class="flex-row flex-wrap -mr-sm">
-                                    <asp:ListView ID="listview1" runat="server">
-                                        <ItemTemplate>
-                                            <div class="col-12 md:col-<%=12/gridcolumns %> col4 pb-xs" align="center">
-
-                                                <div class="card">
-
-                                                  <ucplayer:player ID="playeritem" runat="server" playerURL='<%#Bind("servername") %>'
+                 
+                  <div class="col-12 row" style="padding:0px">
+                     
+                    <asp:ListView ID="listview1" runat="server">
+                                        <ItemTemplate> 
+                                              <div class="col-<%=12/gridcolumns %> pb-xs" style="padding:2px">
+                                                 <div class="card" style="margin-bottom:1px" >
+                                                    <ucplayer:player ID="playeritem" runat="server" playerURL='<%#Bind("servername") %>'
                                                     playerid='<%# string.Concat(Container.DataItemIndex.ToString(), "_", Eval("streamname"))%>'
-                                                    flag='<%#Bind("statusFlag") %>' sid='<%#Bind("id") %>' />
-                                                  
-                                                  <div class="px-thin">
-                                                      <p class="heading word-break-all" title=""><%#Eval("streamname").ToString() %> </p>
-                                                  </div>
-                                                </div>
-
-                                                
-                                                <h4>
-
-                                                    <%--<a tabindex="0" class='f-size-sm cursor-pointer' role="button" data-toggle="popover"
-                                                        data-trigger="focus hover" title=" <%#Eval("district")%>" data-placement="top"
-                                                        data-html="true" data-content="<%#Eval("operator_name") %>-<%#Eval("operator_no") %>">
-                                                        <%#Eval("district")%> <br /> <%#Eval("streamname")%> <br /> <%#Eval("location").ToString()%>--%>
-                                                        <%--    | <%#eval("servername")%><%#eval("accode").tostring().contains("-") ? eval("accode").tostring().split('-')[0]: eval("accode").tostring()%>/
-                                              <%#eval("location").ToString().Length > 18 ? Eval("location").ToString().PadRight(140).Substring(0, 18).TrimEnd() + "..." : Eval("location")%>/--%>
-                                                    <%--</a>--%>
-                                                </h4>
-                                            </div>
-                                        </ItemTemplate>
+                                                    flag='<%#Bind("statusFlag") %>' sid='<%#Bind("id") %>' /> 
+                                                       <div class="px-thin" style="position:relative;background:#000; font-size:12px">
+                                                             <div class="col-12 md:col-12 col12">
+                                                               <p class="data word-break-all" style="margin-bottom:0px">
+                                       
+                                        <span style="color: #07f5b3;"title='<%# Eval("streamname") %>'><%#(Eval("streamname").ToString().Length >18 ? Eval("streamname").ToString().Substring(0,17) + "...": Eval("streamname").ToString()) %></span>
+                                        </p>
+                                                      </div>  
+                                                                    </div>
+                                                      </div> 
+                                            </div>  
+                                        </ItemTemplate> 
                                         <EmptyDataTemplate>
                                             <div align="center">
                                                 <h4>
@@ -228,47 +133,39 @@ window.addEventListener('DOMContentLoaded', function(e) {
                                             </div>
                                         </EmptyDataTemplate>
                                     </asp:ListView>
-                                </div>
-                            </div>
-                            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                                 <div class="mrfive">
                                     <div class="text-center">
                                         <div class="page py-xs">
-                                            <asp:LinkButton ID="prev" runat="server" Text="First" OnClick="prev_Click" CssClass="cursor-pointer bg-primary f-color-white f-size-2xs f-weight-semibold hover:shadow-md transition-all px-2xs py-thin"></asp:LinkButton>
+                                            <asp:LinkButton ID="prev" runat="server" Text="First" OnClick="prev_Click" CssClass="btn btn-default btncustom"></asp:LinkButton>
                                             <asp:Repeater ID="rptPages" runat="server" OnItemDataBound="rptPages_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="btn_page_camera" runat="server" Text='<%#Eval("Text") %>' CommandArgument='<%#Eval("Value") %>'
-                                                        Enabled='<%#Eval("Enabled") %>' OnClick="Page_Changed" CssClass="cursor-pointer bg-primary f-color-white f-size-2xs f-weight-semibold hover:shadow-md transition-all px-2xs py-thin" />
+                                                        Enabled='<%#Eval("Enabled") %>' OnClick="Page_Changed"  CssClass="btn btn-default btncustom" />
                                                 </ItemTemplate>
                                             </asp:Repeater>
-                                            <asp:LinkButton ID="next" runat="server" Text="Last" OnClick="next_Click" CssClass="cursor-pointer bg-primary f-color-white f-size-2xs f-weight-semibold hover:shadow-md transition-all px-2xs py-thin"></asp:LinkButton>
+                                            <asp:LinkButton ID="next" runat="server" Text="Last" OnClick="next_Click"  CssClass="btn btn-default btncustom"></asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
                             </nav>
-                        </ContentTemplate>
-                        <Triggers>
-                            <%--<asp:AsyncPostBackTrigger ControlID="ddlDistrict" EventName="SelectedIndexChanged" />
-                            <asp:AsyncPostBackTrigger ControlID="ddlAssembly" EventName="SelectedIndexChanged" />
-                            <asp:AsyncPostBackTrigger ControlID="ddlgrid" EventName="SelectedIndexChanged" />
-                            <asp:AsyncPostBackTrigger ControlID="ddlTimer" EventName="SelectedIndexChanged" />
-                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
-                            <asp:AsyncPostBackTrigger ControlID="prev" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="next" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="rptPages" EventName="ItemDataBound" />--%>
-                            <%--<asp:PostBackTrigger ControlID="ddlDistrict" />
-                            <asp:PostBackTrigger ControlID="ddlAssembly" />
-                            <asp:PostBackTrigger ControlID="ddlgrid" />
-                            <asp:PostBackTrigger ControlID="ddlTimer" />--%>
-                            <asp:PostBackTrigger ControlID="Timer1" />
+                </div>
+              </div>
+            </div>
+          </div>
+            </section>
+        </div>
+      </ContentTemplate>
+        <Triggers>      
+            <asp:PostBackTrigger ControlID="Timer1" />
                             <asp:PostBackTrigger ControlID="prev" />
                             <asp:PostBackTrigger ControlID="next" />
                             <asp:PostBackTrigger ControlID="rptPages" />
-                            <asp:PostBackTrigger ControlID="btnsearch" />
-                        </Triggers>
+            <asp:PostBackTrigger ControlID="btnsearch" />
+                                </Triggers>
                     </asp:UpdatePanel>
-                </div>
-                <script>
+                <script type="text/javascript">
                     var lastfocusedElementId = "";
                     function pageLoad() {
                         //$('[data-toggle="popover"]').popover();
@@ -313,9 +210,24 @@ window.addEventListener('DOMContentLoaded', function(e) {
                         });
                     }
                 </script>
-            </div>
-        </section>
-        </div>
-    </div>
-    
+       <script type="text/javascript"> 
+           $('#viewmenu').addClass('active');
+           $('#UnmappedGridViewmenu').addClass('active');
+       </script>
+        
 </asp:Content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

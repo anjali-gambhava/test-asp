@@ -71,6 +71,7 @@
         $('#gridviewmenu').removeClass('active')
         $('#AIviewmenu').removeClass('active')
         $('#Mapviewmenu').removeClass('active')
+        $('#UnmappedGridViewmenu').removeClass('active')
         $('#offlineReport').removeClass('active')
         $('#statusReport').removeClass('active')
         $('#Reportmenu').removeClass('active')

@@ -219,7 +219,7 @@ namespace exam
 
                 if (usertype.ToLower().Equals("ceo") || usertype.ToLower().Equals("eci"))
                 {
-                    dsNew = _boothgrid.GetOnlineMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", "", "status");
+                    dsNew = _boothgrid.GetOnlineMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", "", "deviceid");
                     DataTable dtAccess = (DataTable)HttpContext.Current.Session["userAssemblyAccess"];
                     var districtlist = dtAccess.AsEnumerable().Select(r => r.Field<string>("district")).Distinct().ToArray();
                     var assemblylist = dtAccess.AsEnumerable().Select(r => r.Field<string>("acname")).Distinct().ToArray();
@@ -241,7 +241,7 @@ namespace exam
                 else
                 {
 
-                    dsNew = _boothgrid.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", "", "status");
+                    dsNew = _boothgrid.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", strm_txtBox.Text.Trim(), "status");
                     DataTable dtAccess = (DataTable)HttpContext.Current.Session["userAssemblyAccess"];
                     var districtlist = dtAccess.AsEnumerable().Select(r => r.Field<string>("district")).Distinct().ToArray();
                     var assemblylist = dtAccess.AsEnumerable().Select(r => r.Field<string>("acname")).Distinct().ToArray();
@@ -517,6 +517,10 @@ namespace exam
             }
             loaddata();
         }
-
+        protected void btnsearch_Click(object sender, EventArgs e)
+        {
+            PageNumber = 1;
+            LoadBooth(usertype); 
+        }
     }
 }

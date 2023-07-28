@@ -29,13 +29,7 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script> 
     <script type="text/javascript" >
-        $(document).ready(function () {
-           
-            //$('#sidebarcollapse').prop('checked', true);
-            //if ($('#sidebarcollapse').is(':checked')) {
-            //    $('body').addClass('sidebar-collapse')
-            //    $(window).trigger('resize') 
-            //}
+        $(document).ready(function () { 
             $('#sidebarmini1').prop('checked', false);
             if ($('body').hasClass('sidebar-mini')) {
                 $('body').removeClass('sidebar-mini')
@@ -43,14 +37,7 @@
             else {
                 $('body').addClass('sidebar-mini')
             }
-                
-            //$('#sidebarmini').prop('checked', false);
-            //if ($('body').hasClass('sidebar-mini-md')) {
-            //    $('body').removeClass('sidebar-mini-md')
-            //}
-            //else {
-            //    $('body').addClass('sidebar-mini-md')
-            //}
+                 
         });
     </script>
     </asp:Content>
@@ -104,6 +91,15 @@
                                                 
                                             </asp:DropDownList>
                           </div>
+                       <div class="form-group">
+                   <asp:TextBox ID="strm_txtBox" runat="server" AutoPostBack="true" CssClass="form-control"
+                                                   Width="150px">
+                                                </asp:TextBox>
+                          </div>
+                     <div class="form-group">
+                  <asp:Button ID="btnsearch" runat="server" Text="Search" CssClass="btn btn-block btn-primary"
+                                                OnClick="btnsearch_Click" />
+                          </div>
                     
               </div>
                              </ContentTemplate>
@@ -112,6 +108,7 @@
                                     <asp:PostBackTrigger ControlID="ddlAssembly" />
                                     <asp:PostBackTrigger ControlID="ddlgrid" />
                                     <asp:PostBackTrigger ControlID="ddlTimer" />
+                                    <asp:PostBackTrigger ControlID="btnsearch" />
                                 </Triggers>
                                 </asp:UpdatePanel>
                  <asp:Timer ID="Timer1" runat="server" Interval="45000" OnTick="Timer1_Tick" Enabled="true">

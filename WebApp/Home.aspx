@@ -844,13 +844,9 @@ padding:0px;
              var desiredWidth = resolutionWidth * 0.9; // For example, setting it to 80% of the screen width
 
              // Set the fixed height for the canvas
-             var desiredHeight = 325; // Set the height to 325 pixels
-
-             // Apply the desired width and height to the canvas element
+             var desiredHeight = 325; // Set the height to 325 pixels 
              canvas.width = desiredWidth;
-             canvas.height = desiredHeight;
-
-             // Your chart rendering code goes here...
+             canvas.height = desiredHeight; 
          }
 
          // Call the function on page load and whenever the window is resized

@@ -78,6 +78,24 @@ namespace exam
         protected global::System.Web.UI.WebControls.DropDownList ddlTimer;
 
         /// <summary>
+        /// strm_txtBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox strm_txtBox;
+
+        /// <summary>
+        /// btnsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnsearch;
+
+        /// <summary>
         /// Timer1 control.
         /// </summary>
         /// <remarks>
