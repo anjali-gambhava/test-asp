@@ -2154,6 +2154,7 @@
     <Content Include="TrailRunReport.aspx" />
     <Content Include="UnmappedCameraList.aspx" />
     <Content Include="UnmappedGridView.aspx" />
+    <Content Include="UploadOperator.aspx" />
     <Content Include="UsersMaster.aspx" />
     <Content Include="js\bootstrap-datetimepicker.min.js" />
     <Content Include="js\common.js" />
@@ -2294,8 +2295,6 @@
     <Content Include="Module\player6.ascx" />
     <Content Include="Unmapcamera.aspx" />
     <Content Include="users.aspx" />
-    <Content Include="WatchVideo.aspx" />
-    <Content Include="Watchvideodownload.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2517,6 +2516,13 @@
     <Compile Include="UnmappedGridView.aspx.designer.cs">
       <DependentUpon>UnmappedGridView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UploadOperator.aspx.cs">
+      <DependentUpon>UploadOperator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadOperator.aspx.designer.cs">
+      <DependentUpon>UploadOperator.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UsersMaster.aspx.cs">
       <DependentUpon>UsersMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2644,20 +2650,6 @@
     </Compile>
     <Compile Include="users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WatchVideo.aspx.cs">
-      <DependentUpon>WatchVideo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WatchVideo.aspx.designer.cs">
-      <DependentUpon>WatchVideo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Watchvideodownload.aspx.cs">
-      <DependentUpon>Watchvideodownload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Watchvideodownload.aspx.designer.cs">
-      <DependentUpon>Watchvideodownload.aspx</DependentUpon>
     </Compile>
     <Content Include="downloadhandler.ashx" />
     <Content Include="dist\css\adminlte.css.map" />

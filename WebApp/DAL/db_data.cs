@@ -7199,6 +7199,31 @@ namespace exam.DAL
             }
             return ds;
         }
+        public DataSet GetBoothWiseCamOperator(string district)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "GetBoothWiseCamOperator";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Search", district);
 
+                command.CommandTimeout = 240;
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetBoothWiseCamOperator()--> " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
     }
 }
