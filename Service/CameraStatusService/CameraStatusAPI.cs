@@ -315,5 +315,53 @@ namespace CameraStatusService
             }
             return true;
         }
+        public bool saveimage(DataTable dt)
+        {
+            string outputDirectory = "D:\\Image"; // Replace with your desired directory path
+
+            if (!Directory.Exists(outputDirectory))
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string serverName = row["InBytes"].ToString();
+                string cameraID = row["CameraID"].ToString();
+
+                // Generate the RTMP URL.
+                string rtmpUrl = $"rtmp://{serverName}:80/live-record/{cameraID}";
+
+                // Create a unique file name for the captured image.
+                string fileName = $"{cameraID}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+
+                // Capture image using FFmpeg.
+                // Configure FFmpeg process start info.
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = "ffmpeg",
+                    Arguments = $"-i {rtmpUrl} -frames:v 1 \"{Path.Combine(outputDirectory, fileName)}\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true // This hides the console window
+                };
+
+                // Start the FFmpeg process.
+                Process process = new Process
+                {
+                    StartInfo = startInfo
+                };
+                process.Start();
+                process.WaitForExit();
+
+                Console.WriteLine($"Captured image for server {serverName}, camera {cameraID}");
+
+                // Break out of the loop after capturing one image per camera.
+             
+
+                // Console.WriteLine($"Captured image for server {serverName}, camera {cameraID}");
+            }
+            return true;
+        }
     }
 }
