@@ -315,5 +315,6 @@ namespace CameraStatusService
             }
             return true;
         }
+        
     }
 }
