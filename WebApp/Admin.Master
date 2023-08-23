@@ -66,6 +66,8 @@
     <script type="text/javascript">
         $('#dashboardmenu').removeClass('active')
         $('#camerastatusmenu').removeClass('active')
+        $('#camerastatusinmenu').removeClass('active')
+        $('#camerastatusoutmenu').removeClass('active')
         $('#viewmenu').removeClass('active')
         $('#listviewmenu').removeClass('active')
         $('#gridviewmenu').removeClass('active')
@@ -305,6 +307,24 @@
               </p>
             </a>
           </li>
+            <li class="nav-item">
+            <a href="camerastatusindoor.aspx" class="nav-link" id="camerastatusinmenu">
+              <i class="nav-icon fa fa-video-camera"></i>
+              <p>
+                Camera Status Indoor
+               <%-- <span class="right badge badge-danger">New</span>--%>
+              </p>
+            </a>
+          </li>
+         <li class="nav-item">
+            <a href="camerastatusoutdoor.aspx" class="nav-link" id="camerastatusoutmenu">
+              <i class="nav-icon fa fa-video-camera"></i>
+              <p>
+                Camera Status Outdoor
+               <%-- <span class="right badge badge-danger">New</span>--%>
+              </p>
+            </a>
+          </li>
             <%} %>
            <li class="nav-item">
             <a href="#" class="nav-link" id="viewmenu">
@@ -335,12 +355,12 @@
               </li> 
                  <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
                                 { %>
-                <li class="nav-item">
+                <%--<li class="nav-item">
                 <a href="AIView.aspx" class="nav-link" id="AIviewmenu">
                   <i class="fas fa-th nav-icon"></i>
                   <p>AI View</p>
                 </a>
-              </li> 
+              </li>--%> 
                 <li class="nav-item">
                 <a href="ArchiveView.aspx" class="nav-link" id="mapviewmenu1">
                   <i class="fas fa-th nav-icon"></i>
@@ -378,9 +398,53 @@
                   <i class="far fa-file nav-icon"></i>
                   <p>Consolidated Camera Status</p>
                 </a>
-              </li>   <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
-                                { %>
+              </li>   
                 <li class="nav-item">
+                <a href="LoadTestReport.aspx" class="nav-link" id="LoadTestReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Load Test Report</p>
+                </a>
+              </li> 
+               <%-- <li class="nav-item">
+                <a href="RecordingSize.aspx" class="nav-link" id="RecordingSizeReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Recording Size</p>
+                </a>
+              </li>--%> 
+                 <li class="nav-item">
+                <a href="TrailRunRpt.aspx" class="nav-link" id="TrialRunReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Trial Run Report</p>
+                </a>
+              </li> 
+                  <li class="nav-item">
+                <a href="NetworkFeasiblityRpt.aspx" class="nav-link" id="NetworkFeasiblityReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Network Feasiblity</p>
+                </a>
+              </li> 
+                 <li class="nav-item">
+                <a href="InstallationReport.aspx" class="nav-link" id="InstalletionRptReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Installation Report</p>
+                </a>
+              </li> 
+                 <li class="nav-item">
+                <a href="PenaltyReport.aspx" class="nav-link" id="PenaltyReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Penalty Report</p>
+                </a>
+              </li> 
+                  <li class="nav-item">
+                <a href="VideoBitrate.aspx" class="nav-link" id="VideoReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Video BitRate Report</p>
+                </a>
+              </li> 
+                  
+                <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
+                                { %>
+                <li class="nav-item" style="display:none">
                 <a href="cam_alert.aspx" class="nav-link" id="cameranotification">
                   <i class="far fa-file nav-icon"></i>
                   <p>Camera Notification</p>
@@ -393,7 +457,7 @@
 
            <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
                                 { %>
-           <li class="nav-item">
+          <%-- <li class="nav-item">
             <a href="boothMaster.aspx" class="nav-link">
               <i class="nav-icon fas fa-person-booth"></i>
               <p>
@@ -401,7 +465,30 @@
               </p>
             </a> 
             
-          </li>
+          </li>--%>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-folder"></i>
+              <p>
+                  Master 
+                  <i class="right fas fa-angle-left"></i> 
+              </p>
+            </a>
+                  <ul class="nav nav-treeview">
+                       <li class="nav-item">
+                <a href="BoothMaster.aspx" class="nav-link">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Booth Master</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="UsersMaster.aspx" class="nav-link">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Change Password</p>
+                </a>
+              </li>
+                      </ul>
             <%} %>
         </ul>
       </nav>

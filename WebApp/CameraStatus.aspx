@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="CameraStatus.aspx.cs" Inherits="exam.CameraStatus" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"/> 
     <style type="text/css">
         @media (min-width: 768px) {
@@ -79,6 +80,22 @@
         .shadow {
     padding: 10px 0px;
 }
+                label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 400;
+}
+        input[type=checkbox], input[type=radio] { 
+    visibility: hidden;
+}
+        .checked-radio-button {
+    background-color: #e7e7e7;
+}
+        .selectedRadioButton
+        {
+            background-color: #e7e7e7;
+        }
+       .unselectedRadioButton {
+    background-color: #f3f3f3;
+} 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </asp:Content>
@@ -177,15 +194,70 @@
            <div class="row">
             <div class="card-body shadow" style="max-height:450px;overflow:auto">       
                 <table id="tblboothlist" class="table">
-
-                                <tbody>
+                        <thead class="f-size-sm f-color-secondary border-default border-b text-left">
+        <tr>
+            <th class="p-xs" colspan="7"><asp:Literal runat="server" Text="District List" /></th>
+            <%--<th class="p-xs" colspan="1"><asp:Literal runat="server" Text="Filter" /></th>--%>
+        </tr>
+    </thead>
+                           
                                     <%if (BoothList != null)
                                         {
                                             if (BoothList.Tables.Count > 0)
-                                            {
-                                                for (int i = 0; i < BoothList.Tables[0].Rows.Count; i++)
+                                            {%>
+
+  <tr>
+                         <%--<th style="font-weight: 400; font-size: 20px; text-align: center;">ASSEMBLY</th>
+                         <th style="font-weight: 400;font-size:20px;text-align: center;">TOTAL PS</th>
+                         <th style="font-weight: 400;font-size:20px;text-align: center;">INSTALLED</th>
+                         <th style="font-weight: 400;font-size:20px;text-align: center;">ONLINE</th>
+                         <th style="font-weight: 400;font-size:20px;text-align: center;">OFFLINE</th>
+                         <th style="font-weight: 400;font-size:20px;text-align: center;">LAST ONE HOUR</th>--%>
+    <th>
+   </th>
+ <% if ((Session["userType"].ToString().ToLower() == "master_admin" || 
+         Session["userType"].ToString().ToLower() == "vmukti_internal" || 
+         Session["userType"].ToString().ToLower() == "ceo" ||
+         Session["AssemblyIdsString"].ToString().Length >= 1) && 
+       (Session["userType"].ToString().ToLower() != "assembly_level" && 
+        Session["userType"].ToString().ToLower() != "eci" 
+        )) 
+{ %>
+   
+         <th style=" font-size: 16px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testdist" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="DISTRICT" GroupName="headerRadioButton" CssClass="unselectedRadioButton"  />
+           <i class="fa fa-sort-desc"></i></th>
+
+      <th style=" font-size: 16px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testtotalps" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" />
+           <i class="fa fa-sort-desc"></i></th>
+
+ <th style=" font-size: 16px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testlastonehour" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="LAST ONE HOUR" GroupName="headerRadioButton" CssClass="unselectedRadioButton" />
+           <i class="fa fa-sort-desc"></i></th>
+  <th style=" font-size: 16px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testonline" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="ONLINE" GroupName="headerRadioButton" CssClass="unselectedRadioButton" />
+           <i class="fa fa-sort-desc"></i></th>   
+ <th style=" font-size: 14px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testco" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="CONNECTED ONCE" GroupName="headerRadioButton" CssClass="unselectedRadioButton" />
+           <i class="fa fa-sort-desc"></i></th>   
+   <th style=" font-size: 16px; text-align: center;font-weight: 400;">
+<%--<asp:RadioButton runat="server" Text="TOTAL PS" GroupName="headerRadioButton" CssClass="unselectedRadioButton" ID="test" OnCheckedChanged="RadioButton_CheckedChanged" />--%>
+           <asp:CheckBox ID="testoffline" runat="server" OnCheckedChanged="RadioButton_CheckedChanged" Text="OFFLINE" GroupName="headerRadioButton" CssClass="unselectedRadioButton" />
+           <i class="fa fa-sort-desc"></i></th>           
+
+  </tr>
+
+       <%} %>    
+                            <% for (int i = 0; i < BoothList.Tables[0].Rows.Count; i++)
                                                 {
                                     %>
+                                    <tbody>
                                     <tr class='<%=i%2!=0?"bg-light":"" %>'>
                                         <td class="py-xs px-sm" style="width: 2%;">
                                            <div>
@@ -287,11 +359,22 @@
             }
         }
     </script>
-    <%--<script>
-       setInterval(function () {
-            window.location.reload();
-       }, 600000)
-    </script>--%>
+
+
+
+
+    <script>
+        function triggerPostBack() {
+            var checkbox = document.getElementById('<%= testdist.ClientID %>');
+            var checkbox1 = document.getElementById('<%= testtotalps.ClientID %>');
+            var checkbox2 = document.getElementById('<%= testlastonehour.ClientID %>');
+            var checkbox3 = document.getElementById('<%= testonline.ClientID %>');
+            var checkbox4 = document.getElementById('<%= testco.ClientID %>');
+            var checkbox5 = document.getElementById('<%= testoffline.ClientID %>');
+            __doPostBack(checkbox.name, checkbox1.name, checkbox2.name, checkbox3.name, checkbox4.name, checkbox5.name,'');
+        }
+    </script>
+
 
      <script type="text/javascript"> 
          $('#camerastatusmenu').addClass('active');

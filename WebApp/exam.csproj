@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AIView.aspx" />
+    <Content Include="assemblyout.aspx" />
+    <Content Include="assemblyin.aspx" />
     <Content Include="assemblydashboard.aspx" />
     <Content Include="assembly.aspx" />
     <Content Include="assets\font-awesome\css\font-awesome.css" />
@@ -167,9 +169,18 @@
     <Content Include="ArchiveView.aspx" />
     <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\itextsharp.xmlworker.dll" />
+    <Content Include="CameraStatusoutdoor.aspx" />
+    <Content Include="CameraStatusIndoor.aspx" />
     <Content Include="CameraStatus.aspx" />
+    <Content Include="ChannelView.aspx" />
+    <Content Include="PenaltyReport.aspx" />
     <Content Include="CameraStatusReport.aspx" />
     <Content Include="CameraOfflineReport.aspx" />
+    <Content Include="ExcelReport.aspx" />
+    <Content Include="InstallationReport.aspx" />
+    <Content Include="LoadTestReport.aspx" />
+    <Content Include="VideoBitrate.aspx" />
+    <Content Include="RecordingSize.aspx" />
     <Content Include="cam_alert.aspx" />
     <Content Include="css\Timer.css" />
     <Content Include="dist\css\adminlte.css" />
@@ -225,6 +236,8 @@
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="dist\js\pages\dashboard3.js" />
+    <Content Include="DownloadRecording.aspx" />
+    <Content Include="electionapi.asmx" />
     <Content Include="GridView.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\BSNL.jpeg" />
@@ -2152,6 +2165,8 @@
     <Content Include="SwapCamera.aspx" />
     <Content Include="TEST.aspx" />
     <Content Include="TrailRunReport.aspx" />
+    <Content Include="NetworkFeasiblityRpt.aspx" />
+    <Content Include="TrailRunRpt.aspx" />
     <Content Include="UnmappedCameraList.aspx" />
     <Content Include="UnmappedGridView.aspx" />
     <Content Include="UploadOperator.aspx" />
@@ -2320,6 +2335,20 @@
     <Compile Include="AIView.aspx.designer.cs">
       <DependentUpon>AIView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="assemblyout.aspx.cs">
+      <DependentUpon>assemblyout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assemblyout.aspx.designer.cs">
+      <DependentUpon>assemblyout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="assemblyin.aspx.cs">
+      <DependentUpon>assemblyin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assemblyin.aspx.designer.cs">
+      <DependentUpon>assemblyin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="assemblydashboard.aspx.cs">
       <DependentUpon>assemblydashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2353,12 +2382,40 @@
     <Compile Include="ArchiveView.aspx.designer.cs">
       <DependentUpon>ArchiveView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CameraStatusoutdoor.aspx.cs">
+      <DependentUpon>CameraStatusoutdoor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CameraStatusoutdoor.aspx.designer.cs">
+      <DependentUpon>CameraStatusoutdoor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CameraStatusIndoor.aspx.cs">
+      <DependentUpon>CameraStatusIndoor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CameraStatusIndoor.aspx.designer.cs">
+      <DependentUpon>CameraStatusIndoor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CameraStatus.aspx.cs">
       <DependentUpon>CameraStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CameraStatus.aspx.designer.cs">
       <DependentUpon>CameraStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChannelView.aspx.cs">
+      <DependentUpon>ChannelView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChannelView.aspx.designer.cs">
+      <DependentUpon>ChannelView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PenaltyReport.aspx.cs">
+      <DependentUpon>PenaltyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PenaltyReport.aspx.designer.cs">
+      <DependentUpon>PenaltyReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="CameraStatusReport.aspx.cs">
       <DependentUpon>CameraStatusReport.aspx</DependentUpon>
@@ -2374,12 +2431,58 @@
     <Compile Include="CameraOfflineReport.aspx.designer.cs">
       <DependentUpon>CameraOfflineReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExcelReport.aspx.cs">
+      <DependentUpon>ExcelReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExcelReport.aspx.designer.cs">
+      <DependentUpon>ExcelReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InstallationReport.aspx.cs">
+      <DependentUpon>InstallationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstallationReport.aspx.designer.cs">
+      <DependentUpon>InstallationReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoadTestReport.aspx.cs">
+      <DependentUpon>LoadTestReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoadTestReport.aspx.designer.cs">
+      <DependentUpon>LoadTestReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VideoBitrate.aspx.cs">
+      <DependentUpon>VideoBitrate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VideoBitrate.aspx.designer.cs">
+      <DependentUpon>VideoBitrate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingSize.aspx.cs">
+      <DependentUpon>RecordingSize.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecordingSize.aspx.designer.cs">
+      <DependentUpon>RecordingSize.aspx</DependentUpon>
+    </Compile>
     <Compile Include="cam_alert.aspx.cs">
       <DependentUpon>cam_alert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="cam_alert.aspx.designer.cs">
       <DependentUpon>cam_alert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadRecording.aspx.cs">
+      <DependentUpon>DownloadRecording.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadRecording.aspx.designer.cs">
+      <DependentUpon>DownloadRecording.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="electionapi.asmx.cs">
+      <DependentUpon>electionapi.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GridView.aspx.cs">
       <DependentUpon>GridView.aspx</DependentUpon>
@@ -2501,6 +2604,20 @@
     </Compile>
     <Compile Include="TrailRunReport.aspx.designer.cs">
       <DependentUpon>TrailRunReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkFeasiblityRpt.aspx.cs">
+      <DependentUpon>NetworkFeasiblityRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NetworkFeasiblityRpt.aspx.designer.cs">
+      <DependentUpon>NetworkFeasiblityRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrailRunRpt.aspx.cs">
+      <DependentUpon>TrailRunRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrailRunRpt.aspx.designer.cs">
+      <DependentUpon>TrailRunRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="UnmappedCameraList.aspx.cs">
       <DependentUpon>UnmappedCameraList.aspx</DependentUpon>
@@ -2801,6 +2918,7 @@
     <Content Include="plugins\summernote\summernote.min.js.map" />
     <Content Include="plugins\toastr\toastr.js.map" />
     <Content Include="UserExcelFormat.xlsx" />
+    <Content Include="SimulationReport_PunjabElection.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.Master" />

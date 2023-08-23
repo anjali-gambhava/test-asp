@@ -66,6 +66,14 @@
                                                 OnSelectedIndexChanged="ddlAssembly_SelectedIndexChanged" Width="150px">
                                             </asp:DropDownList>
                           </div>
+                       <div class="form-group">
+                    <asp:DropDownList ID="ddllocationType" runat="server" CssClass="form-control"
+                                                    AutoPostBack="true" OnSelectedIndexChanged="ddllocationType_SelectedIndexChanged">
+                                                        <asp:ListItem Text="ALL" Value="" Selected="True" Width="100px" />
+                                                        <asp:ListItem Text="Indoor" Value="inside" />
+                                                        <asp:ListItem Text="Outdoor" Value="outside" /> 
+                                                </asp:DropDownList>
+                          </div>
                     <div class="form-group">
                   <asp:DropDownList ID="ddlgrid" runat="server" CssClass="form-control" AutoPostBack="true"
                                                 OnSelectedIndexChanged="ddlgrid_SelectedIndexChanged">
@@ -83,11 +91,12 @@
                     <div class="form-group">
                   <asp:DropDownList ID="ddlTimer" runat="server" CssClass="form-control" AutoPostBack="true"
                                                 OnSelectedIndexChanged="ddlTimer_SelectedIndexChanged">
+                                                 <asp:ListItem Value="0">NONE</asp:ListItem>
                                                 <asp:ListItem Value="45000">45 Seconds</asp:ListItem> 
                                                 <asp:ListItem Value="90000">90 Seconds</asp:ListItem>
                                                 <asp:ListItem Value="120000">120 Seconds</asp:ListItem>
                                                 <asp:ListItem Value="150000">150 Seconds</asp:ListItem>
-                                                  <asp:ListItem Value="0">NONE</asp:ListItem>
+                                                 
                                                 
                                             </asp:DropDownList>
                           </div>
@@ -106,6 +115,7 @@
                                 <Triggers>
                                     <asp:PostBackTrigger ControlID="ddlDistrict" />
                                     <asp:PostBackTrigger ControlID="ddlAssembly" />
+                                    <asp:PostBackTrigger ControlID="ddllocationType" />
                                     <asp:PostBackTrigger ControlID="ddlgrid" />
                                     <asp:PostBackTrigger ControlID="ddlTimer" />
                                     <asp:PostBackTrigger ControlID="btnsearch" />
@@ -127,11 +137,11 @@
                                                        <div class="px-thin" style="position:relative;background:#000; font-size:12px">
                                                              <div class="col-12 md:col-12 col12">
                                                                <p class="data word-break-all" style="margin-bottom:0px">
-                                        <span style="color: red;"><%#(Eval("district").ToString()) %>,</span> /
+                                        <span style="color: #FFF;"><%#(Eval("district").ToString()) %>,</span> /
                                         <span style="color: #FFF;"><%#(Eval("acname").ToString()) %>,</span>
-                                       <span style="color: #09f909;"><%#(Eval("PSNum").ToString()) %>,</span>
-                                        (<span style="color: #09f909;" title='<%# Eval("location") %>'><%#(Eval("location").ToString().Length >15 ? Eval("location").ToString().Substring(0,10) + "...": Eval("location").ToString()) %></span>)
-                                        -<span style="color: #07f5b3;"title='<%# Eval("streamname") %>'><%#(Eval("streamname").ToString().Length >18 ? Eval("streamname").ToString().Substring(0,17) + "...": Eval("streamname").ToString()) %></span>
+                                       <span style="color: #FFF;"><%#(Eval("PSNum").ToString()) %>,</span>
+                                        (<span style="color: #FFF;" title='<%# Eval("location") %>'><%#(Eval("location").ToString().Length >15 ? Eval("location").ToString().Substring(0,10) + "...": Eval("location").ToString()) %></span>)
+                                        -<span style="color: #FFF;"title='<%# Eval("streamname") %>'><%#(Eval("streamname").ToString().Length >18 ? Eval("streamname").ToString().Substring(0,17) + "...": Eval("streamname").ToString()) %></span>
                                         </p>
                                                       </div>  
                                                                     </div>

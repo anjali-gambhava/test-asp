@@ -81,7 +81,7 @@ function LoadLocation(location, flag) {
             console.log(j)
 
             if (markers == undefined || markers.length == 0) {
-                var myLatlng = new google.maps.LatLng(25.6767, 76.6941);
+                var myLatlng = new google.maps.LatLng(30.7333, 76.7794);
                 map.set("center", myLatlng);
             }
             if (markers != undefined) {
@@ -182,16 +182,44 @@ function LoadLocation(location, flag) {
             flvPlayer.attachMediaElement(videoElement);
             flvPlayer.load();
             flvPlayer.play();
+            flvPlayer.on(flvjs.Events.BUFFER_FULL, () => {
+                setTimeout(() => {
+                    flvPlayer.currentTime = delayInSeconds;
+                }, delayInSeconds * 1000);
+            });
+            flvPlayer.on(flvjs.Events.BUFFER_FULL, () => {
+                setTimeout(() => {
+                    flvPlayer.currentTime = delayInSeconds;
+                }, delayInSeconds * 1000);
+            });
+            var ResetzoomButton = document.getElementById("ResetzoomButton");
+            var zoomInButton = document.getElementById("zoomInButton");
+            var zoomOutButton = document.getElementById("zoomOutButton");
+            var videoElement = document.getElementById('videoElement_6');
             var zoomLevel = 1;
-            videoElement.addEventListener('wheel', function (event) {
-                if (event.deltaY < 0) {
-                    zoomLevel += 0.1;
-                } else if (event.deltaY > 0) {
+
+            ResetzoomButton.addEventListener('click', function () {
+                event.preventDefault();
+                zoomLevel = 1;
+                applyZoom();
+            });
+            zoomInButton.addEventListener('click', function () {
+                event.preventDefault();
+                zoomLevel += 0.1;
+                applyZoom();
+            });
+
+            zoomOutButton.addEventListener('click', function () {
+                event.preventDefault();
+                if (zoomLevel > 0.1) {
                     if (zoomLevel != 1)
                         zoomLevel -= 0.1;
+                    applyZoom();
                 }
-                videoElement.style.transform = 'scale(' + zoomLevel + ')';
             });
+            function applyZoom() {
+                videoElement.style.transform = 'scale(' + zoomLevel + ')';
+            }
         }
         document.getElementById("modalacname").innerHTML = data.acname;
         document.getElementById("modalpsnum").innerHTML = data.PSNum;

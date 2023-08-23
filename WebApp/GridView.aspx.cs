@@ -219,7 +219,7 @@ namespace exam
 
                 if (usertype.ToLower().Equals("ceo") || usertype.ToLower().Equals("eci"))
                 {
-                    dsNew = _boothgrid.GetOnlineMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", "", "deviceid");
+                    dsNew = _boothgrid.GetOnlineMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue,ddllocationType.SelectedValue, "", -1, -1, "", "", "deviceid");
                     DataTable dtAccess = (DataTable)HttpContext.Current.Session["userAssemblyAccess"];
                     var districtlist = dtAccess.AsEnumerable().Select(r => r.Field<string>("district")).Distinct().ToArray();
                     var assemblylist = dtAccess.AsEnumerable().Select(r => r.Field<string>("acname")).Distinct().ToArray();
@@ -236,12 +236,13 @@ namespace exam
                     listview1.DataBind();
                     totalDatacount = data.Count();
                     BindPager(totalDatacount, this.PageNumber, pageitemcount);
+
                 }
 
                 else
                 {
 
-                    dsNew = _boothgrid.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", -1, -1, "", strm_txtBox.Text.Trim(), "status");
+                    dsNew = _boothgrid.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, ddllocationType.SelectedValue, "", -1, -1, "", strm_txtBox.Text.Trim(), "status");
                     DataTable dtAccess = (DataTable)HttpContext.Current.Session["userAssemblyAccess"];
                     var districtlist = dtAccess.AsEnumerable().Select(r => r.Field<string>("district")).Distinct().ToArray();
                     var assemblylist = dtAccess.AsEnumerable().Select(r => r.Field<string>("acname")).Distinct().ToArray();
@@ -250,8 +251,7 @@ namespace exam
 
                     data = data.OrderBy(x => x.Field<string>("status")).ThenBy(x => x.Field<string>("district"));
                     int totalCount = data.Count();
-                    int totalPages = (totalCount + pageitemcount - 1) / pageitemcount;
-
+                    int totalPages = (totalCount + pageitemcount - 1) / pageitemcount; 
                     //if (usertype.ToLower() == "district_level" || usertype.ToLower() == "assembly_level")
                     //{
                     //    int totalOnlineCount = data.Where(x => x.Field<string>("status") == "RUNNING").Count();
@@ -289,7 +289,6 @@ namespace exam
             int pageCount = (int)Math.Ceiling(getPageCount);
             //PageNumber = PageNumber >= pageCount - 1 ? PageNumber = 1 : PageNumber + 1;
             PageNumber = PageNumber >= pageCount ? 1 : PageNumber + 1;
-
             loaddata();
         }
         private void loaddata()
@@ -521,6 +520,19 @@ namespace exam
         {
             PageNumber = 1;
             LoadBooth(usertype); 
+        }
+
+        protected void ddllocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                PageNumber = 1; 
+                LoadBooth(usertype);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("ddllocationType_SelectedIndexChanged_list() -- >  " + ex.Message);
+            }
         }
     }
 }

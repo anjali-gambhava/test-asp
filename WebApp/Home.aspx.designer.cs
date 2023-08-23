@@ -60,6 +60,24 @@ namespace exam
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
 
         /// <summary>
+        /// TotalStreamBoothin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor TotalStreamBoothin;
+
+        /// <summary>
+        /// TotalStreamBoothout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor TotalStreamBoothout;
+
+        /// <summary>
         /// livecount control.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,24 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor livecountper;
+
+        /// <summary>
+        /// livecountin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor livecountin;
+
+        /// <summary>
+        /// livecountout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor livecountout;
 
         /// <summary>
         /// connectedonce control.
@@ -96,6 +132,24 @@ namespace exam
         protected global::System.Web.UI.HtmlControls.HtmlAnchor connectedonceper;
 
         /// <summary>
+        /// connectedoncein control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor connectedoncein;
+
+        /// <summary>
+        /// connectedonceout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor connectedonceout;
+
+        /// <summary>
         /// lastonehours control.
         /// </summary>
         /// <remarks>
@@ -112,6 +166,24 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor lastonehoursper;
+
+        /// <summary>
+        /// lastonehoursin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lastonehoursin;
+
+        /// <summary>
+        /// lastonehoursout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lastonehoursout;
 
         /// <summary>
         /// lasttwohours control.
@@ -132,6 +204,24 @@ namespace exam
         protected global::System.Web.UI.HtmlControls.HtmlAnchor lasttwohoursper;
 
         /// <summary>
+        /// lasttwohoursin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lasttwohoursin;
+
+        /// <summary>
+        /// lasttwohoursout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lasttwohoursout;
+
+        /// <summary>
         /// offlinecount control.
         /// </summary>
         /// <remarks>
@@ -148,5 +238,23 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor offlinecountper;
+
+        /// <summary>
+        /// offlinecountin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor offlinecountin;
+
+        /// <summary>
+        /// offlinecountout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor offlinecountout;
     }
 }

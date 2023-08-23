@@ -60,6 +60,15 @@ namespace exam
         protected global::System.Web.UI.WebControls.DropDownList ddlAssembly;
 
         /// <summary>
+        /// ddllocationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddllocationType;
+
+        /// <summary>
         /// ddlgrid control.
         /// </summary>
         /// <remarks>

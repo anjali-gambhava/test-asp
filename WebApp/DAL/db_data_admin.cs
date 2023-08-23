@@ -1228,7 +1228,76 @@ namespace exam.DAL
             }
             return ds;
         }
-        
+
+        public DataSet allcountlivenewin(string usertype, int UserID, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountindoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, true, false);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlivenew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+
+        public DataSet allcountlivenewout(string usertype, int UserID, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountoutdoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, true, false);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlivenew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
 
         public DataSet allcountlive_assembly(string usertype)
         {
@@ -1302,6 +1371,76 @@ namespace exam.DAL
             }
             return ds;
         }
+        public DataSet allcountlive_assemblynewin(string district, int UserID, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountDetailsindoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                //   ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlive_assemblynew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+        public DataSet allcountlive_assemblynewout(string district, int UserID, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountDetailsoutdoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                //   ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlive_assemblynew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
         public DataSet FilterDataByAccess(DataSet ds, bool filterbyDistrict, bool filterbyAssembly)
         {
             if (ds != null)
@@ -1346,7 +1485,7 @@ namespace exam.DAL
                 DateTime chklastseendt = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1); 
 
                 string query = string.Empty;
-                query = "GetDashbordAllLiveCount";
+                query = "GetDashbordAllLiveCount_1";
                 SqlCommand command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@lastseen", chklastseendt); 
                 command.Parameters.AddWithValue("@UserID", UserID); 
@@ -1399,6 +1538,118 @@ namespace exam.DAL
             return ds;
         }
 
+        public DataSet allcountlive_assemblyneworderby(string district, int UserID, string orderby, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountDetailsorderby";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.Parameters.AddWithValue("@orderby", orderby);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                //   ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlive_assemblynew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+
+
+        public DataSet allcountlive_assemblyneworderbyin(string district, int UserID, string orderby, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountDetailsorderbyindoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.Parameters.AddWithValue("@orderby", orderby);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                //   ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlive_assemblynew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+
+
+        public DataSet allcountlive_assemblyneworderbyout(string district, int UserID, string orderby, string cameraType = "", int pink = -1)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                DateTime chklastseendt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minute"]) * -1);
+                DateTime chklastseendefaultdt = DateTime.Now.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["minutedefault"]) * -1);
+
+                string query = string.Empty;
+                query = "GetAllLiveCountDetailsorderbyoutdoor";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@lastseen", chklastseendt);
+                command.Parameters.AddWithValue("@lastseendefault", chklastseendefaultdt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                command.Parameters.AddWithValue("@cameratype", cameraType);
+                command.Parameters.AddWithValue("@Ispink", pink);
+                command.Parameters.AddWithValue("@orderby", orderby);
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                //   ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("allcountlive_assemblynew()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
 
         //public DataSet getBoothNumber(string streamname)
         //{

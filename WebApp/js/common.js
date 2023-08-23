@@ -593,8 +593,8 @@ function LoadPlayer(playerid, sname, plid, schname, accode, psnum, kbps, mobno) 
         player.attachTo(playerElement);
     }
 
-    else if (playerType == "videoplayer1") {
-
+    else if (playerType == "videoplayer") {
+        debugger;
         /*  if (flvjs.isSupported()) {*/
         if (playerid.indexOf("_") >= 0) {
             playeridurl = playerid.split('_')[1];
@@ -604,8 +604,9 @@ function LoadPlayer(playerid, sname, plid, schname, accode, psnum, kbps, mobno) 
             var url = 'wss://' + sname + '/live-record/' + playerid + '.flv';
         }
         var videoElement = document.getElementById(playerid);
+        var divvideoElement = document.getElementById("div_"+playerid);
         var videoContainer = videoElement.parentElement;
-        var logoImg = document.createElement('img');
+        var logoImg = document.createElement('img'); 
         logoImg.src = 'images/Player-Logo1.png';
         logoImg.style.position = 'absolute';
         logoImg.style.bottom = '60px';
@@ -614,9 +615,8 @@ function LoadPlayer(playerid, sname, plid, schname, accode, psnum, kbps, mobno) 
         videoContainer.appendChild(logoImg);
         var flvPlayer = flvjs.createPlayer({
             type: 'flv',
-            url: url,
-            isLive: true,
-            hasAudio: false,
+            url: url, 
+            isLive: true, 
             enableWorker: true,
             enableStashBuffer: true,
             stashInitialSize: undefined,
@@ -633,11 +633,36 @@ function LoadPlayer(playerid, sname, plid, schname, accode, psnum, kbps, mobno) 
             headers: undefined,
             customLoader: undefined,
             debug: false,
-            hasAudio: false
+            hasAudio: true
         });
         flvPlayer.attachMediaElement(videoElement);
         flvPlayer.load();
         flvPlayer.play();
+        //flvPlayer.on(flvjs.Events.BUFFER_FULL, () => {
+        //    setTimeout(() => {
+        //        flvPlayer.currentTime = delayInSeconds;
+        //    }, delayInSeconds * 1000);
+        //});
+
+
+        flvPlayer.on(flvjs.Events.BUFFER_FULL, () => {
+            // Listen for the "canplay" event
+            flvPlayer.once('canplay', () => {
+                // Set the delayed starting time for the video
+                flvPlayer.currentTime = 1000;
+                // Start playing the video
+                flvPlayer.play();
+            });
+        });
+
+
+        //flvPlayer.on(flvjs.Events.MEDIA_INFO, (mediaInfo) => {
+        //    console.log('Media Info:', mediaInfo);
+        //    const codecName = codecMap[mediaInfo.videoCodec] || mediaInfo.videoCodec;
+        //    const initialVideoBitrate = getRandomVideoBitrate();
+        //    divvideoElement.textContent = 'Width: ' + mediaInfo.width + ' | Height: ' + mediaInfo.height +
+        //        '| Video Codec: ' + codecName;
+        //});
     }
 
     return false;

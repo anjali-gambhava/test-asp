@@ -61,9 +61,14 @@
                                     &times;
                                 </button>
             </div>
-            <div class="modal-body cardarchive">
+            <div class="modal-body cardarchive" style="overflow: auto; display: flex; justify-content: center; align-items: center;">
                    <video id="videoElement_6" muted autoplay preload="auto" controls style="width:100%; padding:0px 0px 0px"> </video> 
                 </div>
+              <div>
+                    <button style="font-size:13px" id="zoomInButton"><i class="material-icons">zoom_in</i></button> 
+                         <button style="font-size:13px" id="ResetzoomButton"><i class="material-icons">center_focus_strong</i></button> 
+                         <button style="font-size:13px" id="zoomOutButton"><i class="material-icons">zoom_out</i></button> 
+              </div>
                   <div class="modal-footer justify-content-between">
                        <p class="data" id="modalacname"></p>
                        <p class="data" id="modalpsnum"></p>
@@ -74,6 +79,8 @@
     </div>
             </div>
   <script src="js/map_gps.js" type="text/javascript"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2CF3PlGBd0tQhusHwX3ngfPaad0pmJ_Q&callback=MapInit"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script> 
   <script type="text/javascript" >   

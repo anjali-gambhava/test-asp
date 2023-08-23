@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -103,6 +105,20 @@ namespace exam
                 ViewState["searchtext2"] = value;
             }
         }
+        public DataTable dsReport
+        {
+            get
+            {
+                if (ViewState["dsReport"] != null)
+                    return (DataTable)ViewState["dsReport"];
+                else
+                    return null;
+            }
+            set
+            {
+                ViewState["dsReport"] = value;
+            }
+        }
         public int pageitemcount = Convert.ToInt32(ConfigurationManager.AppSettings["pageitemcount"]);
         public static int totalDatacount = 0;
         public string pcname = ConfigurationManager.AppSettings["pcname"].ToString();
@@ -113,7 +129,7 @@ namespace exam
             {
                 if (ddlDistrict.SelectedValue == "0")
                 {
-                      if (ddlDistrict.SelectedValue != "0")
+                    if (ddlDistrict.SelectedValue != "0")
                     {
 
                         if (ddlAssembly.SelectedValue != "0")
@@ -133,15 +149,15 @@ namespace exam
                     {
                         usertype = "dst_" + ddlDistrict.SelectedItem.Text;
                     }
-                    
+
                 }
             }
-           
-           
+
+
             else if (utypeall.StartsWith("zn"))
             {
                 if (ddlDistrict.SelectedValue == "0")
-                { 
+                {
                     usertype = utypeall;
                 }
                 else
@@ -161,9 +177,9 @@ namespace exam
                 if (ddlAssembly.SelectedValue == "0")
                 {
                     usertype = "dst_" + ddlDistrict.SelectedItem.Text;
-                } 
+                }
             }
-        } 
+        }
         public int PageNumber
         {
             get
@@ -193,8 +209,10 @@ namespace exam
                 }
 
                 Session["MenuName"] = "ListView";
+                
                 if (!IsPostBack)
                 {
+                    FromDt.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     DataSet ds = _boothlist.GetUserData(Page.User.Identity.Name);
                     usertype = ds.Tables[0].Rows[0]["usercode"].ToString();
                     stateid = Convert.ToInt32(ds.Tables[0].Rows[0]["stateid"]);
@@ -221,7 +239,7 @@ namespace exam
                         usertype = str;
                         searchtext = Request.QueryString["s1"] != null ? Common.base64Decode(Request.QueryString["s1"].ToString()) : string.Empty;
                         searchtext2 = Request.QueryString["s2"] != null ? Common.base64Decode(Request.QueryString["s2"].ToString()) : string.Empty;
-                     
+
                     }
                     if (!string.IsNullOrEmpty(usertype))
                     {
@@ -242,7 +260,7 @@ namespace exam
                         }
                         else if (utypeall.StartsWith("pc"))
                         {
-                            ddlDistrict.Visible = false; 
+                            ddlDistrict.Visible = false;
                             usertype = "pc_" + ddlDistrict.SelectedItem.Text + "_" + ddlAssembly.SelectedItem.Text;
                             LoadBooth(usertype);
                         }
@@ -251,9 +269,9 @@ namespace exam
                             usertype = "sch_" + ddlDistrict.SelectedItem.Text + "_" + ddlAssembly.SelectedItem.Text;
                             LoadBooth(usertype);
                         }
-                         
+
                         else
-                        { 
+                        {
                             usertype = "dst_" + ddlDistrict.SelectedItem.Text;
                             LoadBooth(usertype);
                         }
@@ -271,27 +289,27 @@ namespace exam
         {
             try
             {
-                setusertype(); 
+                setusertype();
                 int startRow = ((PageNumber - 1) * pageitemcount) + 1;
                 DataSet ds = new DataSet();
                 List<dbData> data = new List<dbData>();
 
                 IQueryable<dbData> alldata = Enumerable.Empty<dbData>().AsQueryable();
                 IQueryable<dbData> data_grd = Enumerable.Empty<dbData>().AsQueryable();
-                 
+
                 string status = "";
                 if (ddlStatus.SelectedValue != "BOTH" && ddlStatus.SelectedValue != "")
                 {
                     status = ddlStatus.SelectedValue;
                 }
-                DataSet dsNew = _boothlist.GetMapBoothListView(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, status, -1, -1, "", strm_txtBox.Text);
+                DataSet dsNew = _boothlist.GetMapBoothListView(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue,ddllocationType.SelectedValue, status, -1, -1, "", strm_txtBox.Text);
                 totalDatacount = dsNew.Tables[0].Rows.Count;
                 int totalPages = (totalDatacount + pageitemcount - 1) / pageitemcount;
 
                 dsNew.Tables[0].Columns.Add("rn1", typeof(int));
                 for (int i = 0; i < dsNew.Tables[0].Rows.Count; i++)
                 {
-                    dsNew.Tables[0].Rows[i]["rn1"] = i + 1; 
+                    dsNew.Tables[0].Rows[i]["rn1"] = i + 1;
                 }
                 if (PageNumber > totalPages)
                 {
@@ -326,7 +344,7 @@ namespace exam
                 GridView1.DataSource = dsNew.Tables[0].Select("rn1 >= " + (startRow + 1).ToString() + " AND rn1 <= " + (startRow + pageitemcount).ToString()).CopyToDataTable();
                 GridView1.DataBind();
                 BindPager(totalDatacount, this.PageNumber, pageitemcount);
-                
+
             }
             catch (Exception ex)
             {
@@ -343,7 +361,7 @@ namespace exam
             if (district == allKeywordm + districtm)
 
             {
-                 usertype_loc = "admin";
+                usertype_loc = "admin";
             }
             else
             {
@@ -371,7 +389,7 @@ namespace exam
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    
+
                 }
             }
             catch (Exception ex)
@@ -405,74 +423,7 @@ namespace exam
             }
         }
 
-        private void LiveCount2(string usertype, int totalcount, int cur_livecount, int staticlivecount, bool displaystaticlive)
-        {
-            // if (displaystaticlive)
-            //{
-            //    totalbooth.InnerHtml = totalcount.ToString();
-            //    runningbooth.InnerHtml = staticlivecount.ToString();
-            //   }
-            //else
-            //{
-            //    totalbooth.InnerHtml = totalcount.ToString();
-            //    runningbooth.InnerHtml = cur_livecount.ToString();
-            //     }
-        }
-        private void LiveCount(string usertype, int totalcount, int cur_livecount)
-        {
-            if (utypeall != "live_all")
-            {
-                if (utypeall != "live")
-                {
-                    if (usertype != "live")
-                    {
-                        if (!utypeall.Contains("_all"))
-                        {
-                            if (!utypeall.StartsWith("sch"))
-                            {
-                                loadonlinecounter(totalcount);
-                            }
-                        }
-                        else
-                        {
-                            if (ddlDistrict.SelectedIndex > 0)
-                            {
-                                loadonlinecounter(totalcount);
-                            }
-                            //else
-                            //{
-                            //    totalbooth.InnerHtml = totalcount.ToString();
-                            //    runningbooth.InnerHtml = _boothlist.LiveCounter("uadmin2", hrflag, stateid);
-                            //       }
-                        }
-                    }
-                    else
-                    {
-                        //divonlinecounter.Visible = false; 
-                    }
-                }
-            }
-        }
-        private void LiveCountECI(string usertype, int totalcount, int cur_livecount)
-        {
-            //if (ddlDistrict.SelectedIndex > 0)
-            //{
-            //    totalbooth.InnerHtml = totalcount.ToString();
-            //    runningbooth.InnerHtml = _boothlist.LiveCounterECI("dst_" + ddlDistrict.SelectedItem.Text, stateid);
-               
-            //}
-            //else
-            //{
-            //    totalbooth.InnerHtml = totalcount.ToString();
-            //    runningbooth.InnerHtml = _boothlist.LiveCounterECI("uadmin2", stateid);
-            //      }
 
-        }
-        private void loadonlinecounter(int totalcount)
-        {
-            //totalbooth.InnerHtml = _boothlist.LiveCounter("dst_" + ddlDistrict.SelectedItem.Text + "_dstcount", hrflag, stateid);
-            //runningbooth.InnerHtml = _boothlist.LiveCounter("dst_" + ddlDistrict.SelectedItem.Text, hrflag, stateid);
-             }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -489,21 +440,21 @@ namespace exam
             }
         }
         private void loaddata()
-        { 
-            LoadBooth(usertype); 
+        {
+            LoadBooth(usertype);
         }
         private void LoadDistrict(string usertype)
         {
             try
             {
-                 var Alldist = _boothlist.GetAllDistrictByStateId(stateid);
+                var Alldist = _boothlist.GetAllDistrictByStateId(stateid);
                 ddlDistrict.DataSource = Alldist;
                 ddlDistrict.DataTextField = "district";
                 ddlDistrict.DataValueField = "district";
                 ddlDistrict.DataBind();
 
                 ddlDistrict.Items.Insert(0, new ListItem("ALL District", ""));
-                ddlAssembly.Items.Insert(0, new ListItem("ALL Assembly", "")); 
+                ddlAssembly.Items.Insert(0, new ListItem("ALL Assembly", ""));
             }
             catch (Exception ex)
             {
@@ -514,7 +465,7 @@ namespace exam
         {
             try
             {
-                
+
                 var Assembly = _boothlist.GetAllAssemblyByDistrict(stateid, ddlDistrict.SelectedItem.Text);
 
                 ddlAssembly.Items.Clear();
@@ -523,20 +474,20 @@ namespace exam
                 ddlAssembly.DataValueField = "accode";
                 ddlAssembly.DataBind();
 
-                ddlAssembly.Items.Insert(0, new ListItem("ALL Assembly", "")); 
+                ddlAssembly.Items.Insert(0, new ListItem("ALL Assembly", ""));
             }
             catch (Exception ex)
             {
                 Common.Log("LoadSchool_list() -- >  " + ex.Message);
             }
         }
-        
+
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                PageNumber = 1; 
-                LoadAssembly(ddlDistrict.SelectedItem.Text); 
+                PageNumber = 1;
+                LoadAssembly(ddlDistrict.SelectedItem.Text);
                 LoadBooth(usertype);
             }
             catch (Exception ex)
@@ -548,7 +499,7 @@ namespace exam
         {
             try
             {
-                PageNumber = 1; 
+                PageNumber = 1;
                 LoadBooth(usertype);
             }
             catch (Exception ex)
@@ -589,13 +540,13 @@ namespace exam
 
 
                 pageLinkContainer.Add(new ListItem("First", "1", currentPageIndex != 1));
-                  for (int i = startPageLink; i <= lastPageLink; i++)
+                for (int i = startPageLink; i <= lastPageLink; i++)
                 {
-                   pageLinkContainer.Add(new ListItem(i.ToString(), i.ToString(), currentPageIndex != i));
+                    pageLinkContainer.Add(new ListItem(i.ToString(), i.ToString(), currentPageIndex != i));
                 }
 
                 pageLinkContainer.Add(new ListItem("Last", totalPageCount.ToString(), currentPageIndex != totalPageCount));
-                 prev.Visible = true;
+                prev.Visible = true;
                 next.Visible = true;
             }
             else
@@ -626,10 +577,10 @@ namespace exam
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
                     LinkButton btnPage = (LinkButton)e.Item.FindControl("btn_page_camera");
-                     if (int.Parse(btnPage.Text) == PageNumber)
+                    if (int.Parse(btnPage.Text) == PageNumber)
                     {
                         btnPage.Font.Underline = true;
-                        btnPage.CssClass = "btn btn-primary btncustom"; 
+                        btnPage.CssClass = "btn btn-primary btncustom";
                     }
                     else
                     {
@@ -661,7 +612,7 @@ namespace exam
         {
             try
             {
-              
+
                 PageNumber = 1;
                 LoadBooth(usertype);
             }
@@ -695,6 +646,66 @@ namespace exam
             catch (Exception ex)
             {
 
+            }
+        }
+
+        protected void btnloadarchive_Click(object sender, EventArgs e)
+        {
+            getdata();
+            btnloadarchive.Visible = false;
+        }
+
+        public void getdata()
+        {
+            try
+            {
+                string streamname = hdstreamname.Value;
+                string servername = hdservername.Value;
+                string url = "https://" + servername + "/live-record/" + streamname;
+
+                WebClient client = new WebClient();
+                string response = client.DownloadString(url);
+                DataSet dataSet = new DataSet();
+                StringReader reader = new StringReader(response);
+                dataSet.ReadXml(reader);
+                DataTable sourceTable = dataSet.Tables[0];
+                DataSet destDataSet = new DataSet();
+                DataTable destTable = new DataTable();
+                destTable.Columns.Add("href", typeof(string));
+                destTable.Columns.Add("a_Text", typeof(string));
+                destDataSet.Tables.Add(destTable);
+                for (int i = 0; i < sourceTable.Rows.Count-1; i++)
+                {
+                    string stringValue = sourceTable.Rows[i]["a_Text"].ToString();
+                    if (stringValue.IndexOf(FromDt.Text) >= 0)
+                    {
+                        DataRow destRow = destTable.NewRow();
+                        destRow["href"] = sourceTable.Rows[i]["href"];
+                        destRow["a_Text"] = sourceTable.Rows[i]["a_Text"];
+                        destTable.Rows.Add(destRow);
+                    }
+                }
+                dsReport = destTable;
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        protected void ddllocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                PageNumber = 1; 
+                LoadBooth(usertype);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("ddllocationType_SelectedIndexChanged_list() -- >  " + ex.Message);
             }
         }
     }

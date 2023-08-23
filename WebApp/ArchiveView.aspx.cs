@@ -160,8 +160,10 @@ namespace exam
         {
             try
             {
+                txtDID.Text = "";
                 if (ddlDistrict.SelectedValue == "0")
                 {
+                   
                     LoadPC("", usertype);
                 }
                 else
@@ -234,37 +236,94 @@ namespace exam
                 if (ddlLocation.SelectedIndex != 0)
                 {
                     DataSet ds = _boothlist.getLocationWise(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, ddlLocation.SelectedValue);
-
-                    string url = "https://" + ds.Tables[0].Rows[0]["servername"].ToString() + "/live-record/" + ds.Tables[0].Rows[0]["deviceid"].ToString();
-                    lblservername.Text = ds.Tables[0].Rows[0]["servername"].ToString();
-                    lblcameraid.Text = ds.Tables[0].Rows[0]["deviceid"].ToString();
-                    //string url = "https://punjab106.vmukti.com/live-record/abcd/";
-                    //https://biharmedia2.vmukti.com/live-record/ANYK-804347-AAAAA
-                    WebClient client = new WebClient();
-                    string response = client.DownloadString(url);
-                    DataSet dataSet = new DataSet();
-                    StringReader reader = new StringReader(response);
-                    dataSet.ReadXml(reader);
-                    DataTable sourceTable = dataSet.Tables[0];
-                    DataSet destDataSet = new DataSet();
-                    DataTable destTable = new DataTable();
-                    destTable.Columns.Add("href", typeof(string));
-                    destTable.Columns.Add("a_Text", typeof(string));
-                    destDataSet.Tables.Add(destTable);
-                    for (int i = 0; i < sourceTable.Rows.Count; i++)
+                    if(ds.Tables[0].Rows.Count>0)
                     {
-                        string stringValue = sourceTable.Rows[i]["a_Text"].ToString();
-                        if (stringValue.IndexOf(FromDt.Text) >= 0)
+                        string url = "https://" + ds.Tables[0].Rows[0]["servername"].ToString() + "/live-record/" + ds.Tables[0].Rows[0]["deviceid"].ToString();
+                        lblservername.Text = ds.Tables[0].Rows[0]["servername"].ToString();
+                        lblcameraid.Text = ds.Tables[0].Rows[0]["deviceid"].ToString();
+                        //string url = "https://punjab106.vmukti.com/live-record/abcd/";
+                        //https://biharmedia2.vmukti.com/live-record/ANYK-804347-AAAAA
+                        WebClient client = new WebClient();
+                        string response = client.DownloadString(url);
+                        string response1 = response;
+                        DataSet dataSet = new DataSet();
+                        StringReader reader = new StringReader(response);
+                        dataSet.ReadXml(reader);
+                        DataTable sourceTable = dataSet.Tables[0];
+                        DataSet destDataSet = new DataSet();
+                        DataTable destTable = new DataTable();
+                        destTable.Columns.Add("href", typeof(string));
+                        destTable.Columns.Add("a_Text", typeof(string));
+                        destDataSet.Tables.Add(destTable);
+                        for (int i = 0; i < sourceTable.Rows.Count; i++)
                         {
-                            DataRow destRow = destTable.NewRow();
-                            destRow["href"] = sourceTable.Rows[i]["href"];
-                            destRow["a_Text"] = sourceTable.Rows[i]["a_Text"];
-                            destTable.Rows.Add(destRow);
+                            string stringValue = sourceTable.Rows[i]["a_Text"].ToString();
+                            if (stringValue.IndexOf(FromDt.Text) >= 0)
+                            {
+                                DataRow destRow = destTable.NewRow();
+                                destRow["href"] = sourceTable.Rows[i]["href"];
+                                destRow["a_Text"] = sourceTable.Rows[i]["a_Text"];
+                                destTable.Rows.Add(destRow);
+                            }
                         }
+                        dsReport = destTable;
                     }
-                    dsReport = destTable;
+                    else
+                    {
+                        dsReport = null;
+                    }
+                   
                 }
 
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public void getdata1()
+        {
+            try
+            {
+                 
+
+                    lblservername.Text = "";
+                    lblcameraid.Text = "";
+                    DataSet ds1 = _boothlist.getservername(txtDID.Text);
+                    if (ds1.Tables[0].Rows.Count > 0)
+                    {
+                        string url = "https://" + ds1.Tables[0].Rows[0]["servername"].ToString() + "/live-record/" + ds1.Tables[0].Rows[0]["deviceid"].ToString();
+                        lblservername.Text = ds1.Tables[0].Rows[0]["servername"].ToString();
+                        lblcameraid.Text = ds1.Tables[0].Rows[0]["deviceid"].ToString();
+                        WebClient client = new WebClient();
+                        string response = client.DownloadString(url);
+                        DataSet dataSet = new DataSet();
+                        StringReader reader = new StringReader(response);
+                        dataSet.ReadXml(reader);
+                        DataTable sourceTable = dataSet.Tables[0];
+                        DataSet destDataSet = new DataSet();
+                        DataTable destTable = new DataTable();
+                        destTable.Columns.Add("href", typeof(string));
+                        destTable.Columns.Add("a_Text", typeof(string));
+                        destDataSet.Tables.Add(destTable);
+                        for (int i = 0; i < sourceTable.Rows.Count; i++)
+                        {
+                            string stringValue = sourceTable.Rows[i]["a_Text"].ToString();
+                            if (stringValue.IndexOf(FromDt.Text) >= 0)
+                            {
+                                DataRow destRow = destTable.NewRow();
+                                destRow["href"] = sourceTable.Rows[i]["href"];
+                                destRow["a_Text"] = sourceTable.Rows[i]["a_Text"];
+                                destTable.Rows.Add(destRow);
+                            }
+                        }
+                        dsReport = destTable;
+                    }
+                    else
+                    {
+                        dsReport = null;
+                    } 
             }
 
             catch (Exception ex)
@@ -275,7 +334,20 @@ namespace exam
 
         protected void btnsearch_Click(object sender, EventArgs e)
         {
-            getdata();
+            if(txtDID.Text!="")
+            {
+                ddlDistrict.Items.Clear();
+                LoadDistrict("");
+                ddlAssembly.Items.Clear();
+                ddlLocation.Items.Clear(); 
+                ddlAssembly.Items.Insert(0, new ListItem("ALL Assembly", ""));
+                ddlLocation.Items.Insert(0, new ListItem("ALL Location", ""));
+                getdata1();
+            }
+            else
+            {
+                getdata();
+            } 
         }
     }
 

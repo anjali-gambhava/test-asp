@@ -198,9 +198,19 @@ padding:0px;
             <!-- small box -->
             <div class="small-box" style="background-color:#ffc107;color:#fff">
               <div class="inner">
-                 <h4 style="text-align:center"><a id="TotalStreamBooth" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                 <h4 style="text-align:center">
+                <a id="TotalStreamBooth" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                <a class="dashboardcardper" id="A2" href="#" tabindex="0" runat="server"></a></h4>
                 <p style="text-align:center">Total Camera</p>
+                  
+                  <h6 class="row">
+    <span class="col-md-6">
+          Indoor:<a id="TotalStreamBoothin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+    </span>
+    <span class="col-md-6">
+        Outdoor:<a id="TotalStreamBoothout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+    </span>
+</h6>
               </div>
              <div class="icon">
                 <i class="fas fa-person-booth"></i>
@@ -215,6 +225,12 @@ padding:0px;
                <h4><a id="livecount" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="livecountper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center">Streaming Live</p>
+                   <h6 class="row">
+    <span class="col-md-6">
+                      Indoor:<a id="livecountin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+      </span>
+    <span class="col-md-6">Outdoor:<a id="livecountout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                  </span></h6>
               </div>
               <div class="icon">
                <i class="fa fa-video-camera"></i>
@@ -229,6 +245,11 @@ padding:0px;
                 <h4><a id="connectedonce" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="connectedonceper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center; color:#fff;">Live-Once</p>
+                  <h6  style="color:#fff;" class="row"> <span class="col-md-6">
+                      Indoor:<a id="connectedoncein" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+               </span>
+    <span class="col-md-6">Outdoor:<a id="connectedonceout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                </span></h6>
               </div>
            <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -243,6 +264,14 @@ padding:0px;
                 <h4><a id="lastonehours" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="lastonehoursper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center">Online Last 60 Minutes</p>
+                   <h6 class="row">
+    <span class="col-md-6">
+        Indoor: <a id="lastonehoursin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+    </span>
+    <span class="col-md-6">
+        Outdoor: <a id="lastonehoursout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+    </span>
+</h6>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -258,6 +287,11 @@ padding:0px;
                 <h4><a id="lasttwohours" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="lasttwohoursper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center; color:#fff">Online Last 120 Minutes</p>
+                <h6  style="color:#fff;" class="row"> <span class="col-md-6">
+                      Indoor:<a id="lasttwohoursin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                </span>
+    <span class="col-md-6"> Outdoor:<a id="lasttwohoursout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                  </span> </h6>
               </div>
            <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -275,7 +309,12 @@ padding:0px;
               <div class="inner">
                  <h4><a id="offlinecount" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="offlinecountper" href="#" tabindex="0" runat="server"></a></h4> 
-                <p style="text-align:center">Inactive Cameras</p>
+                <p style="text-align:center">Offine Cameras</p>
+                <h6  style="color:#fff;" class="row"> <span class="col-md-6">
+                      Indoor:<a id="offlinecountin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                   </span>
+    <span class="col-md-6">Outdoor:<a id="offlinecountout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                 </span> </h6>
               </div>
              <div class="icon">
                 <i class="fas fa-video-slash"></i>
@@ -337,7 +376,7 @@ padding:0px;
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
                   <div class="chart tab-pane active" id="revenue-chart1"
-                       style="position: relative; height: 300px;"> 
+                       style="position: relative; height:auto;"> 
                       <canvas id="BarChart" width="590" height="270"></canvas>
                    </div> 
                 </div>
@@ -348,144 +387,7 @@ padding:0px;
           </section>
 
           <!-- right col -->
-        </div>
-         <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
-                                { %>
-           <div class="row">
-               <section class="col-lg-6 connectedSortable p-r0">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-line mr-1"></i>
-               Footfall Count Minutewise 
-                </h3>
-                <div class="card-tools">
-                </div>
-              </div><!-- /.card-header -->
-              <div class="card-body" style="padding:0px">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart_1"
-                       style="position: relative; height: 300px;">
-                     <%-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>--%>
-                      <canvas id="ImgChart" ></canvas>
-                   </div>
-                  <%--<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                  </div>--%>
-                </div>
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </section>
-                <section class="col-lg-6 connectedSortable p-r0">
-                <div class="card" style="height:345px;overflow:auto">
-              <div class="card-header">
-                <h3 class="card-title">Viloation Report (Two person in pooling Area)</h3> 
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2"> 
-                    <%  if (notification.Tables[0].Rows.Count>0) {%>
-             <%   for(int i = 0; i < notification.Tables[0].Rows.Count; i++) { %>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <%--<img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">--%>
-                          <a href="#" onclick="LoadDiv('<%=notification.Tables[0].Rows[i]["imgurl"]%>'); return false;">
-                          <img src="<%=notification.Tables[0].Rows[i]["imgurl"]%>" alt="Product Image" class="img-size-50">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">
-                       <%=notification.Tables[0].Rows[i]["district"]%> 
-                          <span class="badge badge-danger float-right"><%=notification.Tables[0].Rows[i]["sendtime"]%></span>
-                        <br /><span class="badge badge-info float-right"><%=notification.Tables[0].Rows[i]["deviceid"]%>
-                      </span>
-                      </a>
-                      <span class="product-description">
-                        <%=notification.Tables[0].Rows[i]["bootinfo"]%>
-                      </span>
-                    </div>
-                  </li> 
-                    <%}%>
-           <% } %>
-                </ul>
-              </div> 
-            </div>
-                    </section>
-               </div>
-          
-
-             <div class="row">
-               <section class="col-lg-12 connectedSortable p-r0">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-line mr-1"></i>
-               Beep Count Chart 
-                </h3>
-                <div class="card-tools">
-                </div>
-              </div><!-- /.card-header -->
-              <div class="card-body" style="padding:0px">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart_2"
-                       style="position: relative; height: 300px;">
-                     <%-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>--%>
-                      <canvas id="BeepcountChart" ></canvas>
-                   </div> 
-                </div>
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </section>
-                 </div>
-
-
-
-           <% } %>
-            <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "ceo"
-                   || Session["userType"].ToString().ToLower() == "vmukti_internal" )
-                                { %>
-              <div class="row" style="display:none"> 
-                   <section class="col-lg-12 p-r0">
-                       <div id="news_slide" class="products-outer">
-     <ul class="voxNews products-inner"> 
-        <%  if (gaugechart.Tables[0].Rows.Count>0) {%>
-             <%   for(int i = 0; i < gaugechart.Tables[0].Rows.Count; i++) { %>
-         <li>
-             <div class="card">
-                 <img src="images/District/<%=gaugechart.Tables[0].Rows[i]["district"]%>.png" alt="" class="card-img-top">
-                 <div class="card-block" style="font-size: 14px">
-                     <div class="table">
-                         <table>
-                             <tr>
-                                 <th>Total</th>
-                                 <th>Online</th>
-                                 <th>Offline</th>
-                             </tr>
-                             <tr>
-                                 <td style="color: chocolate"><%=gaugechart.Tables[0].Rows[i]["Total"]%></td>
-                                 <td style="color: forestgreen"><%=gaugechart.Tables[0].Rows[i]["Online"]%></td>
-                                 <td style="color: red"><%=gaugechart.Tables[0].Rows[i]["Offline"]%></td>
-                             </tr>
-                         </table>
-                     </div>
-                 </div>
-             </div>
-         </li>
-         <%}%>
-           <% } %>
-                 
-                                 </ul> 
-                        </div>
-                      </section>
-                  </div> 
-         <% } %>
+        </div> 
       </div> 
           <div id="divBackground" class="modal">
 </div>
@@ -548,20 +450,32 @@ padding:0px;
        /* });*/
     </script>
     <%
-                    var distList = string.Empty;
-                    var chart2num = string.Empty;
-                    var chart3num = string.Empty;
-                    var chart4num = string.Empty;
-                    var chart5num = string.Empty; 
-                    for(int i = 0; i < BarGraph.Tables[0].Rows.Count; i++)
-                    {
-                        var row = BarGraph.Tables[0].Rows[i]; 
-                        chart2num += "'" + row["online"].ToString() + "',";
-                        chart2num += "'',";
-                        chart3num += "'" + row["offline"].ToString() + "',";
-                        chart3num += "'',";
-                        distList += "'" + row[0].ToString() + "','',";  
-                    }
+        var distList = string.Empty;
+        var chart2num = string.Empty;
+        var chart3num = string.Empty;
+        var chart4num = string.Empty;
+        var chart5num = string.Empty;
+
+        for(int i = 0; i < BarGraph.Tables[0].Rows.Count; i++)
+        {
+            var row = BarGraph.Tables[0].Rows[i];
+            if (i % 2 == 0)
+            {
+                chart2num += "'" + row["online"].ToString() + "',";
+                chart2num += "'',";
+                chart3num += "'" + row["offline"].ToString() + "',";
+                chart3num += "'',";
+                distList += "'" + row[0].ToString() + "','',"; 
+            } 
+            else
+            { 
+                chart4num += "'',";
+                chart4num += "'" + row["online"].ToString() + "',";
+                chart5num += "'',";
+                chart5num += "'" + row["offline"].ToString() + "',";
+
+            }
+        }
                 %> 
   
     <script type="text/javascript">
@@ -572,18 +486,30 @@ padding:0px;
             labels: barLabels,
             datasets: [
                 {
-                    label: 'Online Camera',
+                    label: 'Online Indoor',
                     data: [<%= chart2num.Length > 0 ? chart2num.Remove(chart2num.Length - 1) : "" %>],
-                                    backgroundColor: "Green",
+                   backgroundColor: "Green",
+                   barThickness: 7
+               },
+               {
+                   label: 'Offline Indoor',
+                   data: [<%= chart3num.Length > 0 ? chart3num.Remove(chart3num.Length - 1) : ""%>],
+                                    backgroundColor: "Red",
                                     barThickness: 7
                                 },
-                                {
-                                    label: 'Offline Camera',
-                                    data: [<%= chart3num.Length > 0 ? chart3num.Remove(chart3num.Length - 1) : ""%>],
-                    backgroundColor: "Red",
-                    barThickness: 7
-                }
-            ]
+                  {
+                      label: 'Online Outdoor',
+                      data: [<%= chart4num.Length > 0 ? chart4num.Remove(chart4num.Length - 1) : ""%>],
+                      backgroundColor: "Yellow",
+                      barThickness: 7
+                  },
+                 {
+                     label: 'Offline Outdoor',
+                   data: [<%= chart5num.Length > 0 ? chart5num.Remove(chart5num.Length - 1) : ""%>],
+                   backgroundColor: "Blue",
+                   barThickness: 7
+               }
+           ]
         };
         const barChart = new Chart(barCtx, {
             type: 'bar',
@@ -608,18 +534,13 @@ padding:0px;
         });
         setInterval(function () {
             window.location.reload();
-        }, 60000)
+        }, 90000)
     </script>  
 
     <script type="text/javascript">
         $j(document).ready(function () {
-            getData();
-            getImgData();
-            getBeepData();
-        });
-        //$(function () { 
-        //    getData(); 
-        //    setInterval(getImgData, 1000);
+            getData(); 
+        }); 
         function getData() {
             $.ajax({
                 type: "POST",
@@ -702,197 +623,9 @@ padding:0px;
             });
         } 
 
-        function getImgData() {
-            $.ajax({
-                type: "POST",
-                url: "Home.aspx/GetImgChartData",
-                data: "{}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    populateimgChart(response.d);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert("Error: " + thrownError);
-                }
-            });
-        } 
-        function populateimgChart(data) {
-            var ctx = document.getElementById('ImgChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: data.map(d => d.x),
-                    datasets: [{
-                        label: 'Ahmedabad',
-                        data: data.map(d => d.y),
-                        backgroundColor: 'rgba(60, 179, 113)',
-                        borderColor: 'rgba(60, 179, 113)',
-                        borderWidth: 0.5
-                        //,fill: 'origin'
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                stacked: true,
-                                beginAtZero: true
-                            }
-                        }],
-                        xAxes: [{
-                            type: 'time',
-                            time: {
-                                unit: 'hour',
-                                displayFormats: {
-                                    hour: 'HH:mm'
-                                }
-                            },
-                            ticks: {
-                                source: 'data',
-                                callback: function (value, index, values) {
-                                    // Convert the value to a Date object
-                                    var date = new Date(value);
-                                    // Format the hour value as desired (e.g., '12:00')
-                                    var hour = date.getHours().toString().padStart(2, '0');
-                                    var minutes = date.getMinutes().toString().padStart(2, '0');
-                                    return hour + ':' + minutes;
-                                }
-                            }
-                        }]
-
-                    }
-                }
-
-            });
-        }
-
-        function getBeepData() {
-            $.ajax({
-                type: "POST",
-                url: "Home.aspx/GetBeepChartData",
-                data: "{}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    populatebeepChart(response.d);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert("Error: " + thrownError);
-                }
-            });
-        }
-        function populatebeepChart(data) {
-            var ctx = document.getElementById('BeepcountChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: data.map(d => d.x),
-                    datasets: [{
-                        label: 'Ahmedabad',
-                        data: data.map(d => d.y),
-                        backgroundColor: 'rgba(60, 179, 113)',
-                        borderColor: 'rgba(60, 179, 113)',
-                        borderWidth: 0.5
-                        //,fill: 'origin'
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                stacked: true,
-                                beginAtZero: true
-                            }
-                        }],
-                        xAxes: [{
-                            type: 'time',
-                            time: {
-                                unit: 'hour',
-                                displayFormats: {
-                                    hour: 'HH:mm'
-                                }
-                            },
-                            ticks: {
-                                source: 'data',
-                                callback: function (value, index, values) {
-                                    // Convert the value to a Date object
-                                    var date = new Date(value);
-                                    // Format the hour value as desired (e.g., '12:00')
-                                    var hour = date.getHours().toString().padStart(2, '0');
-                                    var minutes = date.getMinutes().toString().padStart(2, '0');
-                                    return hour + ':' + minutes;
-                                }
-                            }
-                        }]
-
-                    }
-                }
-
-            });
-        }
-
+       
     </script>
-
-     <script type="text/javascript">
-         // Function to set the canvas width based on the screen resolution
-         function setCanvasSize() {
-             var canvas = document.getElementById('BeepcountChart');
-             var resolutionWidth = window.innerWidth; // Get the screen width
-
-             // Set the desired width based on the resolution (you can adjust this based on your needs)
-             var desiredWidth = resolutionWidth * 0.9; // For example, setting it to 80% of the screen width
-
-             // Set the fixed height for the canvas
-             var desiredHeight = 325; // Set the height to 325 pixels 
-             canvas.width = desiredWidth;
-             canvas.height = desiredHeight; 
-         }
-
-         // Call the function on page load and whenever the window is resized
-         window.onload = setCanvasSize;
-         window.onresize = setCanvasSize;
-     </script>
-    <script type="text/javascript">
-        function LoadDiv(url) {
-            var img = new Image();
-            var bcgDiv = document.getElementById("divBackground");
-            var imgDiv = document.getElementById("divImage");
-            var imgFull = document.getElementById("imgFull");
-            var imgLoader = document.getElementById("imgLoader");
-            imgLoader.style.display = "block";
-            img.onload = function () {
-                imgFull.src = img.src;
-                imgFull.style.display = "block";
-                imgLoader.style.display = "none";
-            };
-            img.src = url;
-            var width = document.body.clientWidth;
-            if (document.body.clientHeight > document.body.scrollHeight) {
-                bcgDiv.style.height = document.body.clientHeight + "px";
-            }
-            else {
-                bcgDiv.style.height = document.body.scrollHeight + "px";
-            }
-            imgDiv.style.left = (width - 650) / 2 + "px";
-            imgDiv.style.top = "20px";
-            bcgDiv.style.width = "100%";
-
-            bcgDiv.style.display = "block";
-            imgDiv.style.display = "block";
-            return false;
-        }
-        function HideDiv() {
-            var bcgDiv = document.getElementById("divBackground");
-            var imgDiv = document.getElementById("divImage");
-            var imgFull = document.getElementById("imgFull");
-            if (bcgDiv != null) {
-                bcgDiv.style.display = "none";
-                imgDiv.style.display = "none";
-                imgFull.style.display = "none";
-            }
-        } 
-    </script>
+ 
      <script type="text/javascript"> 
          $('#dashboardmenu').addClass('active');
      </script>

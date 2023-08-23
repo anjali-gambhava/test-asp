@@ -72,6 +72,9 @@
                    <div id='datepicker' class="row" data-date="" data-link-field="dtp_input2" >
                     <asp:TextBox ID="FromDt" runat="server" CssClass="form-control fromdate" size="16" autocomplete="off" Width="80%" Text=''/>
                           </div></div>
+                         <div class="form-group">
+                              <asp:TextBox ID="txtDID" runat="server" CssClass="form-control"   Width="80%"></asp:TextBox>
+                          </div>  
                     <div class="form-group">
                 <asp:Button ID="btnsearch" runat="server" Text="Search" CssClass="btn btn-block btn-primary"
                                                OnClick="btnsearch_Click"/> 
@@ -144,10 +147,13 @@
                                     &times;
                                 </button>
             </div>
-            <div class="modal-body cardarchive">
+            <div class="modal-body cardarchive" style="overflow:auto">
             <video id="videoElement" muted autoplay preload="auto" controls style="width:100%; padding:0px 0px 0px">
             </div>
               <div class="row col-12 md:col-12 col12 pb-xs" align="center">  
+                    <button style="font-size:13px" id="zoomInButton"><i class="material-icons">zoom_in</i></button> 
+                         <button style="font-size:13px" id="ResetzoomButton"><i class="material-icons">center_focus_strong</i></button> 
+                         <button style="font-size:13px" id="zoomOutButton"><i class="material-icons">zoom_out</i></button> 
                                <button style="font-size:24px" id="rewindBtn"><i class="material-icons">skip_previous</i></button>&nbsp&nbsp&nbsp
                                 <button style="font-size:24px" id="forwordBtn"><i class="material-icons">skip_next</i></button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <button style="font-size:24px" id="downloadBtn"><i class="material-icons">file_download</i></button>
@@ -188,17 +194,19 @@
         });
         function OpenPopupAdd() { 
             $j("#myModal").show();
+            flvurl = "";
         }
         function ClosePopupAdd() {
             $j("#myModal").hide();
         }
-        function loadplayer(name) {
-            debugger
+        var flvurl = "";
+        function loadplayer(name) { 
+            flvurl = "";
             if (flvjs.isSupported()) {
                 var videoElement = document.getElementById('videoElement');
                 var serverName = $('#<%= lblservername.ClientID %>').val();
                  var cameraid = $('#<%= lblcameraid.ClientID %>').val();
-                 var flvurl = 'https://' + serverName + '/live-record/' + cameraid + '/' + name;
+                  flvurl = 'https://' + serverName + '/live-record/' + cameraid + '/' + name;
                  var flvPlayer = flvjs.createPlayer({
                      type: 'flv',
                      // url: 'https://punjab106.vmukti.com/live-record/ANYK-803582-AAAAA/2023-03-07-13-07-03.flv'
@@ -227,45 +235,57 @@
                      event.preventDefault();
                      videoElement.currentTime += 10;
                  });
+                
+
                 var downloadButton = document.getElementById("downloadBtn");
-                downloadButton.addEventListener('click', function () {
-                    event.preventDefault();
-                    var url = flvurl;
-                    window.open(url);
+                downloadButton.addEventListener('click', function (event) {
+                   event.preventDefault(); 
+
+                    var url = flvurl; 
+                    window.open(url);  
                 });
-                 // Add zoom in/out functionality
+
+                var ResetzoomButton = document.getElementById("ResetzoomButton");
+                var zoomInButton = document.getElementById("zoomInButton");
+                var zoomOutButton = document.getElementById("zoomOutButton");
+                var videoElement = document.getElementById('videoElement');
+                var zoomLevel = 1;
+
+                ResetzoomButton.addEventListener('click', function () {
+                    event.preventDefault();
+                    zoomLevel = 1;
+                    applyZoom();
+                });
+
+                zoomInButton.addEventListener('click', function () {
+                    event.preventDefault();
+                    zoomLevel += 0.1;
+                    applyZoom();
+                });
+
+                zoomOutButton.addEventListener('click', function () {
+                    event.preventDefault();
+                    if (zoomLevel > 0.1) {
+                        if (zoomLevel != 1)
+                            zoomLevel -= 0.1;
+                        applyZoom();
+                    }
+                });
+
+                function applyZoom() {
+                    videoElement.style.transform = 'scale(' + zoomLevel + ')';
+                }
+                  
                  //var zoomLevel = 1;
-                 //var zoominButton = document.getElementById("Zoominbtn");
-                 //zoominButton.addEventListener('click', function (event) {
-                 //    debugger
-                 //    event.preventDefault();
-
-                 // if (event.deltaY < 0) {
-                 //     zoomLevel += 0.1;
-                 // } 
-                 // videoElement.style.transform = 'scale(' + zoomLevel + ')';
-                 //});
-
-                 //var zoomoutButton = document.getElementById("Zoomoutbtn");
-                 //zoomoutButton.addEventListener('click', function (event) { 
-                 //    event.preventDefault();
-
-                 //    if (event.deltaY > 0) {
-                 //        zoomLevel -= 0.1;
+                 //videoElement.addEventListener('wheel', function (event) {
+                 //    if (event.deltaY < 0) {
+                 //        zoomLevel += 0.1;
+                 //    } else if (event.deltaY > 0) {
+                 //        if (zoomLevel != 1)
+                 //            zoomLevel -= 0.1;
                  //    }
                  //    videoElement.style.transform = 'scale(' + zoomLevel + ')';
                  //});
-                 // Add zoom in/out functionality
-                 var zoomLevel = 1;
-                 videoElement.addEventListener('wheel', function (event) {
-                     if (event.deltaY < 0) {
-                         zoomLevel += 0.1;
-                     } else if (event.deltaY > 0) {
-                         if (zoomLevel != 1)
-                             zoomLevel -= 0.1;
-                     }
-                     videoElement.style.transform = 'scale(' + zoomLevel + ')';
-                 });
              }
          }
     </script>

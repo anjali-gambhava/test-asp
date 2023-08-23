@@ -199,28 +199,28 @@ namespace exam.DAL
                 dist = usertype.Split('_')[1];
                 dist = dist.ToUpper() == "ALL DISTRICT" ? "" : dist;
                 //query = "select staff.name,staff.contact_no,vd.Vehicle_No,b.district,s.streamname as videoname,s.servername as cdnsvc,s.status,b.acname,b.PSNum,b.id,b.longitude as boothlng,b.latitude as boothlat,l.longitude,l.latitude,l.UpdateDatetime from booth b full join location_info l on b.id = l.boothid inner join streamlist s on b.streamid=s.id INNER JOIN vehicalDetail vd on vd.streamid = s.id INNER JOIN [dbo].[Vehicle_Staff_Mapping] mapping ON mapping.VehicleId = vd.vehicalId AND mapping.isdeleted = 0 INNER JOIN [dbo].[vehicleshift] sft on sft.id = mapping.ShiftId AND sft.isdeleted = 0 INNER JOIN [dbo].[Staff_Info] staff ON mapping.StaffId = staff.Id AND staff.isdeleted = 0  and staff.Type=1  where ISNULL(l.longitude,0) != 0 and ISNULL(l.latitude,0) != 0 and b.isdisplay='True' and ((@dst='') OR (b.district=@dst)) and s.IsEnable=1 and b.boothstateid='1' group by staff.name,contact_no,Vehicle_No,district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id,l.longitude,l.latitude,l.UpdateDatetime ,b.location,s.hasalarm Order By s.hasalarm desc,len(s.streamname) asc;" +
-                //    "SELECT sum(case when tbl.longitude>73 AND tbl.latitude > 24 THEN 1 ELSE 0 END) Configured,sum(case when tbl.status='RUNNING' THEN 1 ELSE 0 END) Online,sum(case when tbl.status = 'STOPPED' THEN 1 ELSE 0 END) Offline FROM( select staff.name, staff.contact_no, vd.Vehicle_No, b.district, s.streamname as videoname," +
-                //    " s.servername as cdnsvc,s.status,b.acname,b.PSNum,b.id,b.longitude as boothlng,b.latitude as boothlat, " +
-                //    " l.longitude,l.latitude,l.UpdateDatetime from booth b full join location_info l on b.id = l.boothid " +
-                //    " inner join streamlist s on b.streamid = s.id " +
-                //    " INNER JOIN vehicalDetail vd on vd.streamid = s.id " +
-                //    " INNER JOIN[dbo].[Vehicle_Staff_Mapping] mapping ON mapping.VehicleId = vd.vehicalId AND mapping.isdeleted = 0 " +
-                //    " INNER JOIN[dbo].[vehicleshift] sft on sft.id = mapping.ShiftId AND sft.isdeleted = 0 " +
-                //    " INNER JOIN[dbo].[Staff_Info] staff ON mapping.StaffId = staff.Id AND staff.isdeleted = 0 " +
-                //    " and staff.Type = 1  where ISNULL(l.longitude,0) != 0 and ISNULL(l.latitude,0) != 0 " +
-                //    " and b.isdisplay = 'True' and ((@dst='') OR (b.district=@dst)) and s.IsEnable = 1 and b.boothstateid = '1' group by staff.name,contact_no,Vehicle_No,district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id,l.longitude,l.latitude,l.UpdateDatetime ,b.location,s.hasalarm) tbl";
+                //   "SELECT sum(case when tbl.longitude>73 AND tbl.latitude > 24 THEN 1 ELSE 0 END) Configured,sum(case when tbl.status='RUNNING' THEN 1 ELSE 0 END) Online,sum(case when tbl.status = 'STOPPED' THEN 1 ELSE 0 END) Offline FROM( select staff.name, staff.contact_no, vd.Vehicle_No, b.district, s.streamname as videoname," +
+                //   " s.servername as cdnsvc,s.status,b.acname,b.PSNum,b.id,b.longitude as boothlng,b.latitude as boothlat, " +
+                //   " l.longitude,l.latitude,l.UpdateDatetime from booth b full join location_info l on b.id = l.boothid " +
+                //   " inner join streamlist s on b.streamid = s.id " +
+                //   " INNER JOIN vehicalDetail vd on vd.streamid = s.id " +
+                //   " INNER JOIN[dbo].[Vehicle_Staff_Mapping] mapping ON mapping.VehicleId = vd.vehicalId AND mapping.isdeleted = 0 " +
+                //   " INNER JOIN[dbo].[vehicleshift] sft on sft.id = mapping.ShiftId AND sft.isdeleted = 0 " +
+                //   " INNER JOIN[dbo].[Staff_Info] staff ON mapping.StaffId = staff.Id AND staff.isdeleted = 0 " +
+                //   " and staff.Type = 1  where ISNULL(l.longitude,0) != 0 and ISNULL(l.latitude,0) != 0 " +
+                //   " and b.isdisplay = 'True' and ((@dst='') OR (b.district=@dst)) and s.IsEnable = 1 and b.boothstateid = '1' group by staff.name,contact_no,Vehicle_No,district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id,l.longitude,l.latitude,l.UpdateDatetime ,b.location,s.hasalarm) tbl";
 
                 query = " select  b.district,s.streamname as videoname,s.servername as cdnsvc,s.status," +
                         " b.acname,b.PSNum,b.id,b.longitude as boothlng,b.latitude as boothlat,b.longitude,b.latitude from booth b" +
                         " inner join streamlist s on b.streamid = s.id " +
-                        " where ISNULL(b.longitude,0) != 0 and ISNULL(b.latitude,0) != 0 and b.isdisplay = 'True' and(('' = '') OR(b.district = '')) and s.IsEnable = 1" +
-                        " and b.boothstateid = '1' and accode in(4,5)  group by district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id," +
+                        " where ISNULL(b.longitude,0) != 0 and ISNULL(b.latitude,0) != 0 and b.isdisplay = 'True' and ((@dst='') OR (b.district=@dst)) and s.IsEnable = 1" +
+                        " and b.boothstateid = '1'   group by district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id," +
                         " b.longitude,b.latitude ,b.location,s.hasalarm Order By s.hasalarm desc, len(s.streamname) asc; " +
                         " SELECT sum(case when tbl.longitude > 0 AND tbl.latitude > 0 THEN 1 ELSE 0 END) Configured,sum(case when tbl.status = 'RUNNING' THEN 1 ELSE 0 END) Online," +
                         " sum(case when tbl.status = 'STOPPED' THEN 1 ELSE 0 END) Offline FROM(select b.district," +
                         " s.streamname as videoname, s.servername as cdnsvc,s.status,b.acname,b.PSNum,b.id,b.longitude as boothlng,b.latitude as boothlat,  " +
                         " l.longitude,l.latitude,l.UpdateDatetime from booth b full join location_info l on b.id = l.boothid  inner join streamlist s on b.streamid = s.id " +
-                        " where  b.isdisplay = 'True' and accode in(4,5)   and s.IsEnable = 1 and b.boothstateid = '1'" +
+                        " where  b.isdisplay = 'True' and ((@dst='') OR (b.district=@dst))  and s.IsEnable = 1 and b.boothstateid = '1'" +
                         " group by district,streamname,servername,status,acname,PSNum,b.longitude,b.latitude,b.id,l.longitude,l.latitude,l." +
                         " UpdateDatetime ,b.location,s.hasalarm) tbl";
                 SqlCommand command = new SqlCommand(query, conn);
@@ -251,7 +251,7 @@ namespace exam.DAL
             return ds;
         }
 
-        public DataSet GetMapBoothListNew(string district, string assembly, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
+        public DataSet GetMapBoothListNew(string district, string assembly,string LocationType, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
         {
             DataSet ds = new DataSet();
             SqlConnection conn = new SqlConnection(connstr);
@@ -263,6 +263,7 @@ namespace exam.DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@district", district);
                 command.Parameters.AddWithValue("@assembly", assembly);
+                command.Parameters.AddWithValue("@LocationType", LocationType);
                 command.Parameters.AddWithValue("@status", status);
                 command.Parameters.AddWithValue("@isPink", isPink);
                 command.Parameters.AddWithValue("@isARO", isARO);
@@ -422,7 +423,7 @@ namespace exam.DAL
         //    }
         //    return ds;
         //}
-        public DataSet GetOnlineMapBoothListNew(string district, string assembly, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
+        public DataSet GetOnlineMapBoothListNew(string district, string assembly,string LocationType, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
         {
             DataSet ds = new DataSet();
             SqlConnection conn = new SqlConnection(connstr);
@@ -434,6 +435,7 @@ namespace exam.DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@district", district);
                 command.Parameters.AddWithValue("@assembly", assembly);
+                command.Parameters.AddWithValue("@LocationType", LocationType);
                 command.Parameters.AddWithValue("@status", status);
                 command.Parameters.AddWithValue("@isPink", isPink);
                 command.Parameters.AddWithValue("@isARO", isARO);
@@ -5039,6 +5041,7 @@ namespace exam.DAL
                 command.Parameters.AddWithValue("@district", district);
                 command.Parameters.AddWithValue("@accode", accode);
                 command.Parameters.AddWithValue("@UserID", UserID);
+                command.CommandTimeout = 240;
                 SqlDataAdapter da = new SqlDataAdapter(command);
                 da.Fill(ds);
                 ds = FilterDataByAccess(ds, true, false);
@@ -5710,6 +5713,37 @@ namespace exam.DAL
             return ds;
         }
 
+        public DataSet GetExcelReport(string FromDt, string ToDt, string district, string accode, string vehicleNo, int islive, string status)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "[dbo].[GetExeclBoothReport]";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@accode", accode);
+                command.Parameters.AddWithValue("@psnum", vehicleNo);
+                command.Parameters.AddWithValue("@FromDt", FromDt);
+                command.Parameters.AddWithValue("@ToDt", ToDt);
+                command.Parameters.AddWithValue("@islive", islive);
+                command.Parameters.AddWithValue("@Status", status);
+                command.CommandTimeout = 240;
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetShiftWizeVehicleByAcCode()--> " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
         //public bool VehicleNoAlreadyExistCheck(string vehicleNo)
         //{
         //    DataSet ds = new DataSet();
@@ -6199,7 +6233,7 @@ namespace exam.DAL
             {
                 string query = string.Empty;
 
-                SqlCommand command = new SqlCommand("GetBoothListTrailRunRpt_new", conn);
+                SqlCommand command = new SqlCommand("GetBoothListTrailRunRpt", conn);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@district", district);
                 command.Parameters.AddWithValue("@assembly", assembly);
@@ -6210,6 +6244,30 @@ namespace exam.DAL
             catch (Exception ex)
             {
                 Common.Log("GetTrailRunRpt()--> " + ex.Message);
+            }
+            finally
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet GetNetworkFeasiblityRpt()
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+
+                SqlCommand command = new SqlCommand("GetNetworkFeasiblityRpt", conn);
+                command.CommandType = CommandType.StoredProcedure; 
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetNetworkFeasiblityRpt()--> " + ex.Message);
             }
             finally
             {
@@ -6817,7 +6875,7 @@ namespace exam.DAL
         //    return ds;
         //}
 
-        public DataSet GetMapBoothListView(string district, string assembly, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
+        public DataSet GetMapBoothListView(string district, string assembly,string LoactionType, string status, int isPink = -1, int isARO = -1, string booth = "", string streamname = "", string orderBy = "")
         {
             DataSet ds = new DataSet();
             SqlConnection conn = new SqlConnection(connstr);
@@ -6829,6 +6887,7 @@ namespace exam.DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@district", district);
                 command.Parameters.AddWithValue("@assembly", assembly);
+                command.Parameters.AddWithValue("@LocationType", LoactionType);
                 command.Parameters.AddWithValue("@status", status); 
                 command.Parameters.AddWithValue("@booth", booth);
                 command.Parameters.AddWithValue("@streamname", streamname);
@@ -7222,6 +7281,133 @@ namespace exam.DAL
             finally
             {
                 conn.Close();
+            }
+            return ds;
+        }
+        public DataSet GetRecordingSize(string sel_date,string streamname)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+
+                SqlCommand command = new SqlCommand("Sp_RecordingSize", conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CameraID", streamname); 
+                command.Parameters.AddWithValue("@RecordingDate", sel_date); 
+                command.Parameters.AddWithValue("@flag", "GETRECORDINGDATA");
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds); 
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetRecordingSize()--> " + ex.Message);
+            }
+            finally
+            {
+
+            }
+            return ds;
+        }
+        public DataSet GetChannelviewdata(string district, string assembly)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = "GetChannelviewdata";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@district", district));
+                command.Parameters.Add(new SqlParameter("@accode", assembly));
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, false, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("getLastMinuteBusData()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+
+        public DataSet GetAssemblyWizeTotlechannelData()
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = "GetAssemblyWizeTotlechannelData";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, true, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("getLastMinuteBusData()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+        public DataSet getvideobitratedata(string videodate,string district, string acname)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+
+                SqlCommand command = new SqlCommand("Savevideobitrate", conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@accode", acname);  
+                command.Parameters.AddWithValue("@VideoDate", videodate);  
+                command.Parameters.AddWithValue("@flag", "getBitrate");
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetRecordingSize()--> " + ex.Message);
+            }
+            finally
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet getservername(string DID)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+
+                SqlCommand command = new SqlCommand("getservarname1", conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Camearaid", DID); 
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetRecordingSize()--> " + ex.Message);
+            }
+            finally
+            {
+
             }
             return ds;
         }

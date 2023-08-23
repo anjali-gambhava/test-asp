@@ -250,7 +250,7 @@
                         <div class="card card-default" style="margin-top:0px;padding: 0px;">
                        <div class="card-header" style="text-align:right;padding: 5px 15px;">
                  <asp:Button ID="btnsaveconfig" runat="server" Text="Save" CssClass="button button-primary button-rounded button-small"
-                        OnClick="btnsaveconfig_Click" />
+                        OnClick="btnsaveconfig_Click"  OnClientClick="closeWindow();" />
                     <asp:Button ID="btnclose" runat="server" Text="Close" CssClass="button button-rounded button-small"
                         OnClick="btnclose_Click" style="display:none"/>
               </div>
@@ -270,6 +270,11 @@
             <asp:AsyncPostBackTrigger ControlID="btnsaveconfig" EventName="Click" />
         </Triggers>
     </asp:UpdatePanel>
+         <script> 
+             function closeWindow() {
+                 window.close();
+             }
+         </script>
     <script type="text/javascript">
 
         $("#btnclose").click(function (e) {

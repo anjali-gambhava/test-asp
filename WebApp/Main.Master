@@ -611,7 +611,15 @@
                                     <span class="icon mr-xs flex-none f-color-primary">
                                         <span class=""><i data-feather="upload"></i></span>
                                     </span>
-                                    <span>BoothUpload</span>
+                                    <span>Booth Master</span>
+                                </a>
+                            </li>
+                             <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "Users" ? "border-primary bg-semi-light" : "border-light" %>">
+                                <a href="UsersMaster.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
+                                    <span class="icon mr-xs flex-none f-color-primary">
+                                        <span class=""><i data-feather="upload"></i></span>
+                                    </span>
+                                    <span>Change Password</span>
                                 </a>
                             </li>
                             <%} %>
@@ -651,25 +659,25 @@
                                     </li>
                                     <%if (Session["userType"].ToString().ToLower() == "master_admin")
                                         { %>
-                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HrWizeReport" ? "border-primary bg-semi-light" : "border-light" %>">
+                                   <%-- <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "HrWizeReport" ? "border-primary bg-semi-light" : "border-light" %>">
                                         <a href="HrWizeReport.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
                                             <span class="icon mr-xs flex-none f-color-primary">
                                                 <span class=""><i data-feather="list"></i></span>
                                             </span>
                                             <span>Hour Wize Report</span>
                                         </a>
-                                    </li>
+                                    </li>--%>
                                     <%} %>
                                     <%if (Session["userType"].ToString().ToLower() == "master_admin")
                                         { %>
-                                    <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OnceCount" ? "border-primary bg-semi-light" : "border-light" %>">
+                                   <%-- <li class="border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "OnceCount" ? "border-primary bg-semi-light" : "border-light" %>">
                                         <a href="OnceCount.aspx" class="flex-row p-xs align-center f-size-1xs f-color-secondary no-underline">
                                             <span class="icon mr-xs flex-none f-color-primary">
                                                 <span class=""><i data-feather="list"></i></span>
                                             </span>
                                             <span>Connected Once-Today</span>
                                         </a>
-                                    </li>
+                                    </li>--%>
                                     <%} %>
 
                                     <li class="d-hidden border-l-thik border-b hover:border-primary hover:bg-semi-light <%=Session["MenuName"] == "ConsolidatedVehicleOffline" ? "border-primary bg-semi-light" : "border-light" %>">

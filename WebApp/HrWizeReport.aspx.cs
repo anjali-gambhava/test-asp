@@ -160,7 +160,7 @@ namespace exam
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "");
+            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue,"", "");
 
 
             DataTable dtPdf = new DataTable();
@@ -208,7 +208,7 @@ namespace exam
         protected void btnExportPDF_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "");
+            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "", "");
 
 
             DataTable dtPdf = new DataTable();

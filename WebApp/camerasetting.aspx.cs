@@ -633,13 +633,15 @@ namespace exam
             try
             {
                 msgtype = CommonConfig.MSG_TYPE_SET_CONFIG;
-                ConnectMQTT();
-
+                ConnectMQTT(); 
                 client.Connect(true);
                 publishdone.WaitOne();
                 client.Disconnect();
-               Response.Redirect("ListView1.aspx");
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "window.parent.closeModal();", true);
+               // Response.Redirect("ListView.aspx");
+               // ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "window.parent.closeModal();", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "CloseWindowScript", "window.close();", true);
+                string script = "<script type=\"text/javascript\">window.close();</script>";
+                ClientScript.RegisterStartupScript(this.GetType(), "CloseWindowScript", script);
             }
             catch (Exception ex)
             {

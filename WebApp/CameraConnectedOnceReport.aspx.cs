@@ -77,7 +77,7 @@ namespace exam
         private void GetStopCameraTotalList()
         {
             DataSet ds = new DataSet();
-            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "");
+            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue,"", "");
             gridview1.DataSource = ds.Tables[0];
             gridview1.DataBind();
         }
@@ -168,7 +168,7 @@ namespace exam
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "");
+            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "","");
 
 
             DataTable dtPdf = new DataTable();
@@ -216,7 +216,7 @@ namespace exam
         protected void btnExportPDF_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue, "");
+            ds = _data.GetMapBoothListNew(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue,"", "");
 
 
             DataTable dtPdf = new DataTable();

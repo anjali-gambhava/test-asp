@@ -39,12 +39,14 @@
 <%}else{ %>
    <%--<script src="<%=ResolveUrl("~/js/jwp5/jwplayer.js") %>" type="text/javascript"></script>--%>
    <%-- <script src="<%=ResolveUrl("~/js/jwplayer.8.24.0.js") %>" type="text/javascript"></script>--%>
-<script src="<%=ResolveUrl("~/js/jwp8/jwplayer.js") %>" type="text/javascript"></script>
+<%--<script src="<%=ResolveUrl("~/js/jwp8/jwplayer.js") %>" type="text/javascript"></script>
     <script type="text/javascript">
         jwplayer.key = 'UeOwyRhgpc5Og22j+4YM7uzrcbTwxTV9r+XadsoRGr8=';
 
         jwplayer.logo.file = "https://assets-jpcust.jwpsrv.com/watermarks/3u985tDd.png";
-    </script>
+    </script>--%>
+<script src="<%=ResolveUrl("~/js/flv.min.js") %>" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
 <%} %>
 <%--<script type="text/javascript">
     jwplayer.key = 'UeOwyRhgpc5Og22j+4YM7uzrcbTwxTV9r+XadsoRGr8=';
@@ -55,7 +57,7 @@
 
 <link href="<%=ResolveUrl("~/NewLayout/css/styles.css") %>" rel="stylesheet" type="text/css" /> 
  
- <script src="<%=ResolveUrl("~/js/jwp5/jwplayer.js") %>" type="text/javascript"></script> 
+ <%--<script src="<%=ResolveUrl("~/js/jwp5/jwplayer.js") %>" type="text/javascript"></script> --%>
 <%}%>
 <script src="js/screenfull.js" type="text/javascript"></script>
 <div class="embed-responsive embed-responsive-16by9 mr-thin" style="border-radius: 0px; margin:0px">
@@ -65,8 +67,10 @@
  <%--  <div id='<%=playerid %>'>
         </div> --%>
          
-       <video id="<%=playerid%>" muted autoplay preload="auto" controls style="width:100%">
+       <video id="<%=playerid%>" class="video-js vjs-default-skin" muted autoplay   controls style="width:100%">
+          
     </video> 
+         
 		 <video id="RTMPplayer_<%=playerid %>" autoplay controls style="display:none" class="player"></video>
 
         <div class="playercontrolerr_<%=playerid %> plerror" style="display: none; font-family: Verdana;
@@ -86,11 +90,11 @@
         </div>
         <script type="text/javascript"> 
              <%if (Session["MenuName"] == "GridView" ||Session["MenuName"] == "GridView1") {%>
-            playerType = 'JWPlayer'
+            playerType = 'videoplayer'
            // LoadPlayer1('<%=playerid%>', '<%=playerURL %>', 'lstgrid', '', '<%=accode%>', '<%=psnum%>', '<%=kbps%>', '<%=mobno%>');
             <%}%>
             <%else {%> 
-            playerType = 'JWPlayer'
+            playerType = 'videoplayer'
           
                     <% }%>   
             LoadPlayer('<%=playerid%>', '<%=playerURL %>', 'lstgrid', '', '<%=accode%>', '<%=psnum%>', '<%=kbps%>', '<%=mobno%>');
