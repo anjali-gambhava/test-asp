@@ -7411,5 +7411,122 @@ namespace exam.DAL
             }
             return ds;
         }
+ public DataSet AddInventoryUpdation(int repairid,string districtname, string acname, string vehicleNo, string material, string oldsnno, string newsnno, string accode, int status, string startdate, string enddate,string addedby,string updatedby)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "AddInventoryUpdation";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@districtName", districtname);
+                command.Parameters.AddWithValue("@acName", acname);
+                command.Parameters.AddWithValue("@vehicleId", vehicleNo);
+                command.Parameters.AddWithValue("@material", material);
+                command.Parameters.AddWithValue("@oldsrno", oldsnno);
+                command.Parameters.AddWithValue("@newserno", newsnno);
+                command.Parameters.AddWithValue("@acCode", accode);
+                command.Parameters.AddWithValue("@RepairReplaceId",repairid);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@startDate", startdate);
+                command.Parameters.AddWithValue("@EndDate", enddate);
+                command.Parameters.AddWithValue("@addedby", addedby);
+                command.Parameters.AddWithValue("@updatedby",updatedby);
+                command.CommandType = CommandType.StoredProcedure;
+                //  query = "INSERT INTO [dbo].[inventoryupdatation] VALUES ('" + districtname + "','" + acname + "','" + vehicleNo + "','" + material + "','" + oldsnno + "','" + newsnno + "', '" + accode + "', '" + status + "', '" + startdate + "', '" + enddate + "','" + addedby + "','" + updatedby + "');";
+              
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("AddMaterial()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+public DataSet GetAllInventoryUpdationReport(string FromDt, string ToDt, string districtid, string accode, string vehicleId, int ShiftID)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+
+                string query = string.Empty;
+                query = "GetInventoryUpdationReport";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@FromDt", FromDt);
+                command.Parameters.AddWithValue("@ToDt", ToDt);
+                command.Parameters.AddWithValue("@districtid", districtid);
+                command.Parameters.AddWithValue("@accode", accode);
+                command.Parameters.AddWithValue("@vehicleId", vehicleId);
+                command.Parameters.AddWithValue("@ShiftID", ShiftID);
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetAllInventoryUpdationReport()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+   public DataSet UpdateInventoryUpdation(int id, string districtname, string acname, string vehicleNo, string material, string oldsnno, string newsnno, int status, string startdate, string enddate)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "UPDATE [dbo].[inventoryupdatation] SET [districtname] = '" + districtname + "', [acname] = '" + acname + "', [vehicleNo] = '" + vehicleNo + "', [material] = '" + material + "', [oldsnno] = '" + oldsnno + "', [repaired/replaced] = '" + status + "', [startdate] = '" + startdate + "', [enddate] = '" + enddate + "', [newsnno] = '" + newsnno + "', [date] = CONVERT(Datetime,'" + DateTime.Now.Date.ToString("dd-MM-yyyy") + "',103) WHERE id= " + id + ";";
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("AddMaterial()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+  public DataSet DeleteInventoryUpdation(int id)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "DELETE FROM [dbo].[inventoryupdatation] WHERE Id = " + id;
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("DeleteMaterialById()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
     }
 }
