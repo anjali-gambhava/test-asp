@@ -10566,3 +10566,93 @@ BEGIN
 	  Drop table #TimeDifferenceTable
 	 Drop table #TempTable
 END
+ALTER PROCEDURE [dbo].[AddInventoryUpdation]  
+@districtName Varchar(255),  
+@acName Varchar(255),  
+--@UserName VARCHAR(255),
+@vehicleId  VARCHAR(255),
+@material varchar(255),
+@oldsrno varchar(255),
+@newserno varchar(255),
+@acCode varchar(255),
+@RepairReplaceId int,
+
+@status int,
+@startDate varchar(50),
+@EndDate varchar(50),
+@addedby varchar(50),
+@updatedby varchar(50)
+AS  
+ BEGIN  
+ -- DECLARE @acCode VARCHAR(255), @districtId INT, @toDay DATETIME, @driverName varchar(200), @driverContact varchar(200), @streamname VARCHAR(255), @streamId VARCHAR(255);
+  
+DECLARE @startDateStr VARCHAR(10) = CONVERT(VARCHAR(10), @startDate, 105)
+DECLARE @endDateStr VARCHAR(10) = CONVERT(VARCHAR(10), @endDate, 105)
+ -- SET @toDay = SWITCHOFFSET(GETDATE(), '+05:30');  
+  	
+  if @RepairReplaceId=0 
+  begin
+INSERT INTO [dbo].[inventoryupdatation]
+	VALUES(@districtName,@acName,@vehicleId,@material,@oldsrno,@newserno,@acCode,@status,  CONVERT(DATE, @startDateStr, 105), CONVERT(DATE, @endDateStr, 105),@addedby,'')
+	Declare @msg varchar(500)=''
+	SET @msg ='New Data Added!..'
+	Select @msg as msg
+	end
+  else
+  begin
+	update [inventoryupdatation] set  districtname=@districtName,[acname]= @acName,[vehicleNo]=@vehicleId,
+	[material]=@material,oldsnno=@oldsrno,newsnno=@newserno,
+	accode=@acCode,[repaired/replaced]=@status,
+	startdate=CONVERT(DATE, @startDateStr, 105),enddate=CONVERT(DATE, @endDateStr, 105),AddedBy=@addedby,
+	LastEditedBy=@updatedby
+	where id=@RepairReplaceId
+	Declare @msg1 varchar(500)=''
+	SET @msg1 ='Updated Repair/Replacement!..'
+	Select @msg1 as msg
+  end
+
+end 
+ALTER PROCEDURE [dbo].[GetInventoryUpdationReport]
+(
+	@FromDt VARCHAR(30) = '',
+	@ToDt VARCHAR(30) = '',
+	@districtid varchar(max) = '',
+	@accode varchar(max) = '',
+	@vehicleId varchar(max) = '',
+	@ShiftID INT = 0
+)
+AS
+BEGIN
+	DECLARE @StartDt DATETIME, @StopDt DATETIME
+	IF (@FromDt = '')
+	BEGIN
+		SET @StartDt = null
+	END
+	ELSE
+	BEGIN
+		SET @StartDt = TRY_CONVERT(DATE, @FromDt);
+	END
+	IF (@ToDt = '')
+	BEGIN
+		SET @StopDt = null
+	END
+	ELSE
+	BEGIN
+	--SET @StopDt = CAST(@ToDt as date);
+		SET @StartDt = TRY_CONVERT(DATE, @ToDt);
+	END
+
+	SELECT
+		[id],[districtname] ,[districtname] AS district,[acname] ,[accode] ,[vehicleNo] ,[material] ,[oldsnno] ,[newsnno] ,[repaired/replaced], [startdate], [enddate]
+	FROM [dbo].[inventoryupdatation]
+	WHERE ((@FromDt = '' AND @ToDt = '') OR ([startdate] BETWEEN @StartDt AND @StartDt))
+
+		AND ((@districtid = '') OR ([districtname] = @districtid))
+		AND ((@accode = '') OR ([accode] = @accode))
+		AND ((@vehicleId = '') OR (vehicleNo = @vehicleId))
+		--AND ((@ShiftID = 0) OR (vs.id = @ShiftID))
+	--ORDER BY v.vehicalId, v.DeviceId, v.DistrictId, v.Accode, d.StartTime, d.StopTime, dr.name, fsv.name, vs.name
+	ORDER BY [startdate] DESC,[districtname] ,[accode] ,[vehicleNo] ,[material] ,[oldsnno] ,[newsnno]
+END 
+
+  
