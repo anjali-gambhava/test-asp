@@ -10655,4 +10655,133 @@ BEGIN
 	ORDER BY [startdate] DESC,[districtname] ,[accode] ,[vehicleNo] ,[material] ,[oldsnno] ,[newsnno]
 END 
 
-  
+  Create PROCEDURE [dbo].[SaveGPSLocationDetailsNewDynamic]
+(
+    @deviceId      VARCHAR (100)='',
+    @name          VARCHAR (100)='' ,
+    @deviceImei    VARCHAR (50)  ='',
+    @status        VARCHAR (50) ='' ,
+    @lastUpdate     VARCHAR (50) ='' ,
+   -- @posId         BIGINT,
+    @phone         VARCHAR (50)=''  ,
+    @type          VARCHAR (50)=''  ,
+    @latitude      VARCHAR (50)=''  ,
+    @longitude     VARCHAR (50)=''  ,
+    @speed         VARCHAR (50)=''    ,
+    @course        VARCHAR (50)=''  ,
+    @ignition      VARCHAR (50)=''   ,
+    @totalDistance VARCHAR (50)=''    ,
+    @alarm         VARCHAR (50)=''  
+)
+AS
+BEGIN
+
+	DECLARE @dt DATETIME, @prevStatus varchar(50), @ShiftID INT = 0, @VehicleID INT = 0, @DriverID INT = 0, @FSVID INT = 0
+	DECLARE @isStopped BIT = 0, @prevStopped BIT = 0,@TableName NVARCHAR(50)=''
+
+	SET @TableName = 'GPSLocationList_' + REPLACE(CONVERT(VARCHAR, [dbo].[GETIST](), 111),'/','') 
+ DECLARE @tblSQL NVARCHAR(MAX) = N'         
+ IF NOT EXISTS(SELECT name FROM sys.tables WHERE name='''+@TableName+''' AND type=''U'')            
+ BEGIN            
+   CREATE TABLE [dbo].['+@TableName+']( 
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[deviceId] [varchar](100) NULL,
+	[name] [varchar](100) NULL,
+	[deviceImei] [varchar](100) NULL,
+	[status] [varchar](100) NULL,
+	[lastUpdate] [varchar](100) NULL,
+	[posId] [varchar](100) NULL,
+	[phone] [varchar](100) NULL,
+	[type] [varchar](100) NULL,
+	[latitude] [varchar](100) NULL,
+	[longitude] [varchar](100) NULL,
+	[deviceFixTime] [varchar](100) NULL,
+	[speed] [varchar](100) NULL,
+	[course] [varchar](100) NULL,
+	[ignition] [varchar](100) NULL,
+	[totalDistance] [varchar](100) NULL,
+	[alarm] [varchar](100) NULL,
+	[CreateDate] [datetime] NULL,
+	[boothid] [varchar](100) NULL,
+	[VehicleID] [varchar](100) NULL,
+	[ShiftID] [varchar](100) NULL,
+	[DriverID] [varchar](100) NULL,
+	[FSVID] [varchar](100) NULL,
+	[IsStopped] [varchar](100) NULL,
+	CONSTRAINT [PK_' + @TableName + '] PRIMARY KEY CLUSTERED   
+   (  
+    [id] ASC  
+   )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+  ) END';
+EXEC sp_executesql @tblSQL;
+
+	IF (@lastUpdate = '')
+	BEGIN
+		SET @dt = null
+	END
+	ELSE
+	BEGIN
+		--SET @dt = CAST(@lastUpdate AS DATETIME)
+		DECLARE @datePart VARCHAR(23) = LEFT(@lastUpdate, 23);
+		 
+--SET @dt = CAST(@datePart AS DATETIME);
+     SET @dt = DATEADD(MINUTE, 330, CAST(@datePart AS DATETIME));
+		--SET @dt =  CAST(@lastUpdate AS DATETIME)--CONVERT(DATETIME, @lastUpdate, 121); -- Change format code to 121
+
+	END
+
+	SELECT top 1 @prevStatus = status, @prevStopped = ISNULL(IsStopped,0) FROM GPSLocationList with (nolock) WHERE name = @name ORDER BY id DESC
+
+	IF (SELECT COUNT(1) FROM (SELECT TOP 8 id,latitude,longitude FROM GPSLocationList with (nolock) WHERE name = @name ORDER BY id DESC) tbl WHERE latitude = @latitude AND longitude = @longitude) = 8
+	BEGIN
+		SET @isStopped = 1
+	END
+
+	SET @ShiftID = [dbo].[GetCurrentShift]()
+		
+	--SELECT
+	--	TOP 1 @VehicleID = vehicalId, @DriverID = vsm.StaffId
+	--FROM vehicalDetail vd WITH (NOLOCK)
+	--INNER JOIN Vehicle_Staff_Mapping vsm WITH (NOLOCK) ON vd.vehicalId = vsm.VehicleId AND vsm.AssignDate = CAST(CONVERT(DATETIME, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30')) AS DATE)
+	--INNER JOIN Staff_Info si WITH (NOLOCK) ON si.Id = vsm.StaffId AND si.Type = 1
+	--WHERE vd.Vehicle_No = @name AND vsm.ShiftID = @ShiftID
+
+	Select TOP 1 @VehicleID=id,@DriverID=operatorid from booth WITH (NOLOCK)
+	Where location=@name
+
+
+	--SELECT
+	--	TOP 1 @FSVID = vsm.StaffId
+	--FROM vehicalDetail vd WITH (NOLOCK)
+	--INNER JOIN Vehicle_Staff_Mapping vsm WITH (NOLOCK) ON vd.vehicalId = vsm.VehicleId AND vsm.AssignDate = CAST(CONVERT(DATETIME, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30')) AS DATE)
+	--INNER JOIN Staff_Info si WITH (NOLOCK) ON si.Id = vsm.StaffId AND si.Type = 2
+	--WHERE vd.Vehicle_No = @name AND vsm.ShiftID = @ShiftID
+
+    INSERT INTO GPSLocationList(deviceId, name, deviceImei,status,lastUpdate,phone,type,latitude,longitude,deviceFixTime,speed,course,ignition,totalDistance,alarm,VehicleID,ShiftID,DriverID,FSVID,createdate,IsStopped)
+    VALUES(@deviceId, @name, @deviceImei,@status,@dt,@phone,@type,@latitude,@longitude,NULL,@speed,@course,@ignition,@totalDistance,@alarm,@VehicleID,@ShiftID,@DriverID,@FSVID,CONVERT(DATETIME, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30')),@isStopped)
+
+	--UPDATE location_info set longitude=@longitude,latitude=@latitude, UpdateDatetime=@dt where VehicleNo=@name
+	Update booth set longitude=@longitude,latitude=@latitude,updatedDate=@dt where location=@name
+
+	IF (@lastUpdate != '')
+	BEGIN
+		DECLARE @streamid INT = 0
+		SELECT DISTINCT TOP 1 @streamid = sl.id FROM booth b WITH (NOLOCK)
+		INNER JOIN streamlist sl WITH (NOLOCK) ON sl.id = b.streamid
+		WHERE
+			b.location = @name
+
+		END
+	
+	IF ((@prevStatus = 'online' AND @status = 'offline') OR (@prevStopped = 0 AND @isStopped = 1)) --AND NOT EXISTS(SELECT 1 FROM GPSStopDuration with (nolock) WHERE deviceid = @deviceId AND CAST(CreateDate AS DATE) = CAST(GETDATE() AS DATE)))
+	BEGIN
+		INSERT INTO GPSStopDuration(deviceid, StartTime, VehicleID, ShiftID, DriverID, FSVID,createdate)
+		VALUES(@deviceId, @dt, @VehicleID, @ShiftID, @DriverID, @FSVID,CONVERT(DATETIME, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30')))
+	END
+	IF ((@prevStatus = 'offline' AND @status = 'online') OR (@prevStopped = 1 AND @isStopped = 0)) --AND EXISTS(SELECT 1 FROM GPSStopDuration with (nolock) WHERE deviceid = @deviceId AND CAST(CreateDate AS DATE) = CAST(GETDATE() AS DATE)))
+	BEGIN
+		UPDATE GPSStopDuration SET StopTime = @dt, ModifyDate = CONVERT(DATETIME, SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30'))
+		WHERE deviceid = @deviceId AND CAST(CreateDate AS DATE) = CAST(SWITCHOFFSET(SYSDATETIMEOFFSET(), '+05:30') AS DATE) AND StopTime IS NULL
+	END
+END
+
