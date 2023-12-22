@@ -441,7 +441,24 @@
                   <p>Video BitRate Report</p>
                 </a>
               </li> 
-                  
+                <li class="nav-item">
+                <a href="IncedentReport.aspx" class="nav-link" id="IncedentReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Incedent Report</p>
+                </a>
+              </li>
+                 <li class="nav-item">
+                <a href="InventoryUpdationReport.aspx" class="nav-link" id="InventoryReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>InventoryUpdation Report</p>
+                </a>
+              </li>
+                 <li class="nav-item">
+                <a href="InventoryUpdationReport.aspx" class="nav-link" id="HelpDeskEntryReport">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>HelpDesk Entry Report</p>
+                </a>
+              </li>    
                 <%if (Session["userType"].ToString().ToLower() == "master_admin"  || Session["userType"].ToString().ToLower() == "vmukti_internal"  )
                                 { %>
                 <li class="nav-item" style="display:none">
@@ -488,6 +505,16 @@
                   <p>Change Password</p>
                 </a>
               </li>
+   <%if (Session["userType"].ToString().ToLower() == "master_admin" || Session["userType"].ToString().ToLower() == "admin" || Session["userType"].ToString().ToLower() == "helpdesk_team"
+                                                         || Session["userType"].ToString().ToLower() == "helpdesk_manager" || Session["userType"].ToString().ToLower() == "vmukti_internal")
+                                        { %>
+                                    <li class="nav-item">
+                <a href="OfflineCameraNotification.aspx" class="nav-link" id="helpdeskentry">
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Helpdesk Entry</p>
+                </a>
+              </li>
+                                    <%} %> 
                       </ul>
             <%} %>
         </ul>
