@@ -7528,5 +7528,116 @@ public DataSet GetAllInventoryUpdationReport(string FromDt, string ToDt, string 
             }
             return ds;
         }
+  public DataSet GetStopVehicleList(string FromDt, string ToDt, string  districtid, string accode, string vehicleId,string text)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = "HelpDeskReport";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@FromDt", FromDt);
+                command.Parameters.AddWithValue("@ToDt", ToDt);
+                command.Parameters.AddWithValue("@districtid", districtid);
+                command.Parameters.AddWithValue("@accode", accode);
+                command.Parameters.AddWithValue("@vehicleId", vehicleId);
+                command.Parameters.AddWithValue("@text", text);
+                //command.Parameters.AddWithValue("@ShiftID", ShiftID);
+
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, true, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetStopVehicleList()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+    public DataSet GetCameraOfflineListForPopup(string FromDt, string ToDt, string district, string accode, string vehicleNo, int UserID = 0)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = string.Empty;
+                query = "GetCameraOfflineListForPopup";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@FromDt", FromDt);
+                command.Parameters.AddWithValue("@ToDt", ToDt);
+                command.Parameters.AddWithValue("@district", district);
+                command.Parameters.AddWithValue("@accode", accode);
+                command.Parameters.AddWithValue("@vehicleno", vehicleNo);
+                command.Parameters.AddWithValue("@UserID", UserID);
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+                ds = FilterDataByAccess(ds, true, true);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetShiftWizeVehicleByAcCode()--> " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
+ public void SaveCameraStopReasonsByID(int ID, string Reason)
+        {
+            SqlConnection SQLconn = new SqlConnection(connstr);
+            try
+            {
+                string query = query = "SaveCameraStopReasonsByID";
+                SqlCommand SQLcommand = new SqlCommand(query, SQLconn);
+                SQLcommand.CommandType = CommandType.StoredProcedure;
+                SQLcommand.Parameters.Add(new SqlParameter("@id", ID));
+                SQLcommand.Parameters.Add(new SqlParameter("@Reason", Reason));
+                SQLconn.Open();
+                SQLcommand.ExecuteNonQuery();
+                SQLconn.Close();
+            }
+            catch (Exception ex)
+            {
+                Common.Log("SaveGPSStopReasonsByID()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                SQLconn.Close();
+            }
+        }
+ public DataSet GetReasonListForCameraPopup()
+        {
+            DataSet ds = new DataSet();
+            SqlConnection conn = new SqlConnection(connstr);
+            try
+            {
+                string query = "GetReasonListForCameraPopup";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                Common.Log("GetReasonListForCameraPopup()--> " + ex.Message);
+                throw new ApplicationException(ex.Message, ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ds;
+        }
     }
 }
