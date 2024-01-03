@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" 
     CodeBehind="GridView.aspx.cs" Inherits="exam.GridView" %>
-<%@ Register TagPrefix="ucplayer" TagName="player" Src="~/Module/player.ascx" %> 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
- <%--<script src="<%=ResolveUrl("~/js/flv.min.js") %>" type="text/javascript"></script> --%>
+<%--<%@ Register TagPrefix="ucplayer" TagName="player" Src="~/Module/player.ascx" %> --%>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> 
     <style>
         .form-group {
     margin-bottom: 0px;
@@ -26,10 +27,22 @@
        .navbar{
            padding:0px;
        }
+       .loader {
+    display: none;
+}
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script> 
+
+   <%-- <script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>  
+     <script src="<%=ResolveUrl("~/js/nodeplayer/NodePlayer.min.js") %>" type="text/javascript"></script> 
+    <link href="video-js-8.5.2/video-js.min.css" rel="stylesheet" />--%>
     <script type="text/javascript" >
-        $(document).ready(function () { 
+        $(document).ready(function () {
+
+            //$('#sidebarcollapse').prop('checked', true);
+            //if ($('#sidebarcollapse').is(':checked')) {
+            //    $('body').addClass('sidebar-collapse')
+            //    $(window).trigger('resize') 
+            //}
             $('#sidebarmini1').prop('checked', false);
             if ($('body').hasClass('sidebar-mini')) {
                 $('body').removeClass('sidebar-mini')
@@ -37,7 +50,14 @@
             else {
                 $('body').addClass('sidebar-mini')
             }
-                 
+
+            //$('#sidebarmini').prop('checked', false);
+            //if ($('body').hasClass('sidebar-mini-md')) {
+            //    $('body').removeClass('sidebar-mini-md')
+            //}
+            //else {
+            //    $('body').addClass('sidebar-mini-md')
+            //}
         });
     </script>
     </asp:Content>
@@ -66,29 +86,24 @@
                                                 OnSelectedIndexChanged="ddlAssembly_SelectedIndexChanged" Width="150px">
                                             </asp:DropDownList>
                           </div>
-                       <div class="form-group">
-                    <asp:DropDownList ID="ddllocationType" runat="server" CssClass="form-control"
-                                                    AutoPostBack="true" OnSelectedIndexChanged="ddllocationType_SelectedIndexChanged">
-                                                        <asp:ListItem Text="ALL" Value="" Selected="True" Width="100px" />
-                                                        <asp:ListItem Text="Indoor" Value="inside" />
-                                                        <asp:ListItem Text="Outdoor" Value="outside" /> 
-                                                </asp:DropDownList>
-                          </div>
+                     <%if (Session["username"].ToString().ToLower() == "jigul@vmukti.com" ||
+                            Session["username"].ToString().ToLower() == "madhya_pradesheci"  )
+                         { %>
                     <div class="form-group">
                   <asp:DropDownList ID="ddlgrid" runat="server" CssClass="form-control" AutoPostBack="true"
                                                 OnSelectedIndexChanged="ddlgrid_SelectedIndexChanged">
                                                 <asp:ListItem Value="3x2">3x2</asp:ListItem> 
-                                                <asp:ListItem Value="1x2">1x2</asp:ListItem>
-                                                <asp:ListItem Value="2x1">2x1</asp:ListItem>
-                                                <asp:ListItem Value="2x2">2x2</asp:ListItem>
-                                                <asp:ListItem Value="3x3">3x3</asp:ListItem>
+                                               <%-- <asp:ListItem Value="1x2">1x2</asp:ListItem>--%>
+                                               <%-- <asp:ListItem Value="2x1">2x1</asp:ListItem>--%>
+                                               <%-- <asp:ListItem Value="2x2">2x2</asp:ListItem>
+                                                <asp:ListItem Value="3x3">3x3</asp:ListItem>--%>
                                                 <asp:ListItem Value="4x3">4x3</asp:ListItem>
-                                                <asp:ListItem Value="4x4">4x4</asp:ListItem>
-                                                <asp:ListItem Value="6x4">6x4</asp:ListItem>
-                                          
+                                               <%-- <asp:ListItem Value="4x4">4x4</asp:ListItem>--%>
+                                                <asp:ListItem Value="6x4">6x4</asp:ListItem> 
                                             </asp:DropDownList>
                           </div>
-                    <div class="form-group">
+                    <%} %>
+                   <div class="form-group">
                   <asp:DropDownList ID="ddlTimer" runat="server" CssClass="form-control" AutoPostBack="true"
                                                 OnSelectedIndexChanged="ddlTimer_SelectedIndexChanged">
                                                  <asp:ListItem Value="0">NONE</asp:ListItem>
@@ -101,7 +116,7 @@
                                             </asp:DropDownList>
                           </div>
                        <div class="form-group">
-                   <asp:TextBox ID="strm_txtBox" runat="server" AutoPostBack="true" CssClass="form-control"
+                   <asp:TextBox ID="strm_txtBox" runat="server"  CssClass="form-control"
                                                    Width="150px">
                                                 </asp:TextBox>
                           </div>
@@ -115,48 +130,61 @@
                                 <Triggers>
                                     <asp:PostBackTrigger ControlID="ddlDistrict" />
                                     <asp:PostBackTrigger ControlID="ddlAssembly" />
-                                    <asp:PostBackTrigger ControlID="ddllocationType" />
                                     <asp:PostBackTrigger ControlID="ddlgrid" />
                                     <asp:PostBackTrigger ControlID="ddlTimer" />
-                                    <asp:PostBackTrigger ControlID="btnsearch" />
+                                      <asp:PostBackTrigger ControlID="btnsearch" />
                                 </Triggers>
                                 </asp:UpdatePanel>
                  <asp:Timer ID="Timer1" runat="server" Interval="45000" OnTick="Timer1_Tick" Enabled="true">
     </asp:Timer>
                  
                   <div class="col-12 row" style="padding:0px">
-            <asp:ListView ID="listview1" runat="server">
-                                        <ItemTemplate> 
-                                              <div class="col-<%=12/gridcolumns %> pb-xs" style="padding:2px">
-                                                <div class="card" style="margin-bottom:1px" >
-                                                   <ucplayer:player ID="playeritem" runat="server" playerURL='<%#Bind("servername") %>'
-                                                    playerid='<%# string.Concat(Container.DataItemIndex.ToString(), "_", Eval("streamname"))%>'
-                                                    flag='<%#Bind("statusFlag") %>' sid='<%#Bind("id") %>' streamnamebkp='<%#Bind("streamnamebkp") %>'
-                                                     accode='<%#Bind("accode") %>' psnum='<%#Bind("PSNum") %>' kbps='<%#Bind("kbpsp") %>'
-                                                      mobno='<%#Bind("OperatorNumber") %>' /> 
-                                                       <div class="px-thin" style="position:relative;background:#000; font-size:12px">
-                                                             <div class="col-12 md:col-12 col12">
-                                                               <p class="data word-break-all" style="margin-bottom:0px">
-                                        <span style="color: #FFF;"><%#(Eval("district").ToString()) %>,</span> /
-                                        <span style="color: #FFF;"><%#(Eval("acname").ToString()) %>,</span>
-                                       <span style="color: #FFF;"><%#(Eval("PSNum").ToString()) %>,</span>
-                                        (<span style="color: #FFF;" title='<%# Eval("location") %>'><%#(Eval("location").ToString().Length >15 ? Eval("location").ToString().Substring(0,10) + "...": Eval("location").ToString()) %></span>)
-                                        -<span style="color: #FFF;"title='<%# Eval("streamname") %>'><%#(Eval("streamname").ToString().Length >18 ? Eval("streamname").ToString().Substring(0,17) + "...": Eval("streamname").ToString()) %></span>
-                                        </p>
-                                                      </div>  
-                                                                    </div>
-                                                      </div> 
-                                            </div>  
-                                        </ItemTemplate> 
-                                        <EmptyDataTemplate>
-                                            <div align="center">
-                                                <h4>
-                                                    <label class="text-center text-danger">
-                                                        No Data Found</label>
-                                                </h4>
-                                            </div>
-                                        </EmptyDataTemplate>
-                                    </asp:ListView>
+           <asp:ListView ID="listview1" runat="server">
+    <ItemTemplate>
+        <div class="col-<%=12/gridcolumns %> pb-xs" style="padding:2px">
+            <div class="card" style="margin-bottom:1px">
+                 <div id='<%# "div_" + Eval("streamname") + "_" + Container.DataItemIndex %>' class="ptzcard" data-servername='<%# Eval("servername") %>'>
+                  <video id='<%# "canvas_" + Eval("streamname") + "_" + Container.DataItemIndex %>' class="video-canvas" muted controls style="width:100%"></video>
+ 
+                </div>                                  
+                <div class="px-thin " style="position: relative; background: #0d6c99; font-size: 12px">
+                     <div class="col-12 md:col-12 col12 row" style="padding:0px;">
+                     
+                    <div class="col-11 md:col-11 col11" style="padding:0px;">   
+                    <p class="data word-break-all" style="margin-bottom: 0px; text-align: center;">
+                            <span style="color: #FFF;"><%#(Eval("district").ToString()) %>/</span>
+                            <span style="color: #FFF;"><%#(Eval("acname").ToString()) %>/</span>
+                            <span style="color: #FFF;"><%#(Eval("psnum").ToString()) %>/</span>
+                            <span style="color: #FFF;"><%#(Eval("location").ToString()) %></span><br />
+                            <span style="color: #FFF;" title='<%# Eval("streamname") %>'><%#(Eval("streamname").ToString().Length > 18 ? Eval("streamname").ToString().Substring(0, 17) + "..." : Eval("streamname").ToString()) %></span>
+                            <span style="color: #FFF;"><%# Eval("OperatorName").ToString() + " / " + Eval("OperatorNumber").ToString() %></span>
+                        </p>
+                    </div>
+                         <div class="col-1 md:col-1 col1" style="padding:5px 0px; text-align:right">   
+                         <a href="cameraset.aspx?did=<%# Eval("streamname") %>&prourl=<%# Eval("prourl") %>"
+                                title="Camera Settings" target="_blank" 
+                                onclick="openCenteredWindow(this.href, 'CameraSet', 600, 450); return false;"
+                                style="color: #FFF">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+                    </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </ItemTemplate>
+    <EmptyDataTemplate>
+        <div align="center">
+            <h4>
+                <label class="text-center text-danger">
+                    No Data Found
+                </label>
+            </h4>
+        </div>
+    </EmptyDataTemplate>
+</asp:ListView>
+
+                      
+
             </div>
              <%-- </div>--%>
                 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
@@ -189,8 +217,52 @@
                             <asp:PostBackTrigger ControlID="rptPages" />
                                 </Triggers>
                     </asp:UpdatePanel>
-     <script type="text/javascript"> 
-         $('#viewmenu').addClass('active');
-         $('#gridviewmenu').addClass('active');
-     </script>
+   
+        <script src="video-js-8.5.2/flv.min.js"></script>
+         <script type="text/javascript">
+             // Loop through the video elements
+             var videoElements = document.querySelectorAll('.video-canvas');
+             videoElements.forEach(function (video, index) {
+                 var streamname = video.id.split("_")[1];
+                 var servername = $(video).closest('.ptzcard').data('servername'); 
+
+                 // Load and play the video
+                 LoadNodePlayer(streamname, servername, video);
+             });
+
+             function LoadNodePlayer(streamname, servername, video) {
+                 const customURL = "wss://" + servername + ":443/live-record/" + streamname + ".flv";
+                 var flvPlayer = flvjs.createPlayer({
+                     type: 'flv',
+                     isLive: true,
+                     url: customURL,
+                     hasAudio: true,
+                     hasVideo: true,
+                     enableWorker: true,
+                     lazyLoadMaxDuration: 1,
+                     lazyLoadMaxBW: 500,
+                     lazyLoadRecoverDuration: 1,
+                     autoplay: true,
+                      
+                 });
+
+                 flvPlayer.attachMediaElement(video);
+                 flvPlayer.load();
+                 flvPlayer.play();
+
+             }
+         </script>
+         <script>
+             function openCenteredWindow(url, title, width, height) {
+                 const left = (window.innerWidth - width) / 2;
+                 const top = (window.innerHeight - height) / 2;
+                 const options = `width=${width},height=${height},left=${left},top=${top}`;
+                 window.open(url, title, options);
+             }
+         </script>
+          <script type="text/javascript"> 
+              $('#viewmenu').addClass('active');
+              $('#gridviewmenu').addClass('active');
+          </script>  
+
 </asp:Content>
