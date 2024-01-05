@@ -97,8 +97,9 @@ padding:0px;
 }
         @media (min-width: 992px) {
             .dashboarddiv {
-                flex: 0 0 16.50%;
-                max-width: 16.50%;
+                flex: 4 0 16.50%;
+                /*max-width: 16.50%;*/
+                max-width:24.50%;    
             }
         }
     </style>  
@@ -196,21 +197,12 @@ padding:0px;
         <div class="row">
             <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
             <!-- small box -->
-            <div class="small-box" style="background-color:#ffc107;color:#fff">
+
+            <div class="small-box" style="background-color:#236a8d!important;color:#fff">
               <div class="inner">
-                 <h4 style="text-align:center">
-                <a id="TotalStreamBooth" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
+                 <h4 style="text-align:center"><a id="TotalStreamBooth" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                <a class="dashboardcardper" id="A2" href="#" tabindex="0" runat="server"></a></h4>
-                <p style="text-align:center">Total Camera</p>
-                  
-                  <h6 class="row">
-    <span class="col-md-6">
-          Indoor:<a id="TotalStreamBoothin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-    </span>
-    <span class="col-md-6">
-        Outdoor:<a id="TotalStreamBoothout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-    </span>
-</h6>
+                <p style="text-align:center">Total</p>
               </div>
              <div class="icon">
                 <i class="fas fa-person-booth"></i>
@@ -220,17 +212,11 @@ padding:0px;
           </div>
                <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-success" style="background-color:#68b187!important">
               <div class="inner">
                <h4><a id="livecount" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="livecountper" href="#" tabindex="0" runat="server"></a></h4> 
-                <p style="text-align:center">Streaming Live</p>
-                   <h6 class="row">
-    <span class="col-md-6">
-                      Indoor:<a id="livecountin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-      </span>
-    <span class="col-md-6">Outdoor:<a id="livecountout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                  </span></h6>
+                <p style="text-align:center">Online</p>
               </div>
               <div class="icon">
                <i class="fa fa-video-camera"></i>
@@ -240,16 +226,11 @@ padding:0px;
           </div>
              <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
             <!-- small box -->
-            <div class="small-box" style="background-color:#1c3480">
+            <div class="small-box" style="background-color:#91C8E4!important">
               <div class="inner">
                 <h4><a id="connectedonce" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="connectedonceper" href="#" tabindex="0" runat="server"></a></h4> 
-                <p style="text-align:center; color:#fff;">Live-Once</p>
-                  <h6  style="color:#fff;" class="row"> <span class="col-md-6">
-                      Indoor:<a id="connectedoncein" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-               </span>
-    <span class="col-md-6">Outdoor:<a id="connectedonceout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                </span></h6>
+                <p style="text-align:center; color:#fff;">Connected-Once</p>
               </div>
            <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -257,21 +238,13 @@ padding:0px;
               <%--   <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--%>
             </div>
           </div>
-          <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
+          <div class="col-lg-2 col-6 p-r0 dashboarddiv " style="display:none;">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-info" style="background-color:#d54d4d!important;">
               <div class="inner">
                 <h4><a id="lastonehours" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="lastonehoursper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center">Online Last 60 Minutes</p>
-                   <h6 class="row">
-    <span class="col-md-6">
-        Indoor: <a id="lastonehoursin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-    </span>
-    <span class="col-md-6">
-        Outdoor: <a id="lastonehoursout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-    </span>
-</h6>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -280,18 +253,13 @@ padding:0px;
             </div>
           </div>
           <!-- ./col -->
-           <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
+           <div class="col-lg-2 col-6 p-r0 dashboarddiv " style="display:none;">
             <!-- small box -->
             <div class="small-box" style="background-color:#8092cb">
               <div class="inner">
                 <h4><a id="lasttwohours" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="lasttwohoursper" href="#" tabindex="0" runat="server"></a></h4> 
                 <p style="text-align:center; color:#fff">Online Last 120 Minutes</p>
-                <h6  style="color:#fff;" class="row"> <span class="col-md-6">
-                      Indoor:<a id="lasttwohoursin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                </span>
-    <span class="col-md-6"> Outdoor:<a id="lasttwohoursout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                  </span> </h6>
               </div>
            <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -305,16 +273,11 @@ padding:0px;
           <!-- ./col -->
          <div class="col-lg-2 col-6 p-r0 dashboarddiv ">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-danger" style="background-color:#d54d4d!important">
               <div class="inner">
                  <h4><a id="offlinecount" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
                 <a class="dashboardcardper" id="offlinecountper" href="#" tabindex="0" runat="server"></a></h4> 
-                <p style="text-align:center">Offine Cameras</p>
-                <h6  style="color:#fff;" class="row"> <span class="col-md-6">
-                      Indoor:<a id="offlinecountin" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                   </span>
-    <span class="col-md-6">Outdoor:<a id="offlinecountout" href="#" tabindex="0" runat="server" class="dashboardcard"></a>
-                 </span> </h6>
+                <p style="text-align:center">Inactive</p>
               </div>
              <div class="icon">
                 <i class="fas fa-video-slash"></i>
@@ -333,58 +296,45 @@ padding:0px;
         <div class="row">
             
            <!-- Left col -->
-          <section class="col-lg-6 connectedSortable p-r0">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-line mr-1"></i>
-                 Online Offline Camera Line Chart
-                </h3>
-                <div class="card-tools"> 
-                </div>
-              </div><!-- /.card-header -->
-              <div class="card-body" style="padding:0px">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
-                     <%-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>--%>
-                      <canvas id="Chart1" ></canvas>
-                   </div>
-                 
-                </div>
-              </div><!-- /.card-body -->
+        <section class="col-lg-6 connectedSortable p-r0">
+    <div class="card" style="height: 400px;"> <!-- Set a fixed height for the card -->
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-chart-line mr-1"></i>
+                Online Offline Camera Line Chart
+            </h3>
+            <div class="card-tools"> 
             </div>
-            <!-- /.card -->
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-6 connectedSortable p-r0">
-
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-bar mr-1"></i>
-                 District Wise BarChart Camera Online Offline
-                </h3>
-                <div class="card-tools">
-                  
+        </div><!-- /.card-header -->
+        <div class="card-body" style="padding:0px">
+            <div class="tab-content p-0">
+                <div class="chart tab-pane active" id="revenue-chart" style="position: relative;height: 320px;">
+                    <canvas id="Chart1"></canvas>
                 </div>
-              </div><!-- /.card-header -->
-              <div class="card-body" style="padding:0px">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart1"
-                       style="position: relative; height:auto;"> 
-                      <canvas id="BarChart" width="590" height="270"></canvas>
-                   </div> 
-                </div>
-              </div><!-- /.card-body -->
             </div>
+        </div><!-- /.card-body -->
+    </div><!-- /.card -->
+</section>
+<section class="col-lg-6 connectedSortable p-r0">
+    <div class="card" style="height: 400px;"> <!-- Set a fixed height for the card -->
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-chart-bar mr-1"></i>
+                District Wise BarChart Camera Online Offline
+            </h3>
+            <div class="card-tools">
+            </div>
+        </div><!-- /.card-header -->
+        <div class="card-body" style="padding:0px">
+            <div class="tab-content p-0">
+                <div class="chart tab-pane active" id="revenue-chart1" style="position: relative;height: 320px;">
+                    <canvas id="BarChart"></canvas>
+                </div>
+            </div>
+        </div><!-- /.card-body -->
+    </div>
+</section>
 
-             
-          </section>
 
           <!-- right col -->
         </div> 
@@ -450,66 +400,42 @@ padding:0px;
        /* });*/
     </script>
     <%
-        var distList = string.Empty;
-        var chart2num = string.Empty;
-        var chart3num = string.Empty;
-        var chart4num = string.Empty;
-        var chart5num = string.Empty;
-
-        for(int i = 0; i < BarGraph.Tables[0].Rows.Count; i++)
-        {
-            var row = BarGraph.Tables[0].Rows[i];
-            if (i % 2 == 0)
-            {
-                chart2num += "'" + row["online"].ToString() + "',";
-                chart2num += "'',";
-                chart3num += "'" + row["offline"].ToString() + "',";
-                chart3num += "'',";
-                distList += "'" + row[0].ToString() + "','',"; 
-            } 
-            else
-            { 
-                chart4num += "'',";
-                chart4num += "'" + row["online"].ToString() + "',";
-                chart5num += "'',";
-                chart5num += "'" + row["offline"].ToString() + "',";
-
-            }
-        }
+                    var distList = string.Empty;
+                    var chart2num = string.Empty;
+                    var chart3num = string.Empty;
+                    var chart4num = string.Empty;
+                    var chart5num = string.Empty; 
+                    for(int i = 0; i < BarGraph.Tables[0].Rows.Count; i++)
+                    {
+                        var row = BarGraph.Tables[0].Rows[i]; 
+                        chart2num += "'" + row["online"].ToString() + "',";
+                        chart2num += "'',";
+                        chart3num += "'" + row["offline"].ToString() + "',";
+                        chart3num += "'',";
+                        distList += "'" + row[0].ToString() + "','',";  
+                    }
                 %> 
   
     <script type="text/javascript">
-       
+        debugger;
         const barCtx = document.getElementById('BarChart').getContext('2d');
         const barLabels = [<%= distList.Length > 0 ? distList.Remove(distList.Length - 1) : "" %> ];
         const barData = {
             labels: barLabels,
             datasets: [
                 {
-                    label: 'Online Indoor',
+                    label: 'Online Camera',
                     data: [<%= chart2num.Length > 0 ? chart2num.Remove(chart2num.Length - 1) : "" %>],
-                   backgroundColor: "Green",
-                   barThickness: 7
-               },
-               {
-                   label: 'Offline Indoor',
-                   data: [<%= chart3num.Length > 0 ? chart3num.Remove(chart3num.Length - 1) : ""%>],
-                                    backgroundColor: "Red",
+                    backgroundColor: "#68b187",
                                     barThickness: 7
                                 },
-                  {
-                      label: 'Online Outdoor',
-                      data: [<%= chart4num.Length > 0 ? chart4num.Remove(chart4num.Length - 1) : ""%>],
-                      backgroundColor: "Yellow",
-                      barThickness: 7
-                  },
-                 {
-                     label: 'Offline Outdoor',
-                   data: [<%= chart5num.Length > 0 ? chart5num.Remove(chart5num.Length - 1) : ""%>],
-                   backgroundColor: "Blue",
-                   barThickness: 7
-               }
-           ]
+                                {
+                                    label: 'Inactive Camera',
+                                    data: [<%= chart3num.Length > 0 ? chart3num.Remove(chart3num.Length - 1) : ""%>],
+                                    backgroundColor: "#d54d4d",
+                    barThickness: 7
+                }
+            ]
         };
         const barChart = new Chart(barCtx, {
             type: 'bar',
@@ -521,20 +447,31 @@ padding:0px;
                         text: ''
                     },
                 },
+              
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     xAxes: [{
                         stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 115,
+                            minRotation: 60,
+                            
+                            
+                        }
                     }],
                     yAxes: [{
-                        stacked: true
+                        stacked: true,
+                        beginAtZero: true,
                     }]
                 }
             }
         });
         setInterval(function () {
             window.location.reload();
-        }, 90000)
+        }, 60000)
     </script>  
 
     <script type="text/javascript">
@@ -565,8 +502,8 @@ padding:0px;
                     datasets: [{
                         label: 'Online',
                         data: data.map(d => d.y),
-                        backgroundColor: 'rgba(60, 179, 113)',
-                        borderColor: 'rgba(60, 179, 113)',
+                        backgroundColor: '#68b187',
+                        borderColor: '#68b187',
                         borderWidth: 0.5
                         //,fill: 'origin'
                     },
@@ -574,8 +511,8 @@ padding:0px;
                         
                         label: 'Offline',
                         data: data.map(d => d.y1),
-                        backgroundColor: 'rgba(255,0,0)',
-                        borderColor: 'rgba(255,0,0)',
+                        backgroundColor: '#d54d4d',
+                        borderColor: '#d54d4d',
                         borderWidth: 1
                         //, fill: 'origin'
                         }
@@ -584,8 +521,8 @@ padding:0px;
 
                             label: 'Live-Once',
                             data: data.map(d => d.y2),
-                            backgroundColor: 'rgba(28,52,128)',
-                            borderColor: 'rgba(28,52,128)',
+                            backgroundColor: '#91C8E4',
+                            borderColor: '#91C8E4',
                             borderWidth: 1
                             //, fill: 'origin'
                         }]

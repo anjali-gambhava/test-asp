@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+using System.Web.Services;
 
 namespace exam
 {
@@ -23,7 +24,7 @@ namespace exam
     {
         db_data _boothlist = new db_data();
         db_data_admin _dbadmin = new db_data_admin();
-        
+
         public string utypeall
         {
             get
@@ -76,7 +77,9 @@ namespace exam
                     Response.Redirect("Default.aspx");
                 }
                 Session["MenuName"] = "BoothUpload";
-
+                ScriptManager1.RegisterPostBackControl(this.btnupload);
+                ScriptManager1.RegisterPostBackControl(this.ddlDistrict);
+                ScriptManager1.RegisterPostBackControl(this.ddlAssembly);
                 DataSet ds = _boothlist.GetUserData(Page.User.Identity.Name);
                 usertype = ds.Tables[0].Rows[0]["usercode"].ToString();
                 stateid = Convert.ToInt32(ds.Tables[0].Rows[0]["stateid"]);
@@ -100,12 +103,14 @@ namespace exam
                     LoadMasterPC();
 
                 }
+               
             }
             catch (Exception ex)
             {
                 Common.Log("Page_Load() -- >  " + ex.Message);
             }
         }
+        [System.Web.Services.WebMethod]
         private void LoadBooth()
         {
             try
@@ -231,15 +236,15 @@ namespace exam
                 else
                 {
                     LoadPC(ddlDistrict.SelectedValue, usertype);
-                    ddlDistrict.Style.Add("background", "#dc7c3c");
-                    ddlDistrict.Style.Add("color", "#fff");
+                    ddlDistrict.Style.Add("background", "#007bff");
+                    ddlDistrict.Style.Add("color", "#FFFFFF");
                 }
                 if (ddlDistrict.SelectedValue == "")
                 {
                     ddlDistrict.Style.Add("background", "#fff");
                     ddlDistrict.Style.Add("color", "#333");
-                    ddlAssembly.Style.Add("background", "#fff");
-                    ddlAssembly.Style.Add("color", "#333");
+                    ddlAssembly.Style.Add("background", "#007bff");
+                    ddlAssembly.Style.Add("color", "#FFFFFF");
                 }
                 LoadBooth();
             }
@@ -283,8 +288,8 @@ namespace exam
                 }
                 else
                 {
-                    ddlCameraType.Style.Add("background", "#dc7c3c");
-                    ddlCameraType.Style.Add("color", "#fff");
+                    ddlCameraType.Style.Add("background", "#007bff");
+                    ddlCameraType.Style.Add("color", "#FFFFFF");
                 }
                 LoadBooth();
             }
@@ -301,12 +306,13 @@ namespace exam
                 if (ddlAssembly.SelectedValue == "")
                 {
                     ddlAssembly.Style.Add("background", "#fff");
-                    ddlAssembly.Style.Add("color", "#333");
+                    ddlAssembly.Style.Add("color", "#FFFFFF");
                 }
                 else
                 {
-                    ddlAssembly.Style.Add("background", "#dc7c3c");
-                    ddlAssembly.Style.Add("color", "#fff");
+                    ddlAssembly.Style.Add("background", "#007bff");
+                    ddlAssembly.Style.Add("color", "#FFFFFF");
+
                 }
 
                 LoadBooth();
@@ -346,6 +352,7 @@ namespace exam
         {
             try
             {
+
                 int streamid = 0;
                 DataSet ds = new DataSet();
                 DataSet ds1 = _dbadmin.GetStreamDetailsByDID(txtAddCameraId.Text.Trim().ToUpper());
@@ -360,34 +367,39 @@ namespace exam
                 if (streamid <= 0)
                 {
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "alert", "swal('Fail!','" + txtAddCameraId.Text.Trim().ToUpper() + " does not exist in System! Please enter valid CameraID or Contact to System Administrator.','error');$j('#PopupAddCamera').show();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "hideLoader", "hideLoader();", true);
                 }
                 else
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showLoader", "showLoader();", true);
                     ds = _boothlist.SaveBooth(Convert.ToInt32(lblboothid.Value), streamid, txtAddOperatorName.Text, txtAddMobileNumber.Text, txtoperatordesignation.Text, drpAddDistrict.SelectedItem.Text, drpAddAcname.SelectedValue, drpAddAcname.SelectedItem.Text, txtAddPSNum.Text, txtAddLocation.Text, drpaddLocationType.SelectedValue, Session["username"].ToString());
                     if (Convert.ToBoolean(ds.Tables[0].Rows[0]["Status"].ToString()))
                     {
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "alert", "swal('Success!','" + ds.Tables[0].Rows[0]["msg"].ToString() + "','success');$j('#PopupAddCamera').hide();", true);
                         LoadBooth();
-                        //lblboothid.Value = "0";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "hideLoader", "hideLoader();", true);
                     }
+
                     else
                     {
-                        if(ds.Tables[0].Rows[0]["Error"].ToString()== "DupDID" )
+                        if (ds.Tables[0].Rows[0]["Error"].ToString() == "DupDID")
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Confirm", "Confirm('" + ds.Tables[0].Rows[0]["msg"].ToString() + "'," + ds.Tables[0].Rows[0]["ID"].ToString() + "," + ds.Tables[0].Rows[0]["ID1"].ToString() + ")", true);
                         }
-                        else if(ds.Tables[0].Rows[0]["Error"].ToString() == "AddExist")
+                        else if (ds.Tables[0].Rows[0]["Error"].ToString() == "AddExist")
                         {
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "alert", "swal('Fail!','" + ds.Tables[0].Rows[0]["msg"].ToString() + "','error');$j('#PopupAddCamera').show();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "hideLoader", "hideLoader();", true);
                         }
                         else
                         {
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "alert", "swal('Fail!','" + ds.Tables[0].Rows[0]["msg"].ToString() + "','error');$j('#PopupAddCamera').show();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "hideLoader", "hideLoader();", true);
                         }
-                        
+
                     }
                 }
-               
+
                 if (Convert.ToBoolean(ds.Tables[0].Rows[0]["Status"].ToString()) == true)
                 {
                     if (ds.Tables[0].Columns.Count == 3)
@@ -414,8 +426,10 @@ namespace exam
 
             if (e.CommandName == "Submit")
             {
-                lblTitle.Text = "EDIT BOOTH";
+
+
                 GridViewRow Row = (GridViewRow)((Button)e.CommandSource).NamingContainer;
+                lblTitle.Text = "EDIT BOOTH";
                 //HiddenField lblIdtest = (HiddenField)Row.FindControl("lblid");
                 //lblboothid.Value = lblIdtest.Value;
                 Label lblIdtest = (Label)Row.FindControl("lblid");
@@ -456,9 +470,12 @@ namespace exam
                     GridViewRow row = (GridViewRow)((Button)e.CommandSource).NamingContainer;
                     Label boothid = (Label)row.FindControl("lblid");
                     Label lblstreamname = (Label)row.FindControl("lblStreamId");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showLoader", "showLoader();", true);
                     bool result = _boothlist.DeleteBoothListMaster(Convert.ToInt32(boothid.Text), Session["username"].ToString());
                     if (result)
                     {
+                        // ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Record Deleted.')", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "hideLoader", "hideLoader();", true);
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Record Deleted.')", true);
                     }
                     else
@@ -482,7 +499,7 @@ namespace exam
             {
                 GridView1.PageIndex = e.NewPageIndex;
                 DataSet ds = _boothlist.GetMapBoothListNew_Master(ddlDistrict.SelectedValue, ddlAssembly.SelectedValue != "" ? ddlAssembly.SelectedItem.Text : "", strm_txtBox.Text, ddlCameraType.SelectedValue);
-                GridView1.DataSource = ds.Tables[0].DefaultView;
+                GridView1.DataSource = ds;
                 GridView1.DataBind();
             }
             catch (Exception ex)
@@ -494,27 +511,27 @@ namespace exam
         {
             using (var client = new HttpClient())
             {
-               client.BaseAddress = new Uri("http://media5.ambicam.com:5000");
-               client.DefaultRequestHeaders.Accept.Clear();
-               HttpResponseMessage response = client.GetAsync("api/camera/query/?uuid=" + deviceid.ToString().ToUpper()).Result;
-               if (response.IsSuccessStatusCode)
-               {
-                 string res = response.Content.ReadAsStringAsync().Result;
-                 CameraAPI oresponse = JsonConvert.DeserializeObject<CameraAPI>(res);
-                 
-                 if (oresponse?.rtmp != null && oresponse?.tcpurl != null)
-                 {
-                  string servername = "";
-                  string tcpurl = "";
-                  servername = oresponse.rtmp.Split('/')[2]?.Split(':').FirstOrDefault() ?? "";
-                  tcpurl = oresponse.tcpurl.Split('/')[2] ?? "";
-                  return _boothlist.SaveStreamList(deviceid, servername, tcpurl,Session["username"].ToString(), "BoothMaster.aspx");
-                 }
-                 else
-                 {
-                   return 0;
-                 }
-               }
+                client.BaseAddress = new Uri("http://media5.ambicam.com:5000");
+                client.DefaultRequestHeaders.Accept.Clear();
+                HttpResponseMessage response = client.GetAsync("api/camera/query/?uuid=" + deviceid.ToString().ToUpper()).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = response.Content.ReadAsStringAsync().Result;
+                    CameraAPI oresponse = JsonConvert.DeserializeObject<CameraAPI>(res);
+
+                    if (oresponse?.rtmp != null && oresponse?.tcpurl != null)
+                    {
+                        string servername = "";
+                        string tcpurl = "";
+                        servername = oresponse.rtmp.Split('/')[2]?.Split(':').FirstOrDefault() ?? "";
+                        tcpurl = oresponse.tcpurl.Split('/')[2] ?? "";
+                        return _boothlist.SaveStreamList(deviceid, servername, tcpurl, Session["username"].ToString(), "BoothMaster.aspx");
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
             }
             return 0;
         }
@@ -569,14 +586,14 @@ namespace exam
             cmd.Connection = con;
             con.Open();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@id1",Convert.ToInt32(id1));
+            cmd.Parameters.AddWithValue("@id1", Convert.ToInt32(id1));
             cmd.Parameters.AddWithValue("@id2", Convert.ToInt32(id2));
             cmd.Parameters.AddWithValue("@UserName", System.Web.HttpContext.Current.Session["username"].ToString());
             cmd.Parameters.AddWithValue("@IPAddress", System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString());
             int i = cmd.ExecuteNonQuery();
             con.Close();
             return i > 0 ? "Swap" : "Failed";
-
+            
         }
         protected void btnupload_Click(object sender, EventArgs e)
         {
@@ -633,7 +650,7 @@ namespace exam
                 //     SaveCameraDetailsByDeviceID(row["CameraID"].ToString());
                 //    }
                 //}
-                if(dsDID.Tables[0].Rows.Count>0)
+                if (dsDID.Tables[0].Rows.Count > 0)
                 {
                     DataTable dTdid = new DataTable();
                     dTdid.Columns.Add("uuid");
@@ -643,7 +660,7 @@ namespace exam
                     }
                     SaveStreamListWithAPI(dTdid);
                 }
-                
+
                 DataTable firstTable = ds_Excel.Tables[0];
                 string query = "UploadAssemblyWiseBooth";
                 SqlCommand SQLcommand = new SqlCommand(query, SQLconn);
@@ -737,15 +754,15 @@ namespace exam
                     client.BaseAddress = new Uri("http://media5.ambicam.com:5000");
                     client.DefaultRequestHeaders.Accept.Clear();
                     string myJson = JsonConvert.SerializeObject(dt);
-                    HttpResponseMessage response = client.PostAsync("/api/camera/json/", new StringContent(myJson,System.Text.Encoding.UTF8, "application/json")).Result;
+                    HttpResponseMessage response = client.PostAsync("/api/camera/json/", new StringContent(myJson, System.Text.Encoding.UTF8, "application/json")).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         string res = response.Content.ReadAsStringAsync().Result;
                         streamdata = JsonConvert.DeserializeObject<DataSet>(res);
                     }
-                        foreach (DataRow row in streamdata.Tables[0].Rows)
-                        {
-                        if(row["rtmp"].ToString()!="" || row["tcpurl"].ToString() != "")
+                    foreach (DataRow row in streamdata.Tables[0].Rows)
+                    {
+                        if (row["rtmp"].ToString() != "" || row["tcpurl"].ToString() != "")
                         {
                             row["rtmp"] = row["rtmp"].ToString().Split('/')[2]?.Split(':').FirstOrDefault() ?? "";
                             row["tcpurl"] = row["tcpurl"].ToString().Split('/')[2] ?? "";
@@ -755,10 +772,10 @@ namespace exam
                             row["rtmp"] = "NA";
                             row["tcpurl"] = "NA";
                         }
-                           
-                        }
-                   
-                    if (streamdata.Tables[0].Columns.Count==4)
+
+                    }
+
+                    if (streamdata.Tables[0].Columns.Count == 4)
                     {
                         streamdata.Tables[0].Columns.Remove("message");
                     }
@@ -767,11 +784,11 @@ namespace exam
                     streamdata.Tables[0].Columns[2].ColumnName = "ProUrl";
                     streamdata.Tables[0].Columns.Add("ISAI");
                     streamdata.Tables[0].AcceptChanges();
-                    DataTable firstTable = streamdata.Tables[0]; 
-                    DataSet ds= _boothlist.SaveBulkStreamList(firstTable, Session["UserName"].ToString(),"BoothMaster.aspx");
+                    DataTable firstTable = streamdata.Tables[0];
+                    DataSet ds = _boothlist.SaveBulkStreamList(firstTable, Session["UserName"].ToString(), "BoothMaster.aspx");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -862,13 +879,13 @@ namespace exam
                     message.To.Add(new MailAddress(ConfigurationManager.AppSettings["MailTo"].ToString()));
                 }
                 message.CC.Add(new MailAddress(ConfigurationManager.AppSettings["MailCC"].ToString()));
-                message.Subject = "Booth Upload With Excel";
+                message.Subject = "Booth Upload With Excel Of " + ConfigurationManager.AppSettings["ElectionName"].ToString();
                 if (FileUploadbooth.HasFile)
                 {
                     string FileName = Path.GetFileName(FileUploadbooth.PostedFile.FileName);
                     message.Attachments.Add(new Attachment(FileUploadbooth.PostedFile.InputStream, FileName));
                 }
-                message.IsBodyHtml = false; 
+                message.IsBodyHtml = false;
                 smtp.Port = 587;
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
@@ -977,7 +994,7 @@ namespace exam
                     message.To.Add(new MailAddress(ConfigurationManager.AppSettings["MailTo"].ToString()));
                 }
                 message.CC.Add(new MailAddress(ConfigurationManager.AppSettings["MailCC"].ToString()));
-                message.Subject = "Camera Activity In Booth";
+                message.Subject = "Camera Activity In Booth Of" + ConfigurationManager.AppSettings["ElectionName"].ToString();
                 message.IsBodyHtml = true; //to make message body as html  
                 message.Body = htmlString;
                 // message.Body = htmlString1;
@@ -1020,7 +1037,58 @@ namespace exam
             }
             return dataSet;
         }
+        [System.Web.Services.WebMethod]
+        public static string RefreshGrid(string district, string assembly, string searchText, string cameraType)
+        {
+            try
+            {
+                string conString = ConfigurationManager.ConnectionStrings["connectionstr"].ConnectionString;
+                DataSet ds = new DataSet();
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("GetBoothList", conn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@district", district);
+                    command.Parameters.AddWithValue("@acname", assembly);
+                    command.Parameters.AddWithValue("@search", searchText);
+                    command.Parameters.AddWithValue("@cameratype", cameraType);
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(ds);
+                }
+
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    GridView gv = new GridView();
+                    gv.AutoGenerateColumns = true;
+                    gv.DataSource = ds.Tables[0];
+                    gv.DataBind();
+
+                    using (StringWriter sw = new StringWriter())
+                    {
+                        using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                        {
+                            gv.RenderControl(hw);
+                            return sw.ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    string noRecordsMessage = "<div align='center'><label class='text-center text-danger'>No Records Found</label></div>";
+                    return noRecordsMessage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.Log("RefreshGrid() -- >  " + ex.Message);
+                return "Error occurred while refreshing grid.";
+            }
+        }
+
+
     }
+
     public class CameraAPI
     {
         public string deviceid { get; set; }

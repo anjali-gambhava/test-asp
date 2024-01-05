@@ -24,6 +24,15 @@ namespace exam
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
         /// hiddenField control.
         /// </summary>
         /// <remarks>
@@ -31,15 +40,6 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenField;
-
-        /// <summary>
-        /// UpdatePanel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
 
         /// <summary>
         /// ddlDistrict control.
@@ -87,13 +87,13 @@ namespace exam
         protected global::System.Web.UI.WebControls.Button btnsearch;
 
         /// <summary>
-        /// btnaddbooth control.
+        /// Add_Booth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaddbooth;
+        protected global::System.Web.UI.WebControls.Button Add_Booth;
 
         /// <summary>
         /// FileUploadbooth control.
@@ -123,15 +123,6 @@ namespace exam
         protected global::System.Web.UI.WebControls.Button btnBulkRemove;
 
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -139,24 +130,6 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
-        /// lblTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
-
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
         /// lblmsg control.
@@ -168,13 +141,31 @@ namespace exam
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// lblboothid control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField lblboothid;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
+
+        /// <summary>
+        /// lblboothid11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblboothid11;
+
+        /// <summary>
+        /// lblboothid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblboothid1;
 
         /// <summary>
         /// lblStreamId control.
@@ -193,6 +184,24 @@ namespace exam
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblaccode;
+
+        /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+
+        /// <summary>
+        /// lblboothid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblboothid;
 
         /// <summary>
         /// drpAddDistrict control.
