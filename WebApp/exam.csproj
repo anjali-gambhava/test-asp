@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>exam</RootNamespace>
     <AssemblyName>exam</AssemblyName>
-    <TargetFrameworkVersion>net472</TargetFrameworkVersion>
+    <TargetFrameworkVersion>net45</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <TargetFrameworkProfile />
     <Use64BitIISExpress>
