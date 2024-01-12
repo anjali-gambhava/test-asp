@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'testappforanjali'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34DE6FDCC35B4CD39F56DCF0D0B543FA  }}
           package: .
