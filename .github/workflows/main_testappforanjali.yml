@@ -23,11 +23,8 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      - name: Build the application
+      - name: Build project
         run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Build
-
-      - name: Publish artifacts
-        run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:WebPublishMethod=FileSystem /p:PublishUrl=/published
 
       - name: List contents of /published directory
         run: ls -R /published
@@ -37,6 +34,7 @@ jobs:
         with:
           name: ASP-app
           path: '/published/**'
+          if-no-files-found: warn
 
   deploy:
     runs-on: windows-latest
