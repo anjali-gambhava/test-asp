@@ -14,18 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install .NET Framework 4.0 Developer Pack
+        run: |
+          choco install dotnet4.0
+
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
-
-      - name: Install .NET Framework 4.0 targeting pack
-        run: |
-          $targetingPackZip = "$env:TEMP\v4.0.0.zip"
-          Invoke-WebRequest -Uri https://dotnet.microsoft.com/download/dotnet-framework/net40/targetpacks -OutFile $targetingPackZip
-          Expand-Archive -Path $targetingPackZip -DestinationPath "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0"
-          Remove-Item -Path $targetingPackZip -Force
 
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
