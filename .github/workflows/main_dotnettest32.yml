@@ -23,9 +23,6 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      - name: Publish to folder
-        run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
