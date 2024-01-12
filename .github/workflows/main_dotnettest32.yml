@@ -26,12 +26,6 @@ jobs:
       - name: List contents of /published directory
         run: ls -R /published
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: ASP-app
-          path: '/published/**'
-
   deploy:
     runs-on: windows-latest
     needs: build
@@ -40,10 +34,17 @@ jobs:
       url: https://dotnettest32.azurewebsites.net/
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: ASP-app
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Restore NuGet packages
+        run: nuget restore WebApp/exam.sln
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -52,4 +53,5 @@ jobs:
           app-name: 'dotnettestan'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
-          package: ${{ github.workspace }}/ASP-app
+          package: .  # Assuming the files are in the root directory
+
