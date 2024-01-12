@@ -14,13 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install .NET Framework 4.0 Developer Pack
-        run: |
-          choco install dotnet4.0
-
-      - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.2
-
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
 
