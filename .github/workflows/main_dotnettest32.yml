@@ -23,6 +23,9 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
+      - name: Publish to folder
+        run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -34,7 +37,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: https://dotnettest32.azurewebsites.net/
 
     steps:
       - name: Download artifact from build job
@@ -49,4 +52,4 @@ jobs:
           app-name: 'dotnettestan'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
-          package: .
+          package: ${{ github.workspace }}/published
