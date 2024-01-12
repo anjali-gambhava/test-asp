@@ -17,7 +17,7 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.1
         with:
-          installation-path: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
+          vs-version: '16.10.x'  # Adjust based on your Visual Studio version
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ASP-app
-          path: '/path/to/your/source/code'  # Adjust the path to your source code
+          path: '.'  # This assumes that your build artifacts are in the root of your repository
 
   deploy:
     runs-on: windows-latest
