@@ -20,6 +20,11 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
 
+      - name: Install .NET Framework 4.0 targeting pack
+        run: |
+          Invoke-WebRequest -Uri https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v4.0.0.zip -OutFile v4.0.0.zip
+          Expand-Archive v4.0.0.zip -DestinationPath C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0
+
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
@@ -52,4 +57,4 @@ jobs:
           app-name: 'dotnettestan'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
-          package: . 
+          package: .
