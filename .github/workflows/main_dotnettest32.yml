@@ -1,4 +1,4 @@
-name: Build and Deploy ASP app to Azure Web App - dotnettestan
+name: Build and deploy ASP app to Azure Web App - dotnettestan
 
 on:
   push:
@@ -14,10 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.0.1
-        with:
-          vs-version: '16.10.x'  # Adjust based on your Visual Studio version
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
@@ -25,20 +23,21 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      # Add additional build steps if needed
+      - name: Publish to folder
+        run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: ASP-app
-          path: '.'  # This assumes that your build artifacts are in the root of your repository
+          path: '/published/**'
 
   deploy:
     runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
-      url: ${{ needs.build.outputs.artifact-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
@@ -53,3 +52,4 @@ jobs:
           app-name: 'dotnettestan'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
+          package: .
