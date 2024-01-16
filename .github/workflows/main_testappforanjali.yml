@@ -31,7 +31,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: https://testappforanjali.azurewebsites.net/
+      url: https://dotnettest32.azurewebsites.net/
 
     steps:
       - name: Checkout repository
@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'testappforanjali'
+          app-name: 'dotnettestan'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34DE6FDCC35B4CD39F56DCF0D0B543FA  }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FA8DFA0AB6354303B4A8604801294848 }}
           package: .
