@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.3
+        uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
@@ -23,17 +23,8 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      - name: Build and publish
-        run: msbuild WebApp/exam.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
-
       - name: List contents of /published directory
         run: ls -R /published
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: ASP-app
-          path: '/published/**'
 
   deploy:
     runs-on: windows-latest
@@ -43,10 +34,17 @@ jobs:
       url: https://testappforanjali.azurewebsites.net/
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: ASP-app
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Restore NuGet packages
+        run: nuget restore WebApp/exam.sln
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -54,5 +52,5 @@ jobs:
         with:
           app-name: 'testappforanjali'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34DE6FDCC35B4CD39F56DCF0D0B543FA }}
-          package: ${{ github.workspace }}/published
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34DE6FDCC35B4CD39F56DCF0D0B543FA  }}
+          package: .
