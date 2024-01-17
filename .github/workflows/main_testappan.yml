@@ -1,4 +1,4 @@
-name: Build and deploy ASP app to Azure Web App - testappan
+name: Build and deploy ASP app to Azure Web App - dotnettestan
 
 on:
   push:
@@ -21,10 +21,13 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
 
       - name: Restore NuGet packages
-        run: nuget restore
+        run: nuget restore WebApp/exam.sln
 
       - name: Build and Publish
         run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+
+      - name: List contents of /published directory
+        run: ls -R /published
 
   deploy:
     runs-on: windows-latest
@@ -46,15 +49,11 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      - name: Copy published files from build job
-        run: |
-          cp -r ${{ needs.build.outputs.path_to_published }}/* .
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
-        with:
+        with: 
           app-name: 'testappan'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B57F730C31764E798B4E4500D5DE0D61 }}
-          package: ./
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B57F730C31764E798B4E4500D5DE0D61  }}
+          package: .
