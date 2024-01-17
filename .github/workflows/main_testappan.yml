@@ -45,10 +45,6 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
-      - name: Debug Publish Profile
-        run: |
-            $decodedProfile = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_28CED459CA8848D18AFDDF9B89859AD5 }}"))
-            Write-Host $decodedProfile
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
