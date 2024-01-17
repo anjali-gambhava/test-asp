@@ -17,8 +17,11 @@ jobs:
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore NuGet packages and Build
-        run: msbuild /nologo /verbosity:m /t:Restore,Build /p:Configuration=Release WebApp/exam.sln
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Restore NuGet packages
+        run: nuget restore WebApp/exam.sln
 
       - name: List contents of /published directory
         run: ls -R /published
@@ -37,9 +40,12 @@ jobs:
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore NuGet packages
-        run: msbuild /nologo /verbosity:m /t:Restore /p:Configuration=Release WebApp/exam.sln
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
+      - name: Restore NuGet packages
+        run: nuget restore WebApp/exam.sln
+        
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
