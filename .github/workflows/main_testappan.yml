@@ -49,6 +49,13 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
+      - name: Debug Information
+        run: |
+              echo "Debug Information:"
+              ls -R .
+              ls -R /published
+
+
       # Additional setup steps as needed
       # For example, you might want to set up the deployment environment, install dependencies, etc.
 
