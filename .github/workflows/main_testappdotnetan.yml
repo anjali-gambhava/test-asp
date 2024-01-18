@@ -61,7 +61,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ secrets.https://testappdotnetan.azurewebsites.net/ }}
+      url: ${{ secrets.testappdotnetan.azurewebsites.net }}
 
     steps:
       - name: Download artifact from build job
