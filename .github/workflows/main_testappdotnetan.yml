@@ -57,12 +57,8 @@ jobs:
     defaults:
       run:
         working-directory: WebApp
-
     needs: build
-    environment:
-      name: 'Production'
-      url: ${{ secrets.testappdotnetan.azurewebsites.net }}
-
+   
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
