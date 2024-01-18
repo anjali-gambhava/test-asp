@@ -9,7 +9,7 @@ on:
     branches: [main]
 
 env:
-  DOTNET_VERSION: '7.0.x'
+  DOTNET_VERSION: '5.0.405'
   DOTNET_QUALITY: 'preview'
   WORKING_DIR: src
   BUILD_CONFIG: Debug
@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up .NET 7.0.x
+      - name: Set up .NET 5.0.x
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
