@@ -1,57 +1,79 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP app to Azure Web App - testappdotnetan
+name: Build and deploy ASP.Net Core app to Azure Web App
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [main]
+
+env:
+  DOTNET_VERSION: '7.0.x'
+  DOTNET_QUALITY: 'preview'
+  WORKING_DIR: src
+  BUILD_CONFIG: Debug
+  PROJECT_FILE: WebApp/exam.csproj
+  APPSERVICE_NAME: testappdotnetan
+  APPSERVICE_SLOT: Production
+  PACKAGE_PATH: '/published'
 
 jobs:
   build:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: WebApp
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Set up .NET 7.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
+      - name: Restore Dependencies
+        run: dotnet restore
 
-      - name: Restore NuGet packages
-        run: nuget restore
+      - name: Build the .NET Solution
+        run: dotnet build -c ${{ env.BUILD_CONFIG }} --no-restore
 
-      - name: Publish to folder
-        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+      - name: Test
+        run: dotnet test --no-build --no-restore --verbosity normal
+
+      - name: dotnet publish
+        run: dotnet publish -c ${{ env.BUILD_CONFIG }} -o ${{ env.PACKAGE_PATH }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: ASP-app
-          path: '/published/**'
+          name: .net-app
+          path: ${{ env.PACKAGE_PATH }}
 
   deploy:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: WebApp
+
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+      url: ${{ secrets.https://testappdotnetan.azurewebsites.net/ }}
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: ASP-app
-      
+          name: .net-app
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'testappdotnetan'
-          slot-name: 'Production'
-          package: .
+          app-name: ${{ env.testappdotnetan }}
+          slot-name: ${{ env.Production }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96BFC156D08647D2A1DDA61BBD875D57 }}
+          package: ${{ env.PACKAGE_PATH }}
