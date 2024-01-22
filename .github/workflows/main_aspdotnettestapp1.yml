@@ -17,9 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.418'
+        
+    - name: Restore NuGet packages
+      run: dotnet restore WebApp/exam.sln
 
-    - name: 💼 Publish ASP.NET project
-      run: msbuild /p:Configuration=Release /p:OutputPath=WebApp
+    - name: Build and publish
+      run: dotnet build --configuration Release --output WebApp
+      working-directory: WebApp
 
     - name: 📂 Sync files to Azure Web App via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
