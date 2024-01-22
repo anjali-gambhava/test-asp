@@ -23,9 +23,8 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
-      - name: Build and publish
-        run: msbuild /p:Configuration=Release /p:OutputPath=publishtmp
-        working-directory: WebApp
+      - name: List contents of /published directory
+        run: ls -R /published
 
   deploy:
     runs-on: windows-latest
