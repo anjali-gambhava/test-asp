@@ -26,7 +26,7 @@ jobs:
         run: nuget restore WebApp/exam.sln
 
       - name: Build and publish
-        run: msbuild /p:Configuration=Release /p:OutputPath=publishtmp
+        run: msbuild /p:Configuration=Release /p:OutputPath=publishtmp /p:TargetFrameworkVersion=v4.5
         working-directory: WebApp
 
   deploy:
