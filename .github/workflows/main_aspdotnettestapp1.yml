@@ -41,8 +41,8 @@ jobs:
       - name: Upload to Azure Web App via FTP
         uses: SamKirkland/FTP-Deploy-Action@3.1
         with:
-          server: ${{ secrets.ftps://waws-prod-pn1-021.ftp.azurewebsites.windows.net/site/wwwroot }}
-          username: ${{ secrets.aspdotnettestapp1\$aspdotnettestapp1 }}
-          password: ${{ secrets.NDBjqyMoqYis6pmjcXcxygNwMyTbPcBEaxBosdp8kBhwZrsolbDGddt05vnc }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: 'WebApp/publishtmp'
           remote-dir: '/site/wwwroot'
