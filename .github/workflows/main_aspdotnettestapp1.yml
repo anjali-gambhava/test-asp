@@ -16,7 +16,7 @@ jobs:
     - name: 🚀 Setup .NET Framework
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '4.8'
+        dotnet-version: '5.0.17'
 
     - name: 💼 Publish ASP.NET project
       run: msbuild /p:Configuration=Release /p:OutputPath=WebApp
