@@ -46,6 +46,11 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore WebApp/exam.sln
 
+      - name: Install IIS
+        run: |
+          Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
