@@ -45,3 +45,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: 'WebApp/'
           remote-dir: '/site/wwwroot'
+          protocol: ftps
