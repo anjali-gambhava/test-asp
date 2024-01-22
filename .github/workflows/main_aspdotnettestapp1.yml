@@ -1,35 +1,48 @@
-name: ASP.NET Build and Deploy
+name: Build and deploy ASP app to Azure Web App - aspdotnettestapp1
+
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build-test-deploy:
+  build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: 🚀 Setup .NET Framework
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '4.8'
-        
-    - name: Restore NuGet packages
-      run: dotnet restore WebApp/exam.sln
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Build and publish
-      run: dotnet build --configuration Release --output WebApp
-      working-directory: WebApp
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
-    - name: 📂 Sync files to Azure Web App via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: ${{ secrets.ftp_server }}
-        username: ${{ secrets.ftp_user }}
-        password: ${{ secrets.ftp_password }}
-        local-dir: 'WebApp/'
-        remote-dir: '/site/wwwroot'
+      - name: Restore NuGet packages
+        run: nuget restore WebApp/exam.sln
+
+      - name: Build and publish
+        run: msbuild /p:Configuration=Release /p:OutputPath=publishtmp
+        working-directory: WebApp
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: https://aspdotnettestapp1.azurewebsites.net/
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload to Azure Web App via FTP
+        uses: SamKirkland/FTP-Deploy-Action@3.1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: 'WebApp/'
+          remote-dir: '/site/wwwroot'
